@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+  <include file="dhis-web-commons.xml" />
+
+  <package name="jphes-web-hierarchy" extends="dhis-web-commons" namespace="/jphes-web-app">
+
+    <!-- JPHES Web APP -->
+
+    <action name="index" class="org.hisp.dhis.hierarchy.action.NoAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/index.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+    </action>
+
+
+
+  </package>
+</struts>
