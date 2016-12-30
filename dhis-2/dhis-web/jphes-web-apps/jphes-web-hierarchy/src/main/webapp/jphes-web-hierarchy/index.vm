@@ -1,0 +1,5 @@
+<h3>$i18n.getString( "hierarchy" )&nbsp; #openHelp( "partners" )</h3>
+
+<ul class="introList">
+    #introListImgItem( "" "hirerachy" "user" )
+</ul>
