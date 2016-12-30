@@ -6,7 +6,7 @@
 
   <include file="dhis-web-commons.xml" />
 
-  <package name="jphes-web-hierarchy" extends="dhis-web-commons" namespace="/jphes-web-app">
+  <package name="jphes-web-hierarchy" extends="dhis-web-commons" namespace="/jphes-web-hierarchy">
 
     <!-- JPHES Web APP -->
 
