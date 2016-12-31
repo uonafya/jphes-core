@@ -4,4 +4,14 @@
 
   <bean id="org.hisp.dhis.partner.action.NoAction" class="org.hisp.dhis.hierarchy.action.NoAction" scope="prototype" />
 
+  <bean id="org.hisp.dhis.hierarchy.action.GetPartnerListAction" class="org.hisp.dhis.hierarchy.action.GetPartnerListAction" scope="prototype" >
+    <property name="partnerService" ref="org.hisp.dhis.jphes_hierarchy.HierarchyService" />
+    <property name="userService" ref="org.hisp.dhis.user.UserService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.hierarchy.action.AddPartnerAction" class="org.hisp.dhis.hierarchy.action.AddPartnerAction" scope="prototype" >
+    <property name="partnerService" ref="org.hisp.dhis.jphes_hierarchy.HierarchyService" />
+    <property name="userService" ref="org.hisp.dhis.user.UserService" />
+  </bean>
+
 </beans>

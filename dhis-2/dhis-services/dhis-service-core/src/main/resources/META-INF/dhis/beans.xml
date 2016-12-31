@@ -774,6 +774,14 @@
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 
+  <!--JPHES StoreObject-->
+  <bean id="org.hisp.dhis.jphes_hierarchy.HierarchyStore" class="org.hisp.dhis.jphes_hierarchy.hibernate.HibernateHierarchyStore">
+    <property name="clazz" value="org.hisp.dhis.jphes_hierarchy.PartnerHierarchy" />
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="cacheable" value="true" />
+  </bean>
+  <!--JPHES StoreObject-->
+
   <!-- File resource tasks -->
 
   <bean id="org.hisp.dhis.fileresource.FileResourceUploadCallback" class="org.hisp.dhis.fileresource.FileResourceUploadCallback" />
@@ -1228,6 +1236,12 @@
     <property name="colorSetStore" ref="org.hisp.dhis.color.ColorSetStore" />
   </bean>
 
+  <!--JPHES Services-->
+
+  <bean id="org.hisp.dhis.jphes_hierarchy.HierarchyService" class="org.hisp.dhis.jphes_hierarchy.DefaultHierarchyService">
+    <property name="hierarchyStore" ref="org.hisp.dhis.jphes_hierarchy.HierarchyStore" />
+  </bean>
+
   <!-- SMS Services -->
 
   <bean id="org.hisp.dhis.sms.MessageQueue" class="org.hisp.dhis.sms.DatabaseSupportedInternalMemoryMessageQueue" />
@@ -1569,6 +1583,7 @@
         <value>relationshiptype</value>
         <value>sqlview</value>
         <value>dataentryform</value>
+        <!--<value>partnerhierarchy</value>-->
       </list>
     </property>
   </bean>
