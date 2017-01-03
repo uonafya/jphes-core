@@ -1,5 +1,5 @@
 <h3>$i18n.getString( "partners" )&nbsp; #openHelp( "partners" )</h3>
 
 <ul class="introList">
-    #introListImgItem( "allPartner.action" "partner" "user" )
+    #introListImgItem( "allPartner.action" "hierarchy" "hierarchy" )
 </ul>

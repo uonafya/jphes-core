@@ -20,7 +20,6 @@ public class DefaultHierarchyService implements HierarchyService
     // Service implementation
     // -------------------------------------------------------------------------
 
-    @SuppressWarnings( "unchecked" )
     @Override public int savePartner( PartnerHierarchy partner )
     {
         return hierarchyStore.save( partner );

@@ -778,7 +778,7 @@
   <bean id="org.hisp.dhis.jphes_hierarchy.HierarchyStore" class="org.hisp.dhis.jphes_hierarchy.hibernate.HibernateHierarchyStore">
     <property name="clazz" value="org.hisp.dhis.jphes_hierarchy.PartnerHierarchy" />
     <property name="sessionFactory" ref="sessionFactory" />
-    <property name="cacheable" value="true" />
+    <!--<property name="cacheable" value="true" />-->
   </bean>
   <!--JPHES StoreObject-->
 
@@ -1583,7 +1583,7 @@
         <value>relationshiptype</value>
         <value>sqlview</value>
         <value>dataentryform</value>
-        <!--<value>partnerhierarchy</value>-->
+        <value>partnerhierarchy</value>
       </list>
     </property>
   </bean>

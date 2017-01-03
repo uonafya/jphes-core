@@ -17,9 +17,17 @@ public class HibernateHierarchyStore extends HibernateIdentifiableObjectStore<Pa
     private static final Log log = LogFactory.getLog( HibernateHierarchyStore.class );
 
 
+
     // -------------------------------------------------------------------------
     // implementations
     // -------------------------------------------------------------------------
+
+
+    @Override public int save( PartnerHierarchy object )
+    {
+        object.setAutoFields();
+        return super.save( object );
+    }
 
     @Override public List<PartnerHierarchy> getAllPartners()
     {
@@ -30,5 +38,6 @@ public class HibernateHierarchyStore extends HibernateIdentifiableObjectStore<Pa
     {
         return null;
     }
+
 
 }

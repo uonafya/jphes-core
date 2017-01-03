@@ -8,8 +8,15 @@ import org.hisp.dhis.common.DxfNamespaces;
  * Created by afya on 30/12/16.
  */
 
-@JacksonXmlRootElement( localName = "partnerhierarchy", namespace = DxfNamespaces.DXF_2_0 )
+@JacksonXmlRootElement( localName = "PartnerHierarchy", namespace = DxfNamespaces.DXF_2_0 )
 public class PartnerHierarchy extends BaseIdentifiableObject
 {
     //Inherits all attributes
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+    public PartnerHierarchy(){
+
+    }
 }

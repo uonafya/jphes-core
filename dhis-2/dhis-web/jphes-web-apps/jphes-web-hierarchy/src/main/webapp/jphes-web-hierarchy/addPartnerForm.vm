@@ -1,4 +1,4 @@
-<h3>Add Partner</h3>
+<h3>Add Level</h3>
 
 <form id="addPartnerForm" name="addPartnerForm" action="addPartner.action" method="post" class="inputForm">
   <table>
