@@ -1871,6 +1871,17 @@
     <property name="jdbcTemplate" ref="jdbcTemplate" />
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.program.ProgramService" class="org.hisp.dhis.jphes.program.DefaultProgramService">
+      <property name="programStore" ref="org.hisp.dhis.jphes.program.ProgramStore"/>
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.program.ProgramStore" class="org.hisp.dhis.jphes.program.hibernate.HibernateProgramStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.program.Program"/>
+    <property name="sessionFactory" ref="sessionFactory"/>
+    <property name="cacheable" value="true"/>
+  </bean>
+
+
   <!-- AOP definitions -->
 
   <aop:config>
