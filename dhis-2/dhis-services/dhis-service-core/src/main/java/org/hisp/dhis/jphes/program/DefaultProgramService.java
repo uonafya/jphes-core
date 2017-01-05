@@ -7,6 +7,14 @@ import java.util.List;
  */
 public class DefaultProgramService implements ProgramService {
 
+    public ProgramStore getProgramStore() {
+        return programStore;
+    }
+
+    public void setProgramStore(ProgramStore programStore) {
+        this.programStore = programStore;
+    }
+
     private ProgramStore programStore;
     /**
      * adds a new program
