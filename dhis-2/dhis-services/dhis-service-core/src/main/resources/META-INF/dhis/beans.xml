@@ -775,10 +775,10 @@
   </bean>
 
   <!--JPHES StoreObject-->
-  <bean id="org.hisp.dhis.jphes_hierarchy.HierarchyStore" class="org.hisp.dhis.jphes_hierarchy.hibernate.HibernateHierarchyStore">
-    <property name="clazz" value="org.hisp.dhis.jphes_hierarchy.PartnerHierarchy" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.HierarchyStore" class="org.hisp.dhis.jphes.hierarchy.hibernate.HibernateHierarchyStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.hierarchy.PartnerHierarchy" />
     <property name="sessionFactory" ref="sessionFactory" />
-    <!--<property name="cacheable" value="true" />-->
+    <property name="cacheable" value="true" />
   </bean>
   <!--JPHES StoreObject-->
 
@@ -1238,8 +1238,8 @@
 
   <!--JPHES Services-->
 
-  <bean id="org.hisp.dhis.jphes_hierarchy.HierarchyService" class="org.hisp.dhis.jphes_hierarchy.DefaultHierarchyService">
-    <property name="hierarchyStore" ref="org.hisp.dhis.jphes_hierarchy.HierarchyStore" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.HierarchyService" class="org.hisp.dhis.jphes.hierarchy.DefaultHierarchyService">
+    <property name="hierarchyStore" ref="org.hisp.dhis.jphes.hierarchy.HierarchyStore" />
   </bean>
 
   <!-- SMS Services -->
