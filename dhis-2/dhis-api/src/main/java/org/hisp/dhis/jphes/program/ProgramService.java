@@ -60,4 +60,12 @@ public interface ProgramService {
       * @return a list of available programs
      */
     List<Program> getAllPrograms();
+
+    List<Program> getProgramsBetween(int start, int end);
+
+    List<Program> getProgramsBetweenByName(String name, int start, int end);
+
+    int getProgramCount();
+
+    int getProgramCountByName(String name);
 }

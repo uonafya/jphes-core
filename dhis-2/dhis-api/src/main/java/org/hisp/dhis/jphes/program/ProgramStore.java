@@ -11,4 +11,6 @@ public interface ProgramStore extends GenericIdentifiableObjectStore<Program> {
     String ID = ProgramStore.class.getName();
 
     List<Program> searchProgramByName(String key);
+
+    List<Program> getAllPrograms();
 }

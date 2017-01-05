@@ -7,7 +7,7 @@ import org.hisp.dhis.common.DxfNamespaces;
 /**
  * Created by xenial on 1/4/17.
  */
-@JacksonXmlRootElement( localName = "dataElement", namespace = DxfNamespaces.DXF_2_0 )
+@JacksonXmlRootElement( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
 public class Program extends BaseIdentifiableObject {
 
     /**
@@ -15,4 +15,12 @@ public class Program extends BaseIdentifiableObject {
      * useful where name is too long
      */
     private String formName;
+
+    public String getFormName() {
+        return formName;
+    }
+
+    public void setFormName(String formName) {
+        this.formName = formName;
+    }
 }
