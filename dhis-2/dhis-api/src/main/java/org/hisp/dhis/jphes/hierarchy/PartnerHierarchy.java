@@ -1,4 +1,4 @@
-package org.hisp.dhis.jphes_hierarchy;
+package org.hisp.dhis.jphes.hierarchy;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hisp.dhis.common.BaseIdentifiableObject;

@@ -6,7 +6,7 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes_hierarchy.PartnerHierarchy" table="partnerhierarchy">
+  <class name="org.hisp.dhis.jphes.hierarchy.PartnerHierarchy" table="partnerhierarchy">
 
     <cache usage="read-write" />
 

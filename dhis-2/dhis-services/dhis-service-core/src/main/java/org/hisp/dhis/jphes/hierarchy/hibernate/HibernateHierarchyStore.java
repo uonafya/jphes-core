@@ -1,10 +1,10 @@
-package org.hisp.dhis.jphes_hierarchy.hibernate;
+package org.hisp.dhis.jphes.hierarchy.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hisp.dhis.common.hibernate.HibernateIdentifiableObjectStore;
-import org.hisp.dhis.jphes_hierarchy.HierarchyStore;
-import org.hisp.dhis.jphes_hierarchy.PartnerHierarchy;
+import org.hisp.dhis.jphes.hierarchy.HierarchyStore;
+import org.hisp.dhis.jphes.hierarchy.PartnerHierarchy;
 
 import java.util.List;
 

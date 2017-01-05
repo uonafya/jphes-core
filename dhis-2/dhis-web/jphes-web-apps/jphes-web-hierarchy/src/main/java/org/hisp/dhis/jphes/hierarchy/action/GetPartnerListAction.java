@@ -1,4 +1,4 @@
-package org.hisp.dhis.hierarchy.action;
+package org.hisp.dhis.jphes.hierarchy.action;
 
 import org.hisp.dhis.jphes.hierarchy.PartnerHierarchy;
 import org.hisp.dhis.jphes.hierarchy.HierarchyService;

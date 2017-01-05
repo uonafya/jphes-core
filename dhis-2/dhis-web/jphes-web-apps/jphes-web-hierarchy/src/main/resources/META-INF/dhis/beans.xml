@@ -2,15 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-  <bean id="org.hisp.dhis.partner.action.NoAction" class="org.hisp.dhis.hierarchy.action.NoAction" scope="prototype" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
 
-  <bean id="org.hisp.dhis.hierarchy.action.GetPartnerListAction" class="org.hisp.dhis.hierarchy.action.GetPartnerListAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes_hierarchy.HierarchyService" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" scope="prototype" >
+    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
   </bean>
 
-  <bean id="org.hisp.dhis.hierarchy.action.AddPartnerAction" class="org.hisp.dhis.hierarchy.action.AddPartnerAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes_hierarchy.HierarchyService" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" class="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" scope="prototype" >
+    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
   </bean>
 

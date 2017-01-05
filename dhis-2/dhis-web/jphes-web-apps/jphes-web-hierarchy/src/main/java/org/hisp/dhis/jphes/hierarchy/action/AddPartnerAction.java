@@ -1,4 +1,4 @@
-package org.hisp.dhis.hierarchy.action;
+package org.hisp.dhis.jphes.hierarchy.action;
 
 import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
