@@ -1,7 +1,7 @@
 package org.hisp.dhis.hierarchy.action;
 
-import org.hisp.dhis.jphes_hierarchy.PartnerHierarchy;
-import org.hisp.dhis.jphes_hierarchy.HierarchyService;
+import org.hisp.dhis.jphes.hierarchy.PartnerHierarchy;
+import org.hisp.dhis.jphes.hierarchy.HierarchyService;
 import org.hisp.dhis.paging.ActionPagingSupport;
 import org.hisp.dhis.user.UserService;
 

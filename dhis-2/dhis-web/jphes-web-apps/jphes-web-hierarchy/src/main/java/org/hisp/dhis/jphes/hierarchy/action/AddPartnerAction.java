@@ -1,10 +1,9 @@
 package org.hisp.dhis.hierarchy.action;
 
-import com.ctc.wstx.util.StringUtil;
 import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
-import org.hisp.dhis.jphes_hierarchy.PartnerHierarchy;
-import org.hisp.dhis.jphes_hierarchy.HierarchyService;
+import org.hisp.dhis.jphes.hierarchy.PartnerHierarchy;
+import org.hisp.dhis.jphes.hierarchy.HierarchyService;
 import org.hisp.dhis.user.UserService;
 
 /**
