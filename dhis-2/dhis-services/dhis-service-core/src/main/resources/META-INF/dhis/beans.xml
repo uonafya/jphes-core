@@ -780,6 +780,13 @@
     <property name="sessionFactory" ref="sessionFactory" />
     <property name="cacheable" value="true" />
   </bean>
+  <!--NationalUnitStore-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.national.NationalUnitStore" class="org.hisp.dhis.jphes.hierarchy.hibernate.HibernateNationalUnitStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.hierarchy.national.NationalUnit" />
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="cacheable" value="true" />
+  </bean>
+
   <!--JPHES StoreObject-->
 
   <!-- File resource tasks -->
@@ -1240,6 +1247,11 @@
 
   <bean id="org.hisp.dhis.jphes.hierarchy.HierarchyService" class="org.hisp.dhis.jphes.hierarchy.DefaultHierarchyService">
     <property name="hierarchyStore" ref="org.hisp.dhis.jphes.hierarchy.HierarchyStore" />
+  </bean>
+
+   <!--NationalUnit-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultNationalUnitService">
+    <property name="nationalUnitStore" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitStore" />
   </bean>
 
   <!-- SMS Services -->

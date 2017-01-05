@@ -11,9 +11,9 @@ public interface NationalUnitService
 
     int addNationalUnit(NationalUnit nationalUnit);
 
-    int updateNationalUnit(NationalUnit nationalUnit);
+    void updateNationalUnit(NationalUnit nationalUnit);
 
-    int deleteNationalUnit(NationalUnit nationalUnit);
+    void deleteNationalUnit(NationalUnit nationalUnit);
 
     NationalUnit getNationalUnit(String uid);
 
