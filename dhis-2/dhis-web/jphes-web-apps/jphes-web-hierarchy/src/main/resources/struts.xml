@@ -24,7 +24,7 @@
     </action>
 
     <!--National Unit Actions-->
-    <action name="allNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="allNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/national/allNationalUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
@@ -36,7 +36,7 @@
       <param name="page">/jphes-web-hierarchy/national/addNationalUnitForm.vm</param>
     </action>
 
-    <action name="addNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="addNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.AddNationalUnitAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showAddNationalUnitForm.action</result>
     </action>

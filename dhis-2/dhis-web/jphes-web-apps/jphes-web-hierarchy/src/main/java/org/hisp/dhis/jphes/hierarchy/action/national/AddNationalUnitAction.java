@@ -1,8 +1,14 @@
 package org.hisp.dhis.jphes.hierarchy.action.national;
 
 import com.opensymphony.xwork2.Action;
+import org.apache.commons.lang.StringUtils;
+import org.hisp.dhis.common.DataDimensionType;
+import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
+import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
+import org.hisp.dhis.program.Program;
+import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
@@ -10,6 +16,7 @@ import org.nfunk.jep.function.Str;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by afya on 05/01/17.
@@ -46,8 +53,15 @@ public class AddNationalUnitAction implements Action
 
         this.categoryService = categoryService;
     }
+
+    private ProgramService programService;
+
+    public void setProgramService(ProgramService programService){
+        this.programService = programService;
+    }
+
     // -------------------------------------------------------------------------
-    // Input/Output
+    // Input
     // -------------------------------------------------------------------------
 
     private String name;
@@ -61,9 +75,9 @@ public class AddNationalUnitAction implements Action
 
     public void setCode(String code){ this.code = code; }
 
-    private String shortname;
+    private String shortName;
 
-    public void setShortname(String shortname){ this.shortname = shortname; }
+    public void setShortName(String shortName){ this.shortName = shortName; }
 
     private String description;
 
@@ -85,6 +99,44 @@ public class AddNationalUnitAction implements Action
 
     @Override public String execute() throws Exception
     {
+        NationalUnit nationalUnit = new NationalUnit();
+
+        nationalUnit.setName( StringUtils.trimToNull( name ));
+        nationalUnit.setCode( StringUtils.trimToNull( code ) );
+        nationalUnit.setDescription( StringUtils.trimToNull( description ) );
+        nationalUnit.setEnabled( true );
+        nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
+
+        // User group
+        UserGroup userGroup = new UserGroup();
+
+        userGroup.setName( StringUtils.trimToNull(name) );
+
+        userGroupService.addUserGroup( userGroup );
+
+        //categoryoptiongroupset
+
+        CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
+        categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
+        categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
+        categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+        categoryOptionGroupSet.setDataDimension( true );
+
+        categoryService.getAllCategoryOptionGroupSets().add( categoryOptionGroupSet);
+        // program list
+
+        for ( String id : selectedProgramList )
+        {
+            Program program = programService.getProgram( id );
+            nationalUnit.getPrograms().add( program );
+
+        }
+
+        nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
+        nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
+
+        nationalUnitService.addNationalUnit( nationalUnit );
+
         return SUCCESS;
     }
 
