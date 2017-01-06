@@ -111,7 +111,7 @@ public class DefaultProgramService implements ProgramService {
 
     @Override
     public int getProgramCount() {
-        return programStore.getCount();
+        return programStore.getProgramCount();
     }
 
     @Override

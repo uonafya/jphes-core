@@ -10,26 +10,26 @@
 
     <!-- JPHES Web APP -->
 
-    <action name="index" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="index" class="NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/index.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
     </action>
 
-    <action name="allPartner" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction">
+    <action name="allPartner" class="GetProgramListAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/allPartner.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">javascript/partner.js,javascript/filterTable.js</param>
+      <param name="javascripts">javascript/program.js,javascript/filterTable.js</param>
       <!--<param name="requiredAuthorities">F_JPHES_LIST_PARTNER</param>-->
     </action>
 
-    <action name="showAddPartnerForm" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="showAddPartnerForm" class="NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/addPartnerForm.vm</param>
     </action>
 
-    <action name="addPartner" class="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction">
+    <action name="addPartner" class="AddProgramAction">
       <result name="success" type="redirect">allPartner.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
       <result name="error" type="redirect">showAddPartnerForm.action</result>
     </action>
