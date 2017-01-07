@@ -35,6 +35,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import com.lowagie.text.html.HtmlWriter;
 import org.hisp.dhis.common.BaseDimensionalItemObject;
 import org.hisp.dhis.common.BaseIdentifiableObject;
 import org.hisp.dhis.common.DimensionItemType;
@@ -46,6 +47,8 @@ import org.hisp.dhis.dataset.DataSet;
 import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.dataset.comparator.DataSetApprovalFrequencyComparator;
 import org.hisp.dhis.dataset.comparator.DataSetFrequencyComparator;
+import org.hisp.dhis.jphes.program.Program;
+import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.option.OptionSet;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodType;
@@ -130,6 +133,11 @@ public class DataElement
      * The data sets which this data element is a member of.
      */
     private Set<DataSetElement> dataSetElements = new HashSet<>();
+
+    /**
+     * The programs which this data element is a member of.
+     */
+    private Set<ProgramElement> programElements = new HashSet<>();
 
     /**
      * The lower organisation unit levels for aggregation.
@@ -285,6 +293,13 @@ public class DataElement
         return !list.isEmpty() ? list.get( 0 ) : null;
     }
 
+    public Program getProgram()
+    {
+        List<Program> list = new ArrayList<>( getPrograms() );
+//        Collections.sort( list, ProgramFrequencyComparator.INSTANCE );
+        return !list.isEmpty() ? list.get( 0 ) : null;
+    }
+
     /**
      * Returns the data set of this data element. If this data element has
      * multiple data sets, the data set with approval enabled, then the highest
@@ -306,7 +321,12 @@ public class DataElement
     {
         return ImmutableSet.copyOf( dataSetElements.stream().map( e -> e.getDataSet() ).collect( Collectors.toSet() ) );
     }
-    
+
+    public Set<Program> getPrograms()
+    {
+        return ImmutableSet.copyOf( programElements.stream().map( e -> e.getProgram() ).collect( Collectors.toSet() ) );
+    }
+
     /**
      * Returns the attribute category combinations associated with the data sets 
      * of this data element.
@@ -486,7 +506,7 @@ public class DataElement
 
     /**
      * Returns the maximum number of expiry days from the data sets of this data
-     * element. Returns {@link DataSet.NO_EXPIRY} if any data set has no expiry.
+     * element. Returns  if any data set has no expiry.
      */
     public int getExpiryDays()
     {
@@ -747,5 +767,17 @@ public class DataElement
             aggregationLevels.clear();
             aggregationLevels.addAll( dataElement.getAggregationLevels() );
         }
+    }
+
+    @JsonProperty
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<ProgramElement> getProgramElements() {
+        return programElements;
+    }
+
+    public void setProgramElements(Set<ProgramElement> programElements) {
+        this.programElements = programElements;
     }
 }

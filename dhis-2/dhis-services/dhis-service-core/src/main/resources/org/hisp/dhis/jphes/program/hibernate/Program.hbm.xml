@@ -17,6 +17,12 @@
         <property name="created" type="timestamp"/>
         <property name="lastUpdated" type="timestamp"/>
         <property name="name" column="name" not-null="true" length="230"/>
-        <property name="formName" column="formname" not-null="false" length="230"/>
+        <property name="displayName" column="displayname" not-null="false" length="230"/>
+
+        <set name="programElements" table="jphesprogramelement" cascade="all-delete-orphan">
+            <key column="programid" foreign-key="fk_datasetmembers_programid" />
+            <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
+        </set>
+
     </class>
 </hibernate-mapping>

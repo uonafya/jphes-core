@@ -30,7 +30,7 @@ public class AddProgramAction implements Action
     private String code;
 
 
-    private String formName;
+    private String displayName;
 
     public void setName(String name) {
         this.name = name;
@@ -41,7 +41,7 @@ public class AddProgramAction implements Action
     }
 
     public void setDisplayName(String displayName) {
-        this.formName = displayName;
+        this.displayName = displayName;
     }
 // -------------------------------------------------------------------------
     // Action implementation
@@ -52,7 +52,7 @@ public class AddProgramAction implements Action
     {
         Program program = new Program();
 
-        program.setFormName(formName);
+        program.setDisplayName(displayName);
         program.setName(name);
         program.setCode(code);
 

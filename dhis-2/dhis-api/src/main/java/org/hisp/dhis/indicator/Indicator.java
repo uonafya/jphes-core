@@ -42,6 +42,7 @@ import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.common.IdentifiableObject;
 import org.hisp.dhis.common.MergeMode;
 import org.hisp.dhis.dataset.DataSet;
+import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.schema.PropertyType;
 import org.hisp.dhis.schema.annotation.Property;
 
@@ -81,6 +82,8 @@ public class Indicator
     private Set<IndicatorGroup> groups = new HashSet<>();
 
     private Set<DataSet> dataSets = new HashSet<>();
+
+    private Set<Program> programs = new HashSet<>();
 
     public Indicator()
     {
@@ -311,6 +314,20 @@ public class Indicator
 
     @JsonProperty
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<Program> getPrograms()
+    {
+        return programs;
+    }
+
+    public void setPrograms( Set<Program> programs )
+    {
+        this.programs=programs;
+    }
+
+    @JsonProperty
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
     @JacksonXmlElementWrapper( localName = "dataSets", namespace = DxfNamespaces.DXF_2_0 )
     @JacksonXmlProperty( localName = "dataSet", namespace = DxfNamespaces.DXF_2_0 )
     public Set<DataSet> getDataSets()
@@ -322,6 +339,7 @@ public class Indicator
     {
         this.dataSets = dataSets;
     }
+
 
     @Override
     public void mergeWith( IdentifiableObject other, MergeMode mergeMode )
