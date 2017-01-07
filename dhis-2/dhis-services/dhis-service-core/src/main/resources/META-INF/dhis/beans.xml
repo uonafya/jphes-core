@@ -1251,7 +1251,7 @@
 
    <!--NationalUnit-->
   <bean id="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultNationalUnitService">
-    <property name="nationalUnitStore" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitStore" />
+    <!--<property name="nationalUnitStore" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitStore" />-->
   </bean>
 
   <!-- SMS Services -->
@@ -1596,6 +1596,7 @@
         <value>sqlview</value>
         <value>dataentryform</value>
         <value>partnerhierarchy</value>
+        <value>nationalunit</value>
       </list>
     </property>
   </bean>

@@ -112,9 +112,10 @@ public class AddNationalUnitAction implements Action
 
         userGroup.setName( StringUtils.trimToNull(name) );
 
+        //Save UserGroup
         userGroupService.addUserGroup( userGroup );
 
-        //categoryoptiongroupset
+        //CategoryOptionGroupSet
 
         CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
         categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
@@ -122,7 +123,8 @@ public class AddNationalUnitAction implements Action
         categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
         categoryOptionGroupSet.setDataDimension( true );
 
-        categoryService.getAllCategoryOptionGroupSets().add( categoryOptionGroupSet);
+        //save categoryOptionGroupSet
+        categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
         // program list
 
         for ( String id : selectedProgramList )

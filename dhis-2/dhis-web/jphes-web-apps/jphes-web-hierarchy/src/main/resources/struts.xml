@@ -41,6 +41,11 @@
       <result name="error" type="redirect">showAddNationalUnitForm.action</result>
     </action>
 
+    <action name="getNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonNationalUnit.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
     <action name="showUpdateNationalUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/updateNationalUnitForm.vm</param>
@@ -52,7 +57,7 @@
       <result name="error" type="redirect">showUpdateNationalUnitForm.action</result>
     </action>
 
-    <action name="validateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="validateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction">
       <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
@@ -62,6 +67,13 @@
       <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <result name="logout" type="redirect">/</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+    <!-- Json Actions -->
+
+    <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 

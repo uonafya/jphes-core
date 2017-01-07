@@ -4,7 +4,7 @@
     jQuery("#availableProgramList").dhisAjaxSelect({
       source: "../api/programs.json?paging=false&fields=id,displayName|rename(name),programType",
       iterator: 'programs',
-      connectedTo: 'selectedJPHESProgramList',
+      connectedTo: 'selectedProgramList',
       handler: function(item) {
         var option = jQuery("<option />");
         option.text( item.name );
@@ -64,7 +64,7 @@
     <tr>
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
-        <select id="availableJPHESProgramList" name="availableJPHESProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
       </td>
 
       <td style="text-align:center">
@@ -75,8 +75,8 @@
       </td>
 
       <td>
-        <select id="selectedJPHESProgramList" name="selectedJPHESProgramList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-            #foreach ( $selectedProgram in $rolePrograms )
+        <select id="selectedProgramList" name="selectedProgramList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
+            #foreach ( $selectedProgram in $programList )
               <option value="$selectedProgram.uid">$encoder.htmlEncode( $selectedProgram.name )</option>
             #end
         </select>

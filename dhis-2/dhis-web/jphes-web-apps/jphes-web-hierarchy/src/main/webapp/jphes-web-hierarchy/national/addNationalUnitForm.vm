@@ -1,19 +1,19 @@
-<script type="text/javascript" src="javascript/addRoleForm.js"></script>
+<script type="text/javascript" src="javascript/national/addNationalUnitForm.js"></script>
 <script type="text/javascript">
-
+  jQuery(function() {
     jQuery("#availableProgramList").dhisAjaxSelect({
-      source: "../api/programs.json?paging=false&fields=id,displayName|rename(name),programType",
+      source: "getProgramList.action",
       iterator: 'programs',
       connectedTo: 'selectedProgramList',
-      handler: function(item) {
+      handler: function( item ) {
         var option = jQuery("<option />");
-        option.text( item.name );
-        option.attr( "value", item.id );
+        option.text(item.name);
+        option.attr("value", item.id);
 
         return option;
       }
     });
-
+  });
   var i18n_adding_national_unit_failed = '$encoder.jsEscape( $i18n.getString( "adding_national_unit_failed" ) , "'")';
 </script>
 

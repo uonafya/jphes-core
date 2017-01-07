@@ -8,7 +8,7 @@ jQuery( document ).ready( function()
     selectAllById( 'selectedListPrograms' );
     form.submit();
   }, {
-    'rules' : getValidationRules("nationalunit")
+    'rules' : getValidationRules("nationalUnit")
   } );
 
   /* remote validation */

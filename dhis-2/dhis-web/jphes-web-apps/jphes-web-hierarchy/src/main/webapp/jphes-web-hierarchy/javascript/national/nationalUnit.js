@@ -5,9 +5,7 @@
 function showNationalUnitDetails( context ) {
   jQuery.post('getNationalUnit.action', { id: context.id }, function( json ) {
     setInnerHTML('nameField', json.nationalUnit.name);
-    setInnerHTML('descriptionField', json.nationalUnit.description);
-    setInnerHTML('createdField', json.nationalUnit.created);
-    setInnerHTML('lastUpdatedField', json.nationalUnit.lastUpdated);
+    setInnerHTML('programsField', json.nationalUnit.programs);
     setInnerHTML('codeField', json.nationalUnit.code);
     setInnerHTML('idField', json.nationalUnit.uid);
 
