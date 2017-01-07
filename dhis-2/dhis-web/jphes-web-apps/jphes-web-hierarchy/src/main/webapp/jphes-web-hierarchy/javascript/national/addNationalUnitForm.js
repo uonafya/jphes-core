@@ -4,8 +4,7 @@ jQuery( document ).ready( function()
 
   validation2( 'addNationalUnitForm', function( form )
   {
-    selectAllById( 'selectedList' );
-    selectAllById( 'selectedListPrograms' );
+    selectAllById( 'selectedProgramList' );
     form.submit();
   }, {
     'rules' : getValidationRules("nationalUnit")
@@ -14,5 +13,5 @@ jQuery( document ).ready( function()
   /* remote validation */
   checkValueIsExist( "name", "validateNationalUnit.action" );
 
-  sortList( 'availableListProgram', 'ASC' );
+  sortList( 'availableProgramList', 'ASC' );
 } );

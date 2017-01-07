@@ -46,10 +46,9 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
-    <action name="showUpdateNationalUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="showUpdateNationalUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
       <result name="success" type="velocity">/main.vm</result>
-      <param name="page">/jphes-web-hierarchy/updateNationalUnitForm.vm</param>
-      <param name="javascripts">../dhis-web-commons/oust/oust.js,javascript/national/nationalUnit.js</param>
+      <param name="page">/jphes-web-hierarchy/national/updateNationalUnitForm.vm</param>
     </action>
 
     <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">

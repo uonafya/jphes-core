@@ -99,45 +99,55 @@ public class AddNationalUnitAction implements Action
 
     @Override public String execute() throws Exception
     {
-        NationalUnit nationalUnit = new NationalUnit();
 
-        nationalUnit.setName( StringUtils.trimToNull( name ));
-        nationalUnit.setCode( StringUtils.trimToNull( code ) );
-        nationalUnit.setDescription( StringUtils.trimToNull( description ) );
-        nationalUnit.setEnabled( true );
-        nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
 
-        // User group
-        UserGroup userGroup = new UserGroup();
-
-        userGroup.setName( StringUtils.trimToNull(name) );
-
-        //Save UserGroup
-        userGroupService.addUserGroup( userGroup );
-
-        //CategoryOptionGroupSet
-
-        CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
-        categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
-        categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
-        categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-        categoryOptionGroupSet.setDataDimension( true );
-
-        //save categoryOptionGroupSet
-        categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
-        // program list
-
-        for ( String id : selectedProgramList )
+        if(userGroupService.getUserGroupCountByName( name ) == 0 )
         {
-            Program program = programService.getProgram( id );
-            nationalUnit.getPrograms().add( program );
+            NationalUnit nationalUnit = new NationalUnit();
 
+            nationalUnit.setName( StringUtils.trimToNull( name ));
+            nationalUnit.setCode( StringUtils.trimToNull( code ) );
+            nationalUnit.setDescription( StringUtils.trimToNull( description ) );
+            nationalUnit.setEnabled( true );
+            nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
+
+            // User group
+            UserGroup userGroup = new UserGroup();
+
+            userGroup.setName( StringUtils.trimToNull(name) );
+
+            //Save UserGroup
+            userGroupService.addUserGroup( userGroup );
+
+            //CategoryOptionGroupSet
+
+            CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
+            categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
+            categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryOptionGroupSet.setDataDimension( true );
+
+            //save categoryOptionGroupSet
+            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
+            // program list
+
+            for ( String id : selectedProgramList )
+            {
+                Program program = programService.getProgram( id );
+                nationalUnit.getPrograms().add( program );
+
+            }
+
+            nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
+            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
+
+            nationalUnitService.addNationalUnit( nationalUnit );
+        }
+        else
+        {
+            return ERROR;
         }
 
-        nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
-        nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
-
-        nationalUnitService.addNationalUnit( nationalUnit );
 
         return SUCCESS;
     }
