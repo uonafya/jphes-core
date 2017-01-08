@@ -1,0 +1,14 @@
+#set( $size = $programs.size() )
+{ "programs": [
+#foreach( $program in $programs )
+{
+
+"id": "$!encoder.jsonEncode( ${program.uid} )",
+"name": "$!encoder.jsonEncode( ${program.name} )"
+}#if( $velocityCount < $size ),#end
+#end
+]
+#if( $usePaging ),
+"paging":#parse( "/dhis-web-commons/ajax/jsonPaging.vm" )
+#end
+}
