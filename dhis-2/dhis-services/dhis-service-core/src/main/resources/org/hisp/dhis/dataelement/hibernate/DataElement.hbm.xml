@@ -56,6 +56,11 @@
       <one-to-many class="org.hisp.dhis.dataset.DataSetElement" />
     </set>
 
+    <set name="programElements" table="jphesprogramelement" inverse="true">
+      <key column="dataelementid" foreign-key="fk_programmembers_dataelementid" not-null="true" />
+      <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
+    </set>
+
     <list name="aggregationLevels" table="dataelementaggregationlevels">
       <key column="dataelementid" foreign-key="fk_dataelementaggregationlevels_dataelementid" />
       <list-index column="sort_order" base="0" />

@@ -1,0 +1,41 @@
+<h3>Add Program</h3>
+
+<form id="addProgramForm" name="addProgramForm" action="addProgram.action" method="post" class="inputForm">
+  <table>
+    <col style="width: 120px"/>
+    <col style="width: 500px;"/>
+    <col/>
+    <col style="width: 500px;"/>
+
+    <tr>
+      <th colspan="2">$i18n.getString( "details" )</th>
+      <td colspan="2"></td>
+    </tr>
+
+      <tr>
+          <td style="width:200px"><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+          <td><input type="text" id="name" name="name" ></td>
+          <td></td>
+      </tr>
+
+      <tr>
+      <td style="width:200px"><label for="code">$i18n.getString( "code" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td><input type="text" id="code" name="code"></td>
+          <td></td>
+    </tr>
+
+    <tr>
+      <td style="width:200px"><label for="displayName">Display Name</label></td>
+      <td ><input type="text" id="displayName" name="displayName"></td>
+        <td></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td valign="top">
+        <input type="submit" value="$i18n.getString( 'add' )" style="width:10em"/>
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allProgram.action' )" style="width:10em"/>
+      </td>
+    </tr>
+  </table>
+</form>

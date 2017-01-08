@@ -1,0 +1,8 @@
+<h3>$i18n.getString( "jphes_program" )&nbsp; #openHelp( "jphes_program" )</h3>
+
+<ul class="introList">
+   #introListImgItem( "allProgram.action" "jphes_program" "jphes_program" )
+##    #introListImgItem( "allPartner.action" "jphes_donor" "jphes_level" )
+##    #introListImgItem( "allPartner.action" "jphes_agency" "jphes_level" )
+##    #introListImgItem( "allPartner.action" "jphes_mechanism" "jphes_level" )
+</ul>

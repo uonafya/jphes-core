@@ -10,13 +10,13 @@
 
     <!-- JPHES Web APP -->
 
-    <action name="index" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="index" class="NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/index.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
     </action>
 
-    <action name="allPartner" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction">
+    <action name="allPartner" class="GetProgramListAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/allPartner.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
@@ -51,6 +51,7 @@
       <param name="page">/jphes-web-hierarchy/national/updateNationalUnitForm.vm</param>
     </action>
 
+<<<<<<< HEAD
     <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showUpdateNationalUnitForm.action</result>
@@ -74,6 +75,11 @@
     <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
       <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
+=======
+    <action name="addPartner" class="AddProgramAction">
+      <result name="success" type="redirect">allPartner.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
+      <result name="error" type="redirect">showAddPartnerForm.action</result>
+>>>>>>> fegati
     </action>
 
 

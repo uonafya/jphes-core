@@ -3,11 +3,11 @@
 
 <script type="text/javascript" src="javascript/allProgram.js"></script>
 <script type="text/javascript">
-  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_role" ) , "'")';
+  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_program" ) , "'")';
   var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
 </script>
 
-<h3>Hierarchy #openHelp( "jphes_hierarchy" )</h3>
+<h3>Program #openHelp( "jphes_program" )</h3>
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
@@ -22,8 +22,8 @@
     <td style="vertical-align:top">
       <table width="100%">
         <tr>
-          <td>#filterDiv( "allPartner" )</td>
-          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddPartnerForm.action'"/></td>
+          <td>#filterDiv( "allProgram" )</td>
+          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddProgramForm.action'"/></td>
         </tr>
       </table>
       <table class="listTable" id="listTable">
@@ -36,15 +36,15 @@
         </tr>
         </thead>
         <tbody id="list">
-          #foreach( $partner in $partners )
-          <tr id="tr${partner.id}" data-id="$!partner.id" data-uid="$!partner.uid" data-type="Partner" data-name="$encoder.htmlEncode( $!partner.displayName )"
-              data-can-manage="$security.canManage( $partner )"
-              data-can-update="$security.canUpdate( $partner )"
-              data-can-delete="$security.canDelete( $partner )">
-            <td>$!encoder.htmlEncode( $partner.name )</td>
-            <td>$!encoder.htmlEncode( $partner.code )</td>
-            <td>$!encoder.htmlEncode( $partner.created )</td>
-            <td>$!encoder.htmlEncode( $partner.lastUpdated )</td>
+          #foreach( $program in $programs )
+          <tr id="tr${program.id}" data-id="$!program.id" data-uid="$!program.uid" data-type="Program" data-name="$encoder.htmlEncode( $!program.formName )"
+              data-can-manage="$security.canManage( $program )"
+              data-can-update="$security.canUpdate( $program )"
+              data-can-delete="$security.canDelete( $program )">
+            <td>$!encoder.htmlEncode( $program.name )</td>
+            <td>$!encoder.htmlEncode( $program.code )</td>
+            <td>$!encoder.htmlEncode( $program.created )</td>
+            <td>$!encoder.htmlEncode( $program.lastUpdated )</td>
           </tr>
           #end
         </tbody>

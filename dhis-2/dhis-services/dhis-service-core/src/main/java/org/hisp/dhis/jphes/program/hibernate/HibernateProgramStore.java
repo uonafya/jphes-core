@@ -25,4 +25,11 @@ public class HibernateProgramStore extends HibernateIdentifiableObjectStore<Prog
         Query query = getQuery(hql);
         return query.list();
     }
+
+    @Override
+    public int getProgramCount()
+    {
+        return ((Long) getQuery( "select count(*) from Program" ).
+                uniqueResult()).intValue();
+    }
 }

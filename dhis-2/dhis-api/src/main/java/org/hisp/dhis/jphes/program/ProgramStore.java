@@ -13,4 +13,6 @@ public interface ProgramStore extends GenericIdentifiableObjectStore<Program> {
     List<Program> searchProgramByName(String key);
 
     List<Program> getAllPrograms();
+
+    public int getProgramCount();
 }
