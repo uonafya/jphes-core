@@ -12,19 +12,22 @@
       <td colspan="2"></td>
     </tr>
 
-    <tr>
-      <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="name" name="name"></td>
+      <tr>
+          <td style="width:200px"><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( "required" )" class="required">*</em></label></td>
+          <td><input type="text" id="name" name="name" ></td>
+          <td></td>
+      </tr>
+
+      <tr>
+      <td style="width:200px"><label for="code">$i18n.getString( "code" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td><input type="text" id="code" name="code"></td>
+          <td></td>
     </tr>
 
     <tr>
-      <td><label for="code">$i18n.getString( "code" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="code" name="code"></td>
-    </tr>
-
-    <tr>
-      <td><label for="formName">Form Name</label></td>
-      <td colspan="3"><input type="text" id="formName" name="formName"></td>
+      <td style="width:200px"><label for="displayName">Display Name</label></td>
+      <td ><input type="text" id="displayName" name="displayName"></td>
+        <td></td>
     </tr>
 
     <tr>
