@@ -29,31 +29,37 @@
       <param name="page">/jphes-web-hierarchy/national/allNationalUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
       <param name="javascripts">javascript/national/nationalUnit.js,javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_LIST</param>
     </action>
 
     <action name="showAddNationalUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/national/addNationalUnitForm.vm</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_ADD</param>
     </action>
 
     <action name="addNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.AddNationalUnitAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showAddNationalUnitForm.action</result>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_ADD</param>
     </action>
 
     <action name="getNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
       <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonNationalUnit.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
+      <param name="anyAuthorities">F_NATIONAL_UNIT_ADD, F_NATIONAL_UNIT_LIST</param>
     </action>
 
     <action name="showUpdateNationalUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/national/updateNationalUnitForm.vm</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_ADD</param>
     </action>
 
     <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showUpdateNationalUnitForm.action</result>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_ADD</param>
     </action>
 
     <action name="validateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction">
@@ -67,6 +73,7 @@
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <result name="logout" type="redirect">/</result>
       <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_DELETE</param>
     </action>
 
     <!-- Json Actions -->
