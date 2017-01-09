@@ -1,3 +1,13 @@
+<script type="text/javascript">
+   jQuery(function () {
+       $('#urAvailable').selected({
+           url: '../api/dataElements.json',
+           target: $('#urSelected'),
+           search: $('#urAvailableSearch'),
+           iterator: 'dataElements'
+       });
+   });
+</script>
 <h3>Add Program</h3>
 
 <form id="addProgramForm" name="addProgramForm" action="addProgram.action" method="post" class="inputForm">
@@ -29,7 +39,12 @@
       <td ><input type="text" id="displayName" name="displayName"></td>
         <td></td>
     </tr>
-
+    #jqSelected({
+      "prefix": "ur",
+      "required": true,
+      "i18n_available": "available_datalements",
+      "i18n_selected": "selected_dataelements"
+    })
     <tr>
       <td></td>
       <td valign="top">

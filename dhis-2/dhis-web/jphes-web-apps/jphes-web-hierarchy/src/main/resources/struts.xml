@@ -51,7 +51,6 @@
       <param name="page">/jphes-web-hierarchy/national/updateNationalUnitForm.vm</param>
     </action>
 
-<<<<<<< HEAD
     <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showUpdateNationalUnitForm.action</result>
@@ -75,11 +74,11 @@
     <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
       <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
-=======
+    </action>
+
     <action name="addPartner" class="AddProgramAction">
       <result name="success" type="redirect">allPartner.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
       <result name="error" type="redirect">showAddPartnerForm.action</result>
->>>>>>> fegati
     </action>
 
 
