@@ -34,18 +34,20 @@
       <td colspan="2"></td>
     </tr>
 
+    <div><input type="hidden" id="id" name="id" value="$nationalUnit.id"/></div>
+
     <tr>
       <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $nationalUnit.name )"></td>
     </tr>
 
     <tr>
-      <td><label for="description">$i18n.getString( "shortname" )</label></td>
+      <td><label for="shortname">$i18n.getString( "shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td colspan="3"><input type="text" id="shortname" name="shortname" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
     </tr>
 
     <tr>
-      <td><label for="description">$i18n.getString( "code" )</label></td>
+      <td><label for="code">$i18n.getString( "code" )</label></td>
       <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $nationalUnit.code )"></td>
     </tr>
 
@@ -87,7 +89,7 @@
       <td></td>
       <td valign="top">
         <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
-        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allRole.action' )" style="width:10em"/>
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allNationalUnit.action' )" style="width:10em"/>
       </td>
       <td></td>
       <td></td>

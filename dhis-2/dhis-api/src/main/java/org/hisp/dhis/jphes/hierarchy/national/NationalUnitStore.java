@@ -8,4 +8,5 @@ import org.hisp.dhis.common.GenericIdentifiableObjectStore;
 public interface NationalUnitStore extends GenericIdentifiableObjectStore<NationalUnit>
 {
     //inherits all methods of the generic class.
+    NationalUnit getNationalUnitByShortName( String shortName );
 }

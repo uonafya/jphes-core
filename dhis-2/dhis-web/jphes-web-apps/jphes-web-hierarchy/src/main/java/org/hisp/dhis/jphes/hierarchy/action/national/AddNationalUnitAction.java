@@ -12,7 +12,6 @@ import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
-import org.nfunk.jep.function.Str;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -101,7 +100,7 @@ public class AddNationalUnitAction implements Action
     {
 
 
-        if(userGroupService.getUserGroupCountByName( name ) == 0 )
+        if(userGroupService.getUserGroupByName( name ).size() == 0 )
         {
             NationalUnit nationalUnit = new NationalUnit();
 
@@ -129,12 +128,12 @@ public class AddNationalUnitAction implements Action
 
             //save categoryOptionGroupSet
             categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
-            // program list
+
+            // Add programList
 
             for ( String id : selectedProgramList )
             {
-                Program program = programService.getProgram( id );
-                nationalUnit.getPrograms().add( program );
+                nationalUnit.getPrograms().add( programService.getProgram( id ) );
 
             }
 

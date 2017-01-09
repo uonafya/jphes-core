@@ -51,7 +51,7 @@
       <param name="page">/jphes-web-hierarchy/national/updateNationalUnitForm.vm</param>
     </action>
 
-    <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="updateNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction">
       <result name="success" type="redirect">allNationalUnit.action</result>
       <result name="error" type="redirect">showUpdateNationalUnitForm.action</result>
     </action>

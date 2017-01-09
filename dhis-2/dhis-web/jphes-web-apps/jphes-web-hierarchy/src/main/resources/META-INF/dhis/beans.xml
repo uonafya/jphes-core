@@ -30,10 +30,18 @@
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" scope="prototype" >
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="userService" ref="org.hisp.dhis.user.UserService" />
+  </bean>
+
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction"
     scope="prototype">
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
   </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction"

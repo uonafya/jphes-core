@@ -3,7 +3,7 @@
 #foreach( $program in $programs )
 {
 
-"id": "$!encoder.jsonEncode( ${program.uid} )",
+"id": "$!{program.uid}",
 "name": "$!encoder.jsonEncode( ${program.name} )"
 }#if( $velocityCount < $size ),#end
 #end

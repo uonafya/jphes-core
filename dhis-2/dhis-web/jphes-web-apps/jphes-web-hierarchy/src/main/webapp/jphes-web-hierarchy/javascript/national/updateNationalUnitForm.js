@@ -15,5 +15,13 @@ jQuery( document ).ready( function()
     id : getFieldValue( 'id' )
   } );
 
+  checkValueIsExist( "shortName", "validateNationalUnit.action", {
+    id : getFieldValue( 'id' )
+  } );
+
+  checkValueIsExist( "code", "validateNationalUnit.action", {
+    id : getFieldValue( 'id' )
+  } );
+
   sortList( 'availableProgramList', 'ASC' );
 } );

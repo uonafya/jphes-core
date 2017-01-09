@@ -50,6 +50,16 @@ public class DefaultNationalUnitService implements NationalUnitService
         return nationalUnitStore.getByName( name );
     }
 
+    @Override public NationalUnit getNationalUnitByCode( String code )
+    {
+        return nationalUnitStore.getByCode( code );
+    }
+
+    @Override public NationalUnit getNationalUnitByShortName( String shortName )
+    {
+        return nationalUnitStore.getNationalUnitByShortName( shortName );
+    }
+
     @Override public List<NationalUnit> getAllNationalUnit()
     {
         return nationalUnitStore.getAll();
