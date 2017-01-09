@@ -19,9 +19,6 @@
 <h3>$i18n.getString( "edit_national_unit" )</h3>
 
 <form id="updateNationalUnitForm" name="updateNationalUnitForm" action="updateNationalUnit.action" method="post" class="inputForm">
-  <div>
-    <input type="hidden" id="id" name="id" value=""/>
-  </div>
 
   <table>
     <col style="width: 120px"/>
