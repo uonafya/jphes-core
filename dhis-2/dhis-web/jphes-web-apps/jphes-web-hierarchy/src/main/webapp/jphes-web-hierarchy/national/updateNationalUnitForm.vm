@@ -1,6 +1,7 @@
 <script type="text/javascript" src="javascript/national/updateNationalUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
+
     jQuery("#availableProgramList").dhisAjaxSelect({
       source: "getProgramList.action",
       iterator: 'programs',
@@ -42,7 +43,7 @@
 
     <tr>
       <td><label for="shortname">$i18n.getString( "shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="shortname" name="shortName" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
+      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
     </tr>
 
     <tr>
