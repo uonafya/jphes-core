@@ -1,6 +1,7 @@
 <script type="text/javascript" src="javascript/national/addNationalUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
+
     jQuery("#availableProgramList").dhisAjaxSelect({
       source: "getProgramList.action",
       iterator: 'programs',
@@ -13,6 +14,7 @@
         return option;
       }
     });
+
   });
   var i18n_adding_national_unit_failed = '$encoder.jsEscape( $i18n.getString( "adding_national_unit_failed" ) , "'")';
 </script>

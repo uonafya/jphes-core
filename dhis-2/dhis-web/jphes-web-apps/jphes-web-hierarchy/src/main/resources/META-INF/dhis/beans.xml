@@ -28,6 +28,7 @@
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" scope="prototype" >
@@ -35,6 +36,7 @@
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService"/>
   </bean>
 
 
