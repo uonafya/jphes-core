@@ -119,7 +119,7 @@ public class AddNationalUnitAction implements Action
             for ( String id : selectedProgramList )
             {
                 Program program = programService.getProgram( id );
-                nationalUnit.getPrograms().add( program );
+                nationalUnit.addProgam( program );
 
             }
 
