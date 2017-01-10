@@ -40,7 +40,7 @@
 
     <tr>
       <td><label for="shortname">$i18n.getString( "shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="shortname" name="shortname" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
+      <td colspan="3"><input type="text" id="shortname" name="shortName" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
     </tr>
 
     <tr>
