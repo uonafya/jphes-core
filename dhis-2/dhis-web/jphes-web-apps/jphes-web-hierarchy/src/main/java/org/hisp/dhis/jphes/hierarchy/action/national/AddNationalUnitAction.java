@@ -130,6 +130,7 @@ public class AddNationalUnitAction implements Action
             categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
 
             // Add programList
+            nationalUnit.getPrograms().clear();
 
             for ( String id : selectedProgramList )
             {
