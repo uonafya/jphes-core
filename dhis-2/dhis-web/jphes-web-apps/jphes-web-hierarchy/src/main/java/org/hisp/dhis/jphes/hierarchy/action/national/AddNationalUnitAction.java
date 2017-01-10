@@ -12,6 +12,7 @@ import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,11 +54,14 @@ public class AddNationalUnitAction implements Action
         this.categoryService = categoryService;
     }
 
+
     private ProgramService programService;
 
     public void setProgramService(ProgramService programService){
+
         this.programService = programService;
     }
+
 
     // -------------------------------------------------------------------------
     // Input
@@ -110,6 +114,15 @@ public class AddNationalUnitAction implements Action
             nationalUnit.setEnabled( true );
             nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
 
+            // Add programList
+
+            for ( String id : selectedProgramList )
+            {
+                Program program = programService.getProgram( id );
+                nationalUnit.getPrograms().add( program );
+
+            }
+
             // User group
             UserGroup userGroup = new UserGroup();
 
@@ -129,15 +142,6 @@ public class AddNationalUnitAction implements Action
             //save categoryOptionGroupSet
             categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
 
-            // Add programList
-            nationalUnit.getPrograms().clear();
-
-            for ( String id : selectedProgramList )
-            {
-                Program program = programService.getProgram( id );
-                nationalUnit.getPrograms().add( program );
-
-            }
 
             nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
             nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
