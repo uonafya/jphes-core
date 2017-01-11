@@ -32,7 +32,7 @@ public class NationalUnit extends BaseIdentifiableObject
 
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
-    private Set<Program> programs= new HashSet<>();
+    private Set<Program> programs = new HashSet<>();
 
     private Boolean enabled;
 
@@ -43,12 +43,12 @@ public class NationalUnit extends BaseIdentifiableObject
 
     //logic
 
-    public void addProgam( Program program )
+    public void addProgram( Program program )
     {
         programs.add( program );
     }
 
-    public boolean removeProgam( Program program )
+    public boolean removeProgram( Program program )
     {
         return programs.remove( program );
     }
