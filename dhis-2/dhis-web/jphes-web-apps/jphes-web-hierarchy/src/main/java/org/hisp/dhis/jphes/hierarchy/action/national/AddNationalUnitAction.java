@@ -168,6 +168,7 @@ public class AddNationalUnitAction implements Action
             nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
             nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
             nationalUnit.setMechanismCategory( categoryService.getDataElementCategory( category.getUid() ) );
+            nationalUnit.setMechanismCombo( categoryService.getDataElementCategoryCombo( categoryCombo.getUid() ) );
 
             // Saving NationalUnit
             nationalUnitService.addNationalUnit( nationalUnit );
