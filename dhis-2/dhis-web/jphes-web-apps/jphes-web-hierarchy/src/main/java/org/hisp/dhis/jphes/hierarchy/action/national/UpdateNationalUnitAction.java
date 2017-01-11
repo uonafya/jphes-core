@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.common.DataDimensionType;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
+import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
@@ -122,13 +124,31 @@ public class UpdateNationalUnitAction implements Action
         //CategoryOptionGroupSet
 
         CategoryOptionGroupSet categoryOptionGroupSet = nationalUnit.getCategoryOptionGroupSet();
-        categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
+        categoryOptionGroupSet.setName(  "A. Donors-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
         categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
-        categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
         categoryOptionGroupSet.setDataDimension( true );
 
         //save categoryOptionGroupSet
         categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSet );
+
+        //Mechanism Category
+        DataElementCategory category = nationalUnit.getMechanismCategory();
+        category.setName( "C. Mechanisms-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+        category.setDataDimension( true );
+
+        // Update Category
+        categoryService.updateDataElementCategory( category );
+
+        //Mechanism CategoryCombo
+        DataElementCategoryCombo categoryCombo = nationalUnit.getMechanismCombo();
+        categoryCombo.setName( "Mechanisms Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+        categoryCombo.setSkipTotal( true );
+
+        //add Mechanism Category to Mechanism CategoryCombo
+        categoryCombo.getCategories().clear();
+        categoryCombo.getCategories().add( category );
+        //Update CategoryCombo
+        categoryService.updateDataElementCategoryCombo( categoryCombo );
 
         // Clear program list
 

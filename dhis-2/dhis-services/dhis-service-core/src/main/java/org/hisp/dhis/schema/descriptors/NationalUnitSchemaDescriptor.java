@@ -22,7 +22,7 @@ public class NationalUnitSchemaDescriptor implements SchemaDescriptor
     {
         Schema schema = new Schema( NationalUnit.class, SINGULAR, PLURAL );
         schema.setRelativeApiEndpoint( API_ENDPOINT );
-        schema.setOrder( 3000 );
+        schema.setOrder( 2001 );
 
         schema.getAuthorities().add( new Authority( AuthorityType.CREATE, Lists.newArrayList( "F_NATIONAL_UNIT_ADD" ) ) );
         schema.getAuthorities().add( new Authority( AuthorityType.DELETE, Lists.newArrayList( "F_NATIONAL_UNIT_DELETE" ) ) );

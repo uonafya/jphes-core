@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.common.DataDimensionType;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
+import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
@@ -134,7 +136,7 @@ public class AddNationalUnitAction implements Action
             //CategoryOptionGroupSet
 
             CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
-            categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
+            categoryOptionGroupSet.setName(  "A. Donors-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
             categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
             categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
             categoryOptionGroupSet.setDataDimension( true );
@@ -142,10 +144,32 @@ public class AddNationalUnitAction implements Action
             //save categoryOptionGroupSet
             categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
 
+            //Mechanism Category
+            DataElementCategory category = new DataElementCategory(  );
+            category.setName( "C. Mechanisms-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            category.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            category.setDataDimension( true );
+
+            // Save Category
+            categoryService.addDataElementCategory( category );
+
+            //Mechanism CategoryCombo
+            DataElementCategoryCombo categoryCombo = new DataElementCategoryCombo(  );
+            categoryCombo.setName( "Mechanisms Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            categoryCombo.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryCombo.setSkipTotal( true );
+            //add Mechanism Category to Mechanism CategoryCombo
+            categoryCombo.getCategories().add( categoryService.getDataElementCategory( category.getUid() )  );
+            //Save CategoryCombo
+            categoryService.addDataElementCategoryCombo( categoryCombo );
+
+            //Setting attributes
 
             nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
             nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
+            nationalUnit.setMechanismCategory( categoryService.getDataElementCategory( category.getUid() ) );
 
+            // Saving NationalUnit
             nationalUnitService.addNationalUnit( nationalUnit );
         }
         else
