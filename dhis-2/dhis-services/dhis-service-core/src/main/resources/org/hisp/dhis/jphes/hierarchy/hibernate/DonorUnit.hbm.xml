@@ -21,7 +21,7 @@
 
     <property name="description" type="text" />
 
-    <many-to-one name="nationalUnit" column="usergroupid" class="org.hisp.dhis.jphes.hierarchy.national.NationalUnit"
+    <many-to-one name="nationalUnit" column="nationalunitid" class="org.hisp.dhis.jphes.hierarchy.national.NationalUnit"
       foreign-key="fk_donorunitnationalunitid" not-null="true" />
 
     <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"

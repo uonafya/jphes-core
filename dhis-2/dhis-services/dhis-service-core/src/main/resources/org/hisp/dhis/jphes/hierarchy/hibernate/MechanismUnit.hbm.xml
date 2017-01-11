@@ -6,9 +6,9 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" table="agencyunit">
+  <class name="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" table="mechanismunit">
 
-    <id name="id" column="agencyunitid">
+    <id name="id" column="mechanismunitid">
       <generator class="native" />
     </id>
     &identifiableProperties;
@@ -17,23 +17,25 @@
 
     <property name="shortName" column="shortname" not-null="false" unique="true" length="50" />
 
+    <property name="partner" column="partner" not-null="true" length="230" />
+
     <property name="enabled" column="enabled" type="boolean"  />
 
     <property name="description" type="text" />
 
-    <many-to-one name="donorUnit" column="donorunitid" class="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit"
-      foreign-key="fk_agencyunitdonorunitid" not-null="true" />
+    <many-to-one name="agencyUnit" column="agencyunitid" class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit"
+      foreign-key="fk_mechanismunitagencyid" not-null="true" />
 
     <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"
-      foreign-key="fk_agencyunitusergroupid" not-null="true" />
+      foreign-key="fk_mechanismunitusergroupid" not-null="true" />
 
-    <many-to-one name="categoryOptionGroup" column="categoryoptiongroupid" class="org.hisp.dhis.dataelement.CategoryOptionGroup"
-      foreign-key="fk_agencyunitcategoryoptiongroupid" not-null="true" />
+    <many-to-one name="categoryOption" column="categoryoptionid" class="org.hisp.dhis.dataelement.DataElementCategoryOption"
+      foreign-key="fk_mechanismunitcategoryoptionid" not-null="true" />
 
-    <set name="programs" table="agencyunitprograms">
-      <key column="agencyunitid" foreign-key="fk_agencyunitprograms_agencyunitid" />
+    <set name="programs" table="mechanismunitprograms">
+      <key column="mechanismunitid" foreign-key="fk_mechanismunitprograms_mechanismunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
-        foreign-key="fk_agencyunitprograms_programid" />
+        foreign-key="fk_mechanismunitprograms_programid" />
     </set>
   </class>
 

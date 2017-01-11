@@ -6,24 +6,24 @@ import org.hibernate.criterion.Restrictions;
 import org.hisp.dhis.common.AuditLogUtil;
 import org.hisp.dhis.common.hibernate.HibernateIdentifiableObjectStore;
 import org.hisp.dhis.hibernate.exception.ReadAccessDeniedException;
-import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
-import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitStore;
+import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
+import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitStore;
 
 import java.util.List;
 
 /**
  * @author bangadennis on 11/01/17.
  */
-public class HibernateAgencyUnitStore extends HibernateIdentifiableObjectStore<AgencyUnit>
-    implements AgencyUnitStore
+public class HibernateMechanismUnitStore extends HibernateIdentifiableObjectStore<MechanismUnit>
+    implements MechanismUnitStore
 {
-    private static final Log log = LogFactory.getLog( HibernateAgencyUnitStore.class );
+    private static final Log log = LogFactory.getLog( HibernateMechanismUnitStore.class );
 
-    @Override public AgencyUnit getAgencyUnitByShortName( String shortName )
+    @Override public MechanismUnit getMechanismUnitByShortName( String shortName )
     {
-        List<AgencyUnit> list = getList( Restrictions.eq( "shortName", shortName ) );
+        List<MechanismUnit> list = getList( Restrictions.eq( "shortName", shortName ) );
 
-        AgencyUnit object = list != null && !list.isEmpty() ? list.get( 0 ) : null;
+        MechanismUnit object = list != null && !list.isEmpty() ? list.get( 0 ) : null;
 
         if ( !isReadAllowed( object ) )
         {

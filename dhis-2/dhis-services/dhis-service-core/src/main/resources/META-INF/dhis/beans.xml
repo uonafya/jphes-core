@@ -803,6 +803,14 @@
     <property name="cacheable" value="true" />
   </bean>
 
+  <!--MechanismUnitStore-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitStore" class="org.hisp.dhis.jphes.hierarchy.hibernate.HibernateMechanismUnitStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" />
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="cacheable" value="true" />
+  </bean>
+
+
   <!--End JPHES StoreObject-->
 
   <!-- File resource tasks -->
@@ -1275,6 +1283,10 @@
 
   <!--AgencyUnitService-->
   <bean id="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultAgencyUnitService">
+  </bean>
+
+  <!--MechanismUnitService-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultMechanismUnitService">
   </bean>
 
   <!--End JPHES Services-->
