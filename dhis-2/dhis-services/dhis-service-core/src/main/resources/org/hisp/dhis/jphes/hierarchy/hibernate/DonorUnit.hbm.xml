@@ -30,6 +30,9 @@
     <many-to-one name="categoryOptionGroup" column="categoryoptiongroupid" class="org.hisp.dhis.dataelement.CategoryOptionGroup"
       foreign-key="fk_donorunitcategoryoptiongroupid" not-null="true" />
 
+    <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
+      foreign-key="fk_donorunitcategoryoptiongroupsetid" not-null="true" />
+
     <set name="programs" table="donorunitprograms">
       <key column="donorunitid" foreign-key="fk_donorunitprograms_donorunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"

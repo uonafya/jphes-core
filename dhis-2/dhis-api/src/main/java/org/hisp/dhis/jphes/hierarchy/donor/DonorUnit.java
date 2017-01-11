@@ -8,6 +8,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hisp.dhis.common.BaseIdentifiableObject;
 import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.dataelement.CategoryOptionGroup;
+import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
@@ -30,6 +31,8 @@ public class DonorUnit extends BaseIdentifiableObject
     private UserGroup userGroup;
 
     private CategoryOptionGroup categoryOptionGroup;
+
+    private CategoryOptionGroupSet categoryOptionGroupSet;
 
     private Set<Program> programs = new HashSet<>();
 
@@ -114,9 +117,21 @@ public class DonorUnit extends BaseIdentifiableObject
         return categoryOptionGroup;
     }
 
-    public void setCategoryOptionGroupSet( CategoryOptionGroup categoryOptionGroup )
+    public void setCategoryOptionGroup( CategoryOptionGroup categoryOptionGroup )
     {
         this.categoryOptionGroup = categoryOptionGroup;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public CategoryOptionGroupSet getCategoryOptionGroupSet()
+    {
+        return categoryOptionGroupSet;
+    }
+
+    public void setCategoryOptionGroupSet( CategoryOptionGroupSet categoryOptionGroupSet )
+    {
+        this.categoryOptionGroupSet = categoryOptionGroupSet;
     }
 
     @JsonProperty

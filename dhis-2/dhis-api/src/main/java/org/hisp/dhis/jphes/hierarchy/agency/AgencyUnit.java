@@ -7,6 +7,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hisp.dhis.common.BaseIdentifiableObject;
 import org.hisp.dhis.common.DxfNamespaces;
+import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.program.Program;
@@ -30,7 +31,7 @@ public class AgencyUnit extends BaseIdentifiableObject
 
     private UserGroup userGroup;
 
-    private DataElementCategory category;
+    private CategoryOptionGroup categoryOptionGroup;
 
     private Set<Program> programs = new HashSet<>();
 
@@ -110,14 +111,14 @@ public class AgencyUnit extends BaseIdentifiableObject
 
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
-    public DataElementCategory getCategory()
+    public CategoryOptionGroup getCategoryOptionGroup()
     {
-        return category;
+        return categoryOptionGroup;
     }
 
-    public void setCategory( DataElementCategory category )
+    public void setCategoryOptionGroup( CategoryOptionGroup categoryOptionGroup )
     {
-        this.category = category;
+        this.categoryOptionGroup = categoryOptionGroup;
     }
 
     @JsonProperty
