@@ -1,6 +1,8 @@
 package org.hisp.dhis.jphes.hierarchy.national;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hisp.dhis.common.BaseIdentifiableObject;
@@ -30,7 +32,7 @@ public class NationalUnit extends BaseIdentifiableObject
 
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
-    private Set<Program> programs;
+    private Set<Program> programs = new HashSet<>();
 
     private Boolean enabled;
 
@@ -38,6 +40,24 @@ public class NationalUnit extends BaseIdentifiableObject
     public NationalUnit(){
 
     }
+
+    //logic
+
+    public void addProgram( Program program )
+    {
+        programs.add( program );
+    }
+
+    public boolean removeProgram( Program program )
+    {
+        return programs.remove( program );
+    }
+
+    public void removeAllPrograms()
+    {
+        programs.clear();
+    }
+
     // Getters and Setters
 
     @JsonProperty
@@ -51,6 +71,7 @@ public class NationalUnit extends BaseIdentifiableObject
     {
         this.description = description;
     }
+
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
     public String getShortName()
@@ -88,7 +109,9 @@ public class NationalUnit extends BaseIdentifiableObject
     }
 
     @JsonProperty
-    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
     public Set<Program> getPrograms()
     {
         return programs;

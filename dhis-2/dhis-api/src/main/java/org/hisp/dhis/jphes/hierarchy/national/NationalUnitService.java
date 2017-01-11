@@ -21,6 +21,10 @@ public interface NationalUnitService
 
     NationalUnit getNationalUnitByName(String name);
 
+    NationalUnit getNationalUnitByCode(String code);
+
+    NationalUnit getNationalUnitByShortName(String shortName);
+
     List<NationalUnit> getAllNationalUnit();
 
     List<NationalUnit> getNationalUnits(String name);

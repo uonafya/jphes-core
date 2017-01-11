@@ -12,6 +12,8 @@ jQuery( document ).ready( function()
 
   /* remote validation */
   checkValueIsExist( "name", "validateNationalUnit.action" );
+  checkValueIsExist( "code", "validateNationalUnit.action" );
+  checkValueIsExist( "shortName", "validateNationalUnit.action" );
 
   sortList( 'availableProgramList', 'ASC' );
 } );

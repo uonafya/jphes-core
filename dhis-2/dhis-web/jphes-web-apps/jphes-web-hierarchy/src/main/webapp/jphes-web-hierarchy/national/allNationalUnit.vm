@@ -1,9 +1,9 @@
 
-#sharingDialog()
+###sharingDialog()
 
 <script type="text/javascript" src="javascript/national/allNationalUnit.js"></script>
 <script type="text/javascript">
-  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_role" ) , "'")';
+  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_national_unit" ) , "'")';
   var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
 </script>
 
@@ -11,6 +11,7 @@
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
+    <li data-enabled="canUpdate"><a data-target-fn=""><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_donor" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateNationalUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
     <li data-enabled="canDelete"><a data-target-fn="removeNationalUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
     <li><a data-target-fn="showNationalUnitDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
@@ -44,7 +45,7 @@
               <td>$!encoder.htmlEncode( $nationalUnit.name )</td>
               <td>$!encoder.htmlEncode( $nationalUnit.shortName )</td>
               <td>$!encoder.htmlEncode( $nationalUnit.code )</td>
-              <td>$!encoder.htmlEncode( $nationalUnit.lastUpdated )</td>
+              <td>$!format.formatDate( $nationalUnit.lastUpdated )</td>
             </tr>
             #end
         </tbody>
