@@ -22,7 +22,7 @@ public class DonorUnitSchemaDescriptor implements SchemaDescriptor
     {
         Schema schema = new Schema( DonorUnit.class, SINGULAR, PLURAL );
         schema.setRelativeApiEndpoint( API_ENDPOINT );
-        schema.setOrder( 2001 );
+        schema.setOrder( 3010 );
 
         schema.getAuthorities().add( new Authority( AuthorityType.CREATE, Lists.newArrayList( "F_DONOR_UNIT_ADD" ) ) );
         schema.getAuthorities().add( new Authority( AuthorityType.DELETE, Lists.newArrayList( "F_DONOR_UNIT_DELETE" ) ) );

@@ -12,7 +12,7 @@ import org.hisp.dhis.jphes.hierarchy.donor.DonorUnitStore;
 import java.util.List;
 
 /**
- * Created by afya on 11/01/17.
+ * @author bangadennis on 11/01/17.
  */
 public class HibernateDonorUnitStore extends HibernateIdentifiableObjectStore<DonorUnit>
     implements DonorUnitStore

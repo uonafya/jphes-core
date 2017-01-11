@@ -774,7 +774,7 @@
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
 
-  <!--JPHES StoreObject-->
+  <!-- Start JPHES StoreObject-->
 
   <bean id="org.hisp.dhis.jphes.hierarchy.HierarchyStore" class="org.hisp.dhis.jphes.hierarchy.hibernate.HibernateHierarchyStore">
     <property name="clazz" value="org.hisp.dhis.jphes.hierarchy.PartnerHierarchy" />
@@ -796,7 +796,14 @@
     <property name="cacheable" value="true" />
   </bean>
 
-  <!--JPHES StoreObject-->
+  <!--AgencyUnitStore-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitStore" class="org.hisp.dhis.jphes.hierarchy.hibernate.HibernateAgencyUnitStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" />
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="cacheable" value="true" />
+  </bean>
+
+  <!--End JPHES StoreObject-->
 
   <!-- File resource tasks -->
 
@@ -1252,7 +1259,7 @@
     <property name="colorSetStore" ref="org.hisp.dhis.color.ColorSetStore" />
   </bean>
 
-  <!--JPHES Services-->
+  <!--Start JPHES Services-->
 
   <bean id="org.hisp.dhis.jphes.hierarchy.HierarchyService" class="org.hisp.dhis.jphes.hierarchy.DefaultHierarchyService">
     <property name="hierarchyStore" ref="org.hisp.dhis.jphes.hierarchy.HierarchyStore" />
@@ -1266,7 +1273,11 @@
   <bean id="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultDonorUnitService">
   </bean>
 
-  <!--JPHES Services-->
+  <!--AgencyUnitService-->
+  <bean id="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService" class="org.hisp.dhis.jphes.hierarchy.DefaultAgencyUnitService">
+  </bean>
+
+  <!--End JPHES Services-->
 
   <!-- SMS Services -->
 
@@ -1611,6 +1622,8 @@
         <value>dataentryform</value>
         <value>partnerhierarchy</value>
         <value>nationalunit</value>
+        <value>donorunit</value>
+        <value>agencyunit</value>
       </list>
     </property>
   </bean>
