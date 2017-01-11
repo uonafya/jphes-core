@@ -10,6 +10,8 @@ import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.common.IdentifiableObject;
 import org.hisp.dhis.common.MergeMode;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
+import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
@@ -29,6 +31,10 @@ public class NationalUnit extends BaseIdentifiableObject
     private String shortName;
 
     private UserGroup userGroup;
+
+    private DataElementCategory mechanismCategory;
+
+    private DataElementCategoryCombo mechanismCombo;
 
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
@@ -95,6 +101,31 @@ public class NationalUnit extends BaseIdentifiableObject
     {
         this.userGroup = userGroup;
     }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public DataElementCategory getMechanismCategory()
+    {
+        return mechanismCategory;
+    }
+
+    public void setMechanismCategory( DataElementCategory mechanismCategory )
+    {
+        this.mechanismCategory = mechanismCategory;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public DataElementCategoryCombo getMechanismCombo()
+    {
+        return mechanismCombo;
+    }
+
+    public void setMechanismCombo( DataElementCategoryCombo mechanismCombo )
+    {
+        this.mechanismCombo = mechanismCombo;
+    }
+
 
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
