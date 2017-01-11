@@ -65,6 +65,9 @@
         <p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
         <p><label>No. Programs:</label><br/><span id="programsField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
+        <p><label>UserGroup:</label><br/><span id="userGroupField"></span></p>
+        <p><label>Mechanism Group:</label><br/><span id="mechanismGroupField"></span></p>
+        <p><label>Mechanism Combo:</label><br/><span id="mechansimComboField"></span></p>
       </div>
 
       <div id="warningArea">
