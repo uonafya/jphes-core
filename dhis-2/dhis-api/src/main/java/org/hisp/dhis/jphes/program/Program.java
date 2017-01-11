@@ -100,12 +100,19 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
      *
      * @param dataElement the data element.
      */
-    public boolean addProgramElement( DataElement dataElement )
+//    public boolean addProgramElement( DataElement dataElement )
+//    {
+//        ProgramElement element = new ProgramElement( this, dataElement, null );
+//        dataElement.getProgramElements().add( element );
+//        return programElements.add( element );
+//    }
+
+    public ProgramElement addProgramElement( DataElement dataElement )
     {
         ProgramElement element = new ProgramElement( this, dataElement, null );
-        dataElement.getProgramElements().add( element );
-        return programElements.add( element );
+        return  element;
     }
+
 
     /**
      * Adds a program element using this program, the given data element and

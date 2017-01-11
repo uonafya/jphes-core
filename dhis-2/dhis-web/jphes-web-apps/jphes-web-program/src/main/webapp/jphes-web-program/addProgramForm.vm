@@ -1,11 +1,18 @@
 <script type="text/javascript">
    jQuery(function () {
-       $('#urAvailable').selected({
+       $('#deAvailable').selected({
            url: '../api/dataElements.json',
-           target: $('#urSelected'),
-           search: $('#urAvailableSearch'),
+           target: $('#deSelected'),
+           search: $('#deAvailableSearch'),
            iterator: 'dataElements'
        });
+
+//       $('#iAvailable').selected({
+//           url: '../api/indicators.json',
+//           target: $('#iSelected'),
+//           search: $('#iAvailableSearch'),
+//           iterator: 'indicators'
+//       });
    });
 </script>
 <h3>Add Program</h3>
@@ -40,11 +47,18 @@
         <td></td>
     </tr>
     #jqSelected({
-      "prefix": "ur",
+      "prefix": "de",
       "required": true,
       "i18n_available": "available_datalements",
       "i18n_selected": "selected_dataelements"
     })
+
+##      #jqSelected({
+##          "prefix": "i",
+##          "required": true,
+##          "i18n_available": "available_indicators",
+##          "i18n_selected": "selected_indicators"
+##      })
     <tr>
       <td></td>
       <td valign="top">

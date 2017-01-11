@@ -1,5 +1,11 @@
 package org.hisp.dhis.jphes.program;
 
+import com.google.api.client.util.Lists;
+import org.hisp.dhis.dataelement.DataElement;
+import org.hisp.dhis.dataelement.DataElementService;
+import org.hisp.dhis.program.ProgramDataElement;
+
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -16,6 +22,19 @@ public class DefaultProgramService implements ProgramService {
     }
 
     private ProgramStore programStore;
+
+    private DataElementService dataElementService;
+
+    public void setDataElementService(DataElementService dataElementService) {
+        this.dataElementService = dataElementService;
+    }
+
+    private ProgramElementStore programElementStore;
+
+    public void setProgramElementStore(ProgramElementStore programElementStore) {
+        this.programElementStore = programElementStore;
+    }
+
     /**
      * adds a new program
      *
@@ -117,5 +136,90 @@ public class DefaultProgramService implements ProgramService {
     @Override
     public int getProgramCountByName(String name) {
         return programStore.getCountLikeName(name);
+    }
+
+    @Override
+    public List<ProgramElement> getProgramElements() {
+        return null;
+    }
+
+    /**
+     * Gets or adds a program data element for the given program and data element.
+     *
+     * @param programUid     the program identifier.
+     * @param dataElementUid the data element identifier.
+     * @return a program data element.
+     */
+    @Override
+    public ProgramElement getOrAddProgramDataElement(String programUid, String dataElementUid) {
+        Program program = programStore.getByUid( programUid );
+
+        DataElement dataElement = dataElementService.getDataElement( dataElementUid );
+
+        if ( program == null || dataElement == null )
+        {
+            return null;
+        }
+
+        ProgramElement programDataElement = programElementStore.get( program, dataElement );
+
+        if ( programDataElement == null )
+        {
+            programDataElement = new ProgramElement( program, dataElement );
+
+            programElementStore.save( programDataElement );
+        }
+
+        return programDataElement;
+    }
+
+    /**
+     * Creates a program data element based on the program and data element with
+     * the given program and data element identifiers.
+     *
+     * @param programUid     the program identifier.
+     * @param dataElementUid the data element identifier.
+     * @return a program data element.
+     */
+    @Override
+    public ProgramElement getProgramDataElement(String programUid, String dataElementUid) {
+        Program program = programStore.getByUid( programUid );
+
+        DataElement dataElement = dataElementService.getDataElement( dataElementUid );
+
+        if ( program == null || dataElement == null )
+        {
+            return null;
+        }
+
+        return new ProgramElement( program, dataElement );
+    }
+
+    /**
+     * Returns a list of generated, non-persisted program data elements for the
+     * program with the given identifier.
+     *
+     * @param programUid the program identifier.
+     * @return a list of program data elements.
+     */
+    @Override
+    public List<ProgramElement> getGeneratedProgramDataElements(String programUid) {
+        Program program = getProgram( programUid );
+
+        List<ProgramElement> programDataElements = Lists.newArrayList();
+
+        if ( program == null )
+        {
+            return programDataElements;
+        }
+
+        for ( DataElement element : program.getDataElements() )
+        {
+            programDataElements.add( new ProgramElement( program, element ) );
+        }
+
+        Collections.sort( programDataElements );
+
+        return programDataElements;
     }
 }

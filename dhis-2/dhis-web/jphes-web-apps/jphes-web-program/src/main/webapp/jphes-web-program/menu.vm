@@ -1,7 +1,4 @@
 <h2>$i18n.getString( "jphes_program" )&nbsp;</h2>
 <ul>
 <li><a href="allProgram.action">$i18n.getString( "jphes_program" )&nbsp;</a></li>
-##  <li><a href="allPartner.action">$i18n.getString( "jphes_donor" )&nbsp;</a></li>
-##  <li><a href="allPartner.action">$i18n.getString( "jphes_agency" )&nbsp;</a></li>
-##  <li><a href="allPartner.action">$i18n.getString( "jphes_mechanism" )&nbsp;</a></li>
 </ul>
