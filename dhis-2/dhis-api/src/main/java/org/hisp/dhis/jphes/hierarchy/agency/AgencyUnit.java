@@ -10,6 +10,7 @@ import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
+import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
 
@@ -34,6 +35,8 @@ public class AgencyUnit extends BaseIdentifiableObject
     private CategoryOptionGroup categoryOptionGroup;
 
     private Set<Program> programs = new HashSet<>();
+
+    private Set<MechanismUnit> mechanismUnits = new HashSet<>( );
 
     private Boolean enabled;
 
@@ -133,6 +136,20 @@ public class AgencyUnit extends BaseIdentifiableObject
     public void setPrograms( Set<Program> programs )
     {
         this.programs = programs;
+    }
+
+    @JsonProperty
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "mechanismUnits", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "mechanismUnit", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<MechanismUnit> getMechanismUnits()
+    {
+        return mechanismUnits;
+    }
+
+    public void setMechanismUnits( Set<MechanismUnit> mechanismUnits )
+    {
+        this.mechanismUnits = mechanismUnits;
     }
 
 

@@ -35,6 +35,12 @@
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_agencyunitprograms_programid" />
     </set>
+
+    <set name="mechanismUnits" table="agencyunitmechanismunits">
+      <key column="agencyunitid" foreign-key="fk_agencyunitmechanismunits_agencyunitid" />
+      <many-to-many class="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" column="mechanismunitid"
+        foreign-key="fk_agencyunitmechanismunit_mechanismunitid" />
+    </set>
   </class>
 
 </hibernate-mapping>

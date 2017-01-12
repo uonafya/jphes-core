@@ -33,6 +33,12 @@
     <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
       foreign-key="fk_donorunitcategoryoptiongroupsetid" not-null="true" />
 
+    <set name="agencyUnits" table="donorunitagencyunits">
+      <key column="donorunitid" foreign-key="fk_donorunitagencyunits_donorunitid" />
+      <many-to-many class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" column="agencyunitid"
+        foreign-key="fk_donorunitagencyunits_agencyunitid" />
+    </set>
+
     <set name="programs" table="donorunitprograms">
       <key column="donorunitid" foreign-key="fk_donorunitprograms_donorunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"

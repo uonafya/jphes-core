@@ -13,6 +13,7 @@ import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
+import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
 
@@ -39,6 +40,8 @@ public class NationalUnit extends BaseIdentifiableObject
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
     private Set<Program> programs = new HashSet<>();
+
+    private Set<DonorUnit> donorUnits = new HashSet<>();
 
     private Boolean enabled;
 
@@ -151,6 +154,20 @@ public class NationalUnit extends BaseIdentifiableObject
     public void setPrograms( Set<Program> programs )
     {
         this.programs = programs;
+    }
+
+    @JsonProperty
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "donorUnits", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "donorUnit", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<DonorUnit> getDonorUnits()
+    {
+        return donorUnits;
+    }
+
+    public void setDonorUnits( Set<DonorUnit> donorUnits )
+    {
+        this.donorUnits = donorUnits;
     }
 
 
