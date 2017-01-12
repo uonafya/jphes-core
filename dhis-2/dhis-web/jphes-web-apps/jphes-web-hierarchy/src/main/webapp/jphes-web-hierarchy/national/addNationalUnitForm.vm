@@ -36,22 +36,22 @@
     </tr>
 
     <tr>
-      <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td><label for="name">$i18n.getString( "jphes_name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td colspan="3"><input type="text" id="name" name="name"></td>
     </tr>
 
     <tr>
-      <td><label for="shortname">$i18n.getString( "shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td><label for="shortname">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td colspan="3"><input type="text" id="shortName" name="shortName"></td>
     </tr>
 
     <tr>
-      <td><label for="code">$i18n.getString( "code" )</label></td>
+      <td><label for="code">$i18n.getString( "jphes_code" )</label></td>
       <td colspan="3"><input type="text" id="code" name="code"></td>
     </tr>
 
     <tr>
-      <td><label for="description">$i18n.getString( "description" )</label></td>
+      <td><label for="description">$i18n.getString( "jphes_description" )</label></td>
       <td colspan="3"><input type="text" id="description" name="description"></td>
     </tr>
 

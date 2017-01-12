@@ -29,10 +29,10 @@
       <table class="listTable" id="listTable">
         <thead>
         <tr>
-          <th>Name</th>
-          <th>Shortname</th>
-          <th>Code</th>
-          <th>Lastupdated</th>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_shortname")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
         </tr>
         </thead>
         <tbody id="list">
@@ -60,13 +60,13 @@
         <div id="hideDetailsArea">
           <a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
         </div>
-        <p><label>$i18n.getString( "name" ):</label><br/><span id="nameField"></span></p>
-        <p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
-        <p><label>No. Programs:</label><br/><span id="programsField"></span></p>
+        <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
+        <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_programs" ):</label><br/><span id="programsField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
-        <p><label>UserGroup:</label><br/><span id="userGroupField"></span></p>
-        <p><label>CategoryOptionGroup:</label><br/><span id="categoryOptionGroupField"></span></p>
-        <p><label>CategoryOptionGroupSet:</label><br/><span id="categoryOptionGroupSetField"></span></p>
+        <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
+        <p><label>$i18n.getString( "jphes_categoryoptiongroup" ):</label><br/><span id="categoryOptionGroupField"></span></p>
+        <p><label>$i18n.getString( "jphes_categoryoptiongroupset" ):</label><br/><span id="categoryOptionGroupSetField"></span></p>
       </div>
 
       <div id="warningArea">
