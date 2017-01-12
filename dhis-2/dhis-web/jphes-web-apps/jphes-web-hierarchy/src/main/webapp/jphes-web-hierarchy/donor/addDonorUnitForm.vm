@@ -2,18 +2,18 @@
 <script type="text/javascript">
   jQuery(function() {
 
-    jQuery("#availableProgramList").dhisAjaxSelect({
-      source: "getNationalUnitProgramList.action",
-      iterator: 'programs',
-      connectedTo: 'selectedProgramList',
-      handler: function( item ) {
-        var option = jQuery("<option />");
-        option.text(item.name);
-        option.attr("value", item.id);
-
-        return option;
-      }
-    });
+//    jQuery("#availableProgramList").dhisAjaxSelect({
+//      source: "getNationalUnitProgramList.action",
+//      iterator: 'programs',
+//      connectedTo: 'selectedProgramList',
+//      handler: function( item ) {
+//        var option = jQuery("<option />");
+//        option.text(item.name);
+//        option.attr("value", item.id);
+//
+//        return option;
+//      }
+//    });
 
   });
   var i18n_adding_donor_unit_failed = '$encoder.jsEscape( $i18n.getString( "adding_donor_unit_failed" ) , "'")';
