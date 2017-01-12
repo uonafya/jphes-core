@@ -33,7 +33,7 @@
           <th>Name</th>
           <th>Shortname</th>
           <th>Code</th>
-          <th>Last Updated</th>
+          <th>Lastupdated</th>
         </tr>
         </thead>
         <tbody id="list">
@@ -67,7 +67,7 @@
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>UserGroup:</label><br/><span id="userGroupField"></span></p>
         <p><label>MechanismGroup:</label><br/><span id="mechanismGroupField"></span></p>
-        <p><label>MechanismCombo:</label><br/><span id="mechansimComboField"></span></p>
+        <p><label>MechanismCombo:</label><br/><span id="mechanismComboField"></span></p>
       </div>
 
       <div id="warningArea">

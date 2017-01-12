@@ -1,0 +1,12 @@
+{ "donorUnit":
+{
+"id": "$!{donorUnit.id}",
+"name": "$!encoder.jsonEncode( ${donorUnit.name} )",
+"code": "$!encoder.jsonEncode( ${donorUnit.code} )",
+"uid": "$!{donorUnit.uid}",
+"programs": "$!{donorUnit.programs.size()}",
+"usergroup": "$!{donorUnit.userGroup.name}",
+"categoryoptiongroup": "$!{donorUnit.categoryOptionGroup.name}",
+"categoryoptiongroupset": "$!{donorUnit.categoryOptionGroupSet.name}"
+}
+}

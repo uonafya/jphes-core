@@ -1,0 +1,98 @@
+<script type="text/javascript" src="javascript/donor/updateDonorUnitForm.js"></script>
+<script type="text/javascript">
+  jQuery(function() {
+
+    jQuery("#availableProgramList").dhisAjaxSelect({
+      source: "getNationalUnitProgramList.action",
+      iterator: 'programs',
+      connectedTo: 'selectedProgramList',
+      handler: function( item ) {
+        var option = jQuery("<option />");
+        option.text(item.name);
+        option.attr("value", item.id);
+
+        return option;
+      }
+    });
+
+  });
+
+</script>
+
+<h3>$i18n.getString( "edit_donor_unit" )</h3>
+
+<form id="updateDonorUnitForm" name="updateDonorUnitForm" action="updateDonorUnit.action" method="post" class="inputForm">
+
+  <table>
+    <col style="width: 120px"/>
+    <col style="width: 500px;"/>
+    <col/>
+    <col style="width: 500px;"/>
+
+    <tr>
+      <th colspan="2">$i18n.getString( "details" )</th>
+      <td colspan="2"></td>
+    </tr>
+
+    <div><input type="hidden" id="id" name="id" value="$donorUnit.id"/></div>
+
+    <tr>
+      <td><label for="name">$i18n.getString( "name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $donorUnit.name )"></td>
+    </tr>
+
+    <tr>
+      <td><label for="shortname">$i18n.getString( "shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $donorUnit.shortName )"></td>
+    </tr>
+
+    <tr>
+      <td><label for="code">$i18n.getString( "code" )</label></td>
+      <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $donorUnit.code )"></td>
+    </tr>
+
+    <tr>
+      <td><label for="description">$i18n.getString( "description" )</label></td>
+      <td colspan="3"><input type="text" id="description" name="description" value="$!encoder.htmlEncode( $donorUnit.description )"></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <th>$i18n.getString( "available" )</th>
+      <th></th>
+      <th>$i18n.getString( "selected" )</th>
+    </tr>
+
+    <tr>
+      <td><label>$i18n.getString( "jphes_programs" )</label></td>
+      <td>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+      </td>
+
+      <td style="text-align:center">
+        <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'availableProgramList' );"/><br/>
+        <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'selectedProgramList' );"/><br/>
+        <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'availableProgramList' );"/><br/>
+        <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'selectedProgramList' );"/>
+      </td>
+
+      <td>
+        <select id="selectedProgramList" name="selectedProgramList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
+            #foreach ( $selectedProgram in $programList )
+              <option value="$selectedProgram.uid">$encoder.htmlEncode( $selectedProgram.name )</option>
+            #end
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td valign="top">
+        <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allDonorUnit.action' )" style="width:10em"/>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</form>
