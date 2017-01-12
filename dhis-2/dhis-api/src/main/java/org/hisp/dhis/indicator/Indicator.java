@@ -83,7 +83,7 @@ public class Indicator
 
     private Set<DataSet> dataSets = new HashSet<>();
 
-    private Set<Program> programs = new HashSet<>();
+    private Set<Program> jphesprograms = new HashSet<>();
 
     public Indicator()
     {
@@ -316,14 +316,14 @@ public class Indicator
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
     @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
     @JacksonXmlProperty( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<Program> getPrograms()
+    public Set<Program> getJphesprograms()
     {
-        return programs;
+        return jphesprograms;
     }
 
-    public void setPrograms( Set<Program> programs )
+    public void setJphesrograms( Set<Program> programs )
     {
-        this.programs=programs;
+        this.jphesprograms=programs;
     }
 
     @JsonProperty

@@ -47,6 +47,7 @@ import org.hisp.dhis.dataset.DataSet;
 import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.dataset.comparator.DataSetApprovalFrequencyComparator;
 import org.hisp.dhis.dataset.comparator.DataSetFrequencyComparator;
+import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.option.OptionSet;
@@ -123,6 +124,11 @@ public class DataElement
      * URL for lookup of additional information on the web.
      */
     private String url;
+
+    /**
+     * JPHES indicators
+     */
+    private Set<Indicator> jphesIndicators = new HashSet<>();
 
     /**
      * The data element groups which this
@@ -206,6 +212,14 @@ public class DataElement
     {
         dataSetElements.remove( element );
         return element.getDataSet().getDataSetElements().remove( element );
+    }
+
+    public Set<Indicator> getJphesIndicators() {
+        return jphesIndicators;
+    }
+
+    public void setJphesIndicators(Set<Indicator> jphesIndicators) {
+        this.jphesIndicators = jphesIndicators;
     }
 
     /**

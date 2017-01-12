@@ -24,5 +24,12 @@
             <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
         </set>
 
+        <set name="indicators" table="jphesprogramindicators" cascade="all-delete-orphan">
+            <cache usage="read-write"/>
+            <key column="programid" foreign-key="fk_programmembers_programid" />
+            <many-to-many class="org.hisp.dhis.indicator.Indicator" />
+        </set>
+
+
     </class>
 </hibernate-mapping>

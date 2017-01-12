@@ -162,17 +162,17 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
         programElements.clear();
     }
 
-    public void addIndicator( Indicator indicator )
-    {
-        indicators.add( indicator );
-        indicator.getPrograms().add( this );
-    }
-
-    public boolean removeIndicator( Indicator indicator )
-    {
-        indicators.remove( indicator );
-        return indicator.getPrograms().remove( this );
-    }
+//    public void addIndicator( Indicator indicator )
+//    {
+//        indicators.add( indicator );
+//        indicator.getPrograms().add( this );
+//    }
+//
+//    public boolean removeIndicator( Indicator indicator )
+//    {
+//        indicators.remove( indicator );
+//        return indicator.getPrograms().remove( this );
+//    }
 
     public Set<DataElement> getDataElements()
     {
