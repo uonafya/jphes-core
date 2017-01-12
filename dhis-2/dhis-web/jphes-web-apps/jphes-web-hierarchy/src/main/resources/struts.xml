@@ -76,11 +76,51 @@
       <param name="requiredAuthorities">F_NATIONAL_UNIT_DELETE</param>
     </action>
 
-    <!-- Json Actions -->
+    <!-- NationalUnit Json Actions -->
 
     <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
       <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+    <!--Donor Unit Actions-->
+
+    <action name="allDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/donor/allDonorUnit.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="javascripts">javascript/donor/donorUnit.js,javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_DONOR_UNIT_LIST</param>
+    </action>
+
+    <action name="showAddDonorUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/donor/addDonorUnitForm.vm</param>
+      <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
+    </action>
+
+    <action name="addDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.AddDonorUnitAction">
+      <result name="success" type="redirect">allDonorUnit.action</result>
+      <result name="error" type="redirect">showAddDonorUnitForm.action</result>
+      <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
+    </action>
+
+    <action name="getDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonDonorUnit.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="anyAuthorities">F_DONOR_UNIT_ADD, F_DONOR_UNIT_LIST</param>
+    </action>
+
+    <action name="showUpdateDonorUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/donor/updateDonorUnitForm.vm</param>
+      <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
+    </action>
+
+    <action name="updateDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.UpdateDonorUnitAction">
+      <result name="success" type="redirect">allDonorUnit.action</result>
+      <result name="error" type="redirect">showUpdateDonorUnitForm.action</result>
+      <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
     </action>
 
 

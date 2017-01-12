@@ -67,7 +67,11 @@
     <tr>
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
-        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
+          #foreach ( $selectedProgram in $programList )
+            <option value="$selectedProgram.uid">$encoder.htmlEncode( $selectedProgram.name )</option>
+          #end
+        </select>
       </td>
 
       <td style="text-align:center">

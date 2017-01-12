@@ -2,18 +2,18 @@
 <script type="text/javascript">
   jQuery(function() {
 
-    jQuery("#availableProgramList").dhisAjaxSelect({
-      source: "getNationalUnitProgramList.action",
-      iterator: 'programs',
-      connectedTo: 'selectedProgramList',
-      handler: function( item ) {
-        var option = jQuery("<option />");
-        option.text(item.name);
-        option.attr("value", item.id);
-
-        return option;
-      }
-    });
+//    jQuery("#availableProgramList").dhisAjaxSelect({
+//      source: "getNationalUnitProgramList.action",
+//      iterator: 'programs',
+//      connectedTo: 'selectedProgramList',
+//      handler: function( item ) {
+//        var option = jQuery("<option />");
+//        option.text(item.name);
+//        option.attr("value", item.id);
+//
+//        return option;
+//      }
+//    });
 
   });
 
@@ -66,7 +66,11 @@
     <tr>
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
-        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
+          #foreach ( $availableProgram in $availableProgramList )
+            <option value="$availableProgram.uid">$encoder.htmlEncode( $availableProgram.name )</option>
+          #end
+        </select>
       </td>
 
       <td style="text-align:center">

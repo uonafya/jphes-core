@@ -14,6 +14,7 @@
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
   </bean>
 
+  <!--National Unit Actions beans -->
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
   </bean>
@@ -50,5 +51,22 @@
     scope="prototype">
     <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
+
+  <!--Donor Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction"
+    scope="prototype">
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+  </bean>
+
 
 </beans>

@@ -11,3 +11,7 @@ function showUpdateNationalUnitForm( context ) {
   location.href = 'showUpdateNationalUnitForm.action?id=' + context.id;
 }
 
+function showAddDonorUnitForm( context ) {
+  location.href = 'showAddDonorUnitForm.action?id=' + context.id;
+}
+
