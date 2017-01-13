@@ -5,6 +5,7 @@
 "code": "$!encoder.jsonEncode( ${donorUnit.code} )",
 "uid": "$!{donorUnit.uid}",
 "programs": "$!{donorUnit.programs.size()}",
+"agencies": "$!{donorUnit.agencyUnits.size()}",
 "usergroup": "$!{donorUnit.userGroup.name}",
 "categoryoptiongroup": "$!{donorUnit.categoryOptionGroup.name}",
 "national": "$!{donorUnit.nationalUnit.name}"

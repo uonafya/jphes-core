@@ -106,7 +106,7 @@ public class AddNationalUnitAction implements Action
     {
 
 
-        if(userGroupService.getUserGroupByName( name ).size() == 0 )
+        if(userGroupService.getUserGroupByName( name ).size() == 0 && selectedProgramList.size()>0 )
         {
             NationalUnit nationalUnit = new NationalUnit();
 

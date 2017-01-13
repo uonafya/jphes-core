@@ -5,6 +5,7 @@ import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService;
+import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
@@ -54,6 +55,9 @@ public class GetDonorUnitAction implements Action
 
     public UserGroup getUserGroup(){return userGroup;}
 
+    private NationalUnit nationalUnit;
+
+    public NationalUnit getNationalUnit(){return nationalUnit;}
     private CategoryOptionGroup categoryOptionGroup;
 
     public CategoryOptionGroup getCategoryOptionGroup(){
@@ -74,6 +78,8 @@ public class GetDonorUnitAction implements Action
         donorUnit = donorUnitService.getDonorUnit( id );
 
         userGroup = donorUnit.getUserGroup();
+
+        nationalUnit = donorUnit.getNationalUnit();
 
         categoryOptionGroup = donorUnit.getCategoryOptionGroup();
 

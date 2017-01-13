@@ -112,7 +112,7 @@ public class AddDonorUnitAction implements Action
     {
 
 
-        if(userGroupService.getUserGroupByName( name ).size() == 0 )
+        if((userGroupService.getUserGroupByName( name ).size() == 0) && (selectedProgramList.size()>0))
         {
             //Dependent objects
             NationalUnit nationalUnit = nationalUnitService.getNationalUnit( id );
@@ -167,7 +167,6 @@ public class AddDonorUnitAction implements Action
             //Adding donorUnit to NationUnit Set
             nationalUnit.getDonorUnits().add( donorUnit );
             nationalUnitService.updateNationalUnit( nationalUnit );
-
         }
         else
         {

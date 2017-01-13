@@ -6,6 +6,7 @@ function showDonorUnitDetails( context ) {
   jQuery.post('getDonorUnit.action', { id: context.id }, function( json ) {
     setInnerHTML('nameField', json.donorUnit.name);
     setInnerHTML('programsField', json.donorUnit.programs);
+    setInnerHTML('agencyUnitField', json.donorUnit.agencies);
     setInnerHTML('codeField', json.donorUnit.code);
     setInnerHTML('idField', json.donorUnit.uid);
     setInnerHTML('userGroupField', json.donorUnit.usergroup);
