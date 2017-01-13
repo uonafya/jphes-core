@@ -133,20 +133,32 @@ public class AddNationalUnitAction implements Action
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
-            //CategoryOptionGroupSet
+            //CategoryOptionGroupSet Donor
 
-            CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
-            categoryOptionGroupSet.setName(  "A. Donors-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
-            categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
-            categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-            categoryOptionGroupSet.setDataDimension( true );
+            CategoryOptionGroupSet categoryOptionGroupSetDonor = new CategoryOptionGroupSet( );
+            categoryOptionGroupSetDonor.setName(  "A. Donor Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
+            categoryOptionGroupSetDonor.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSetDonor.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryOptionGroupSetDonor.setDataDimension( true );
 
-            //save categoryOptionGroupSet
-            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
+            //save categoryOptionGroupSetDonor
+            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSetDonor );
+
+            //CategoryOptionGroupSet Agency
+
+            CategoryOptionGroupSet categoryOptionGroupSetAgency = new CategoryOptionGroupSet( );
+            categoryOptionGroupSetAgency.setName(  "B. Agency Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
+            categoryOptionGroupSetAgency.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSetAgency.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryOptionGroupSetAgency.setDataDimension( true );
+
+            //save categoryOptionGroupSetAgency
+            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSetAgency );
+
 
             //Mechanism Category
             DataElementCategory category = new DataElementCategory(  );
-            category.setName( "C. Mechanisms-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            category.setName( "C. Mechanism Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
             category.setDataDimensionType( DataDimensionType.ATTRIBUTE );
             category.setDataDimension( true );
 
@@ -155,7 +167,7 @@ public class AddNationalUnitAction implements Action
 
             //Mechanism CategoryCombo
             DataElementCategoryCombo categoryCombo = new DataElementCategoryCombo(  );
-            categoryCombo.setName( "Mechanisms Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            categoryCombo.setName( "MechanismUnit Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
             categoryCombo.setDataDimensionType( DataDimensionType.ATTRIBUTE );
             categoryCombo.setSkipTotal( true );
             //add Mechanism Category to Mechanism CategoryCombo
@@ -166,7 +178,8 @@ public class AddNationalUnitAction implements Action
             //Setting attributes
 
             nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
-            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
+            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSetDonor.getUid() ) );
+            nationalUnit.setCategoryOptionGroupSetAgency( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSetAgency.getUid() ) );
             nationalUnit.setMechanismCategory( categoryService.getDataElementCategory( category.getUid() ) );
             nationalUnit.setMechanismCombo( categoryService.getDataElementCategoryCombo( categoryCombo.getUid() ) );
 
