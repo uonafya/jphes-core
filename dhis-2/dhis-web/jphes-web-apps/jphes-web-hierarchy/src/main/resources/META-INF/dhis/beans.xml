@@ -87,6 +87,50 @@
     scope="prototype">
   </bean>
 
+  <!--Donor Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" scope="prototype" >
+  </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.AddAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.AddAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.UpdateAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.UpdateAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.ValidateAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.ValidateAgencyUnitAction"
+    scope="prototype">
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction"
+    scope="prototype">
+  </bean>
+
+  <!--Mechanism Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitListAction" scope="prototype" >
+  </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.UpdateMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.UpdateMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.ValidateMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ValidateMechanismUnitAction"
+    scope="prototype">
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetAgencyProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetAgencyProgramListAction"
+    scope="prototype">
+  </bean>
+
+
+
 
 
 </beans>

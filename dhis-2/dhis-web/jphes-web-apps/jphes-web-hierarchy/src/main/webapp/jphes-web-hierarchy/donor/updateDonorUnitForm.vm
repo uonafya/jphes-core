@@ -44,7 +44,7 @@
     </tr>
 
     <tr>
-      <td><label for="shortname">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td><label for="shortName">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $donorUnit.shortName )"></td>
     </tr>
 

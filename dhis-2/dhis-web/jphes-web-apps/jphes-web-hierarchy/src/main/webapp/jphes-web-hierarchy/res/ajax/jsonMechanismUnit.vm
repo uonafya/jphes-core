@@ -1,0 +1,13 @@
+{ "mechanismUnit":
+{
+"id": "$!{mechanismUnit.id}",
+"name": "$!encoder.jsonEncode( ${mechanismUnit.name} )",
+"partner": "$!encoder.jsonEncode( ${mechanismUnit.partner} )",
+"code": "$!encoder.jsonEncode( ${mechanismUnit.code} )",
+"uid": "$!{mechanismUnit.uid}",
+"programs": "$!{mechanismUnit.programs.size()}",
+"usergroup": "$!{mechanismUnit.userGroup.name}",
+"categoryoption": "$!{mechanismUnit.categoryOption.name}",
+"agency": "$!{mechanismUnit.agencyUnit.name}",
+}
+}

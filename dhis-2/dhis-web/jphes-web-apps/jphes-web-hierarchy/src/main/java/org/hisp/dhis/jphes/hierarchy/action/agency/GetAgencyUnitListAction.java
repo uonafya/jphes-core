@@ -1,8 +1,15 @@
 package org.hisp.dhis.jphes.hierarchy.action.agency;
 
+import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
+import org.hisp.dhis.paging.ActionPagingSupport;
+
 /**
- * Created by afya on 05/01/17.
+ * Created by @bangadennis on 05/01/17.
  */
-public class GetAgencyUnitListAction
+public class GetAgencyUnitListAction extends ActionPagingSupport<AgencyUnit>
 {
+    @Override public String execute() throws Exception
+    {
+        return SUCCESS;
+    }
 }

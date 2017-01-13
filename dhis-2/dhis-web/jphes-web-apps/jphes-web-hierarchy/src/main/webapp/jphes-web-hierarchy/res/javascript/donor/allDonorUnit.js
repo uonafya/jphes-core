@@ -10,3 +10,7 @@ jQuery(document).ready(function() {
 function showUpdateDonorUnitForm( context ) {
   location.href = 'showUpdateDonorUnitForm.action?id=' + context.id;
 }
+
+function showAddAgencyUnitForm( context ) {
+  location.href = 'showAddAgencyUnitForm.action?id=' + context.id;
+}

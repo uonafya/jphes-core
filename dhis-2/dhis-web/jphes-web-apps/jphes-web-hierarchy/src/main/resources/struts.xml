@@ -146,5 +146,130 @@
     </action>
 
 
+    <!--Agency Unit Actions-->
+
+    <action name="allAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/agency/allAgencyUnit.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="javascripts">res/javascript/agency/AgencyUnit.js,res/javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_LIST</param>
+    </action>
+
+    <action name="showAddAgencyUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/agency/addAgencyUnitForm.vm</param>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_ADD</param>
+    </action>
+
+    <action name="addAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.AddAgencyUnitAction">
+      <result name="success" type="redirect">allAgencyUnit.action</result>
+      <result name="error" type="redirect">showAddAgencyUnitForm.action</result>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_ADD</param>
+    </action>
+
+    <action name="getAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonAgencyUnit.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="anyAuthorities">F_AGENCY_UNIT_ADD, F_AGENCY_UNIT_LIST</param>
+    </action>
+
+    <action name="showUpdateAgencyUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/agency/updateAgencyUnitForm.vm</param>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_ADD</param>
+    </action>
+
+    <action name="updateAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.UpdateAgencyUnitAction">
+      <result name="success" type="redirect">allAgencyUnit.action</result>
+      <result name="error" type="redirect">showUpdateAgencyUnitForm.action</result>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_ADD</param>
+    </action>
+
+    <action name="removeAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.RemoveAgencyUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <result name="logout" type="redirect">/</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_DELETE</param>
+    </action>
+
+    <action name="validateAgencyUnit" class="org.hisp.dhis.jphes.hierarchy.action.agency.ValidateAgencyUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+
+    <!-- Json Actions -->
+
+    <action name="getDonorProgramList" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonProgramList.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+    <!-- Mechanism Unit Actions-->
+
+    <action name="allMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitListAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/mechanism/allMechanismUnit.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="javascripts">res/javascript/mechanism/MechanismUnit.js,res/javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
+    </action>
+
+    <action name="showAddMechanismUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/mechanism/addAMechanismUnitForm.vm</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
+    </action>
+
+    <action name="addMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction">
+      <result name="success" type="redirect">allMechanismUnit.action</result>
+      <result name="error" type="redirect">showAddAMechanismUnitForm.action</result>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
+    </action>
+
+    <action name="getMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonMechanismUnit.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="anyAuthorities">F_MECHANISM_UNIT_ADD, F_MECHANISM_UNIT_LIST</param>
+    </action>
+
+    <action name="showUpdateMechanismUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/mechanism/updateMechanismUnitForm.vm</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
+    </action>
+
+    <action name="updateMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.UpdateMechanismUnitAction">
+      <result name="success" type="redirect">allMechanismUnit.action</result>
+      <result name="error" type="redirect">showUpdateMechanismUnitForm.action</result>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
+    </action>
+
+    <action name="removeMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.RemoveMechanismUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <result name="logout" type="redirect">/</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_DELETE</param>
+    </action>
+
+    <action name="validateMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ValidateMechanismUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+
+    <!-- Json Actions -->
+
+    <action name="getDonorProgramList" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonProgramList.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+
   </package>
 </struts>

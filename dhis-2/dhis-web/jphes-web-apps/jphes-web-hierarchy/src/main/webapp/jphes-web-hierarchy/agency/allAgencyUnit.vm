@@ -1,20 +1,20 @@
 
 ###sharingDialog()
 
-<script type="text/javascript" src="res/javascript/donor/allDonorUnit.js"></script>
+<script type="text/javascript" src="res/javascript/agency/allAgencyUnit.js"></script>
 <script type="text/javascript">
-  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_donor_unit" ) , "'")';
+  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_agency_unit" ) , "'")';
   var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
 </script>
 
-<h3>$i18n.getString( 'jphes_donor' ) #openHelp( "jphes_hierarchy" )</h3>
+<h3>$i18n.getString( 'jphes_agency' ) #openHelp( "jphes_hierarchy" )</h3>
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
-    <li data-enabled="canUpdate"><a data-target-fn="showAddAgencyUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_agency" )</a></li>
-    <li data-enabled="canUpdate"><a data-target-fn="showUpdateDonorUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
-    <li data-enabled="canDelete"><a data-target-fn="removeDonorUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
-    <li><a data-target-fn="showDonorUnitDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+    <li data-enabled="canUpdate"><a data-target-fn="showAddMechanismUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_mechanism" )</a></li>
+    <li data-enabled="canUpdate"><a data-target-fn="showUpdateAgencyUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+    <li data-enabled="canDelete"><a data-target-fn="removeAgencyUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li><a data-target-fn="showAgencyUnitDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
   </ul>
 </div>
 
@@ -23,7 +23,7 @@
     <td style="vertical-align:top">
       <table width="100%">
         <tr>
-          <td>#filterDiv( "allDonorUnit" )</td>
+          <td>#filterDiv( "allAgencyUnit" )</td>
         </tr>
       </table>
       <table class="listTable" id="listTable">
@@ -36,15 +36,15 @@
         </tr>
         </thead>
         <tbody id="list">
-            #foreach( $donorUnit in $donorUnits )
-            <tr id="tr${donorUnit.id}" data-id="$!donorUnit.id" data-uid="$!donorUnit.uid" data-type="DonorUnit" data-name="$encoder.htmlEncode( $!donorUnit.name )"
-                data-can-manage="$security.canManage( $donorUnit )"
-                data-can-update="$security.canUpdate( $donorUnit )"
-                data-can-delete="$security.canDelete( $donorUnit )">
-              <td>$!encoder.htmlEncode( $donorUnit.name )</td>
-              <td>$!encoder.htmlEncode( $donorUnit.shortName )</td>
-              <td>$!encoder.htmlEncode( $donorUnit.code )</td>
-              <td>$!format.formatDate( $donorUnit.lastUpdated )</td>
+            #foreach( $agencyUnit in $agencyUnits )
+            <tr id="tr${agencyUnit.id}" data-id="$!agencyUnit.id" data-uid="$!agencyUnit.uid" data-type="AgencyUnit" data-name="$encoder.htmlEncode( $!agencyUnit.name )"
+                data-can-manage="$security.canManage( $agencyUnit )"
+                data-can-update="$security.canUpdate( $agencyUnit )"
+                data-can-delete="$security.canDelete( $agencyUnit )">
+              <td>$!encoder.htmlEncode( $agencyUnit.name )</td>
+              <td>$!encoder.htmlEncode( $agencyUnit.shortName )</td>
+              <td>$!encoder.htmlEncode( $agencyUnit.code )</td>
+              <td>$!format.formatDate( $agencyUnit.lastUpdated )</td>
             </tr>
             #end
         </tbody>
@@ -63,11 +63,11 @@
         <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
         <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
         <p><label>$i18n.getString( "jphes_number_of_programs" ):</label><br/><span id="programsField"></span></p>
-        <p><label>$i18n.getString( "jphes_number_of_agencies" ):</label><br/><span id="agencyUnitField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_mechanisms" ):</label><br/><span id="mechanismUnitField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
         <p><label>$i18n.getString( "jphes_categoryoptiongroup" ):</label><br/><span id="categoryOptionGroupField"></span></p>
-        <p><label>$i18n.getString( "jphes_national" ):</label><br/><span id="nationalUnitField"></span></p>
+        <p><label>$i18n.getString( "jphes_donor" ):</label><br/><span id="donorUnitField"></span></p>
       </div>
 
       <div id="warningArea">

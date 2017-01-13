@@ -1,12 +1,12 @@
 package org.hisp.dhis.jphes.hierarchy.action.mechanism;
 
-import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
 import org.hisp.dhis.paging.ActionPagingSupport;
+import org.hisp.dhis.program.Program;
 
 /**
- * Created by afya on 05/01/17.
+ * Created by afya on 13/01/17.
  */
-public class GetMechanismUnitListAction extends ActionPagingSupport<MechanismUnit>
+public class GetAgencyProgramListAction extends ActionPagingSupport<Program>
 {
     @Override public String execute() throws Exception
     {

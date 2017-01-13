@@ -1,9 +1,11 @@
-<script type="text/javascript" src="res/javascript/national/updateNationalUnitForm.js"></script>
+<script type="text/javascript" src="res/javascript/mechanism/updateMechanismUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
 
+    var agencyUnitId="${agencyUnit.id}";
+
     jQuery("#availableProgramList").dhisAjaxSelect({
-      source: "getProgramList.action",
+      source: "getAgencyProgramList.action?id="+agencyUnitId,
       iterator: 'programs',
       connectedTo: 'selectedProgramList',
       handler: function( item ) {
@@ -19,9 +21,9 @@
 
 </script>
 
-<h3>$i18n.getString( "edit_national_unit" )</h3>
+<h3>$i18n.getString( "edit_mechanism_unit" )</h3>
 
-<form id="updateNationalUnitForm" name="updateNationalUnitForm" action="updateNationalUnit.action" method="post" class="inputForm">
+<form id="updateMechanismUnitForm" name="updateMechanismUnitForm" action="updateMechanismUnit.action" method="post" class="inputForm">
 
   <table>
     <col style="width: 120px"/>
@@ -34,26 +36,31 @@
       <td colspan="2"></td>
     </tr>
 
-    <div><input type="hidden" id="id" name="id" value="$nationalUnit.id"/></div>
+    <div><input type="hidden" id="id" name="id" value="$mechanismUnit.id"/></div>
 
     <tr>
       <td><label for="name">$i18n.getString( "jphes_name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $nationalUnit.name )"></td>
+      <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $mechanismUnit.name )"></td>
     </tr>
 
     <tr>
       <td><label for="shortName">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
+      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $mechanismUnit.shortName )"></td>
+    </tr>
+
+    <tr>
+      <td><label for="partner">$i18n.getString( "jphes_partner" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="partner" name="partner" value="$!encoder.htmlEncode( $mechanismUnit.partner )"></td>
     </tr>
 
     <tr>
       <td><label for="code">$i18n.getString( "jphes_code" )</label></td>
-      <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $nationalUnit.code )"></td>
+      <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $mechanismUnit.code )"></td>
     </tr>
 
     <tr>
       <td><label for="description">$i18n.getString( "jphes_description" )</label></td>
-      <td colspan="3"><input type="text" id="description" name="description" value="$!encoder.htmlEncode( $nationalUnit.description )"></td>
+      <td colspan="3"><input type="text" id="description" name="description" value="$!encoder.htmlEncode( $mechanismUnit.description )"></td>
     </tr>
 
     <tr>
@@ -66,7 +73,8 @@
     <tr>
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
-        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
+        </select>
       </td>
 
       <td style="text-align:center">
@@ -89,7 +97,7 @@
       <td></td>
       <td valign="top">
         <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
-        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allNationalUnit.action' )" style="width:10em"/>
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allMechanismUnit.action' )" style="width:10em"/>
       </td>
       <td></td>
       <td></td>

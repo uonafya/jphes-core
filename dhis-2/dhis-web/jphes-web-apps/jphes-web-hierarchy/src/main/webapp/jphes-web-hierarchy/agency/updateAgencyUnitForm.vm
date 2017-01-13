@@ -1,9 +1,11 @@
-<script type="text/javascript" src="res/javascript/national/updateNationalUnitForm.js"></script>
+<script type="text/javascript" src="res/javascript/agency/updateAgencyUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
 
+    var donorUnitId="${donorUnit.id}";
+
     jQuery("#availableProgramList").dhisAjaxSelect({
-      source: "getProgramList.action",
+      source: "getDonorProgramList.action?id="+donorUnitId,
       iterator: 'programs',
       connectedTo: 'selectedProgramList',
       handler: function( item ) {
@@ -19,9 +21,9 @@
 
 </script>
 
-<h3>$i18n.getString( "edit_national_unit" )</h3>
+<h3>$i18n.getString( "edit_agency_unit" )</h3>
 
-<form id="updateNationalUnitForm" name="updateNationalUnitForm" action="updateNationalUnit.action" method="post" class="inputForm">
+<form id="updateAgencyUnitForm" name="updateAgencyUnitForm" action="updateAgencyUnit.action" method="post" class="inputForm">
 
   <table>
     <col style="width: 120px"/>
@@ -34,26 +36,26 @@
       <td colspan="2"></td>
     </tr>
 
-    <div><input type="hidden" id="id" name="id" value="$nationalUnit.id"/></div>
+    <div><input type="hidden" id="id" name="id" value="$agencyUnit.id"/></div>
 
     <tr>
       <td><label for="name">$i18n.getString( "jphes_name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $nationalUnit.name )"></td>
+      <td colspan="3"><input type="text" id="name" name="name" value="$!encoder.htmlEncode( $agencyUnit.name )"></td>
     </tr>
 
     <tr>
       <td><label for="shortName">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $nationalUnit.shortName )"></td>
+      <td colspan="3"><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $agencyUnit.shortName )"></td>
     </tr>
 
     <tr>
       <td><label for="code">$i18n.getString( "jphes_code" )</label></td>
-      <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $nationalUnit.code )"></td>
+      <td colspan="3"><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $agencyUnit.code )"></td>
     </tr>
 
     <tr>
       <td><label for="description">$i18n.getString( "jphes_description" )</label></td>
-      <td colspan="3"><input type="text" id="description" name="description" value="$!encoder.htmlEncode( $nationalUnit.description )"></td>
+      <td colspan="3"><input type="text" id="description" name="description" value="$!encoder.htmlEncode( $agencyUnit.description )"></td>
     </tr>
 
     <tr>
@@ -66,7 +68,8 @@
     <tr>
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
-        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;"></select>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
+        </select>
       </td>
 
       <td style="text-align:center">
@@ -89,7 +92,7 @@
       <td></td>
       <td valign="top">
         <input type="submit" value="$i18n.getString( 'save' )" style="width:10em" />
-        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allNationalUnit.action' )" style="width:10em"/>
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allAgencyUnit.action' )" style="width:10em"/>
       </td>
       <td></td>
       <td></td>
