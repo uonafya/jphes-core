@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by afya on 05/01/17.
@@ -117,13 +119,14 @@ public class AddNationalUnitAction implements Action
             nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
 
             // Add programList
-
+            Set<Program> nationalUnitProgramSet = new HashSet<>(  );
             for ( String id : selectedProgramList )
             {
                 Program program = programService.getProgram( id );
-                nationalUnit.getPrograms().add( program );
+                nationalUnitProgramSet.add( program );
 
             }
+            nationalUnit.setPrograms( nationalUnitProgramSet );
 
             // User group
             UserGroup userGroup = new UserGroup();
