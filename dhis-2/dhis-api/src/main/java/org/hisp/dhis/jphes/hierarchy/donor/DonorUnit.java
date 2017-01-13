@@ -31,9 +31,8 @@ public class DonorUnit extends BaseIdentifiableObject
 
     private UserGroup userGroup;
 
+    //DonorOptionGroup- Hold MechanismsCategoryOptions
     private CategoryOptionGroup categoryOptionGroup;
-
-    private CategoryOptionGroupSet categoryOptionGroupSet;
 
     private Set<Program> programs = new HashSet<>();
 
@@ -123,18 +122,6 @@ public class DonorUnit extends BaseIdentifiableObject
     public void setCategoryOptionGroup( CategoryOptionGroup categoryOptionGroup )
     {
         this.categoryOptionGroup = categoryOptionGroup;
-    }
-
-    @JsonProperty
-    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
-    public CategoryOptionGroupSet getCategoryOptionGroupSet()
-    {
-        return categoryOptionGroupSet;
-    }
-
-    public void setCategoryOptionGroupSet( CategoryOptionGroupSet categoryOptionGroupSet )
-    {
-        this.categoryOptionGroupSet = categoryOptionGroupSet;
     }
 
     @JsonProperty

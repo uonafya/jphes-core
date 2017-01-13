@@ -30,8 +30,11 @@
     <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"
       foreign-key="fk_nationalunitusergroupid" not-null="true" />
 
-    <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
-      foreign-key="fk_nationalunitcategoryoptiongroupsetid" not-null="true" />
+    <many-to-one name="categoryOptionGroupSetAgency" column="categoryoptiongroupsetagencyid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
+      foreign-key="fk_donorunitcategoryoptiongroupsetagencyid" not-null="true" />
+
+    <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetdonorid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
+      foreign-key="fk_nationalunitcategoryoptiongroupsetdonorid" not-null="true" />
 
     <set name="donorUnits" table="nationalunitdonorunits">
       <key column="nationalunitid" foreign-key="fk_nationalunitdonorunits_nationalunitid" />

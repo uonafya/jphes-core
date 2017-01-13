@@ -35,8 +35,13 @@ public class NationalUnit extends BaseIdentifiableObject
 
     private DataElementCategory mechanismCategory;
 
+    //Mechanism CategoryCombo -Holds the mechanismCategory
     private DataElementCategoryCombo mechanismCombo;
 
+    //Donor CategoryOptionGroupSet
+    private CategoryOptionGroupSet categoryOptionGroupSetAgency;
+
+    //Donor CategoryOptionGroupSet
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
     private Set<Program> programs = new HashSet<>();
@@ -129,6 +134,17 @@ public class NationalUnit extends BaseIdentifiableObject
         this.mechanismCombo = mechanismCombo;
     }
 
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public CategoryOptionGroupSet getCategoryOptionGroupSetAgency()
+    {
+        return categoryOptionGroupSetAgency;
+    }
+
+    public void setCategoryOptionGroupSetAgency( CategoryOptionGroupSet categoryOptionGroupSetAgency )
+    {
+        this.categoryOptionGroupSetAgency = categoryOptionGroupSetAgency;
+    }
 
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
