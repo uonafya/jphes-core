@@ -122,7 +122,7 @@ public class UpdateAgencyUnitAction implements Action
             }
 
             // User group
-            UserGroup userGroup = new UserGroup();
+            UserGroup userGroup = agencyUnit.getUserGroup();
 
             userGroup.setName( StringUtils.trimToNull(name) );
             //Update UserGroup

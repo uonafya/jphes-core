@@ -135,7 +135,7 @@ public class UpdateMechanismUnitAction implements Action
             }
 
             // User group
-            UserGroup userGroup = new UserGroup();
+            UserGroup userGroup = mechanismUnit.getUserGroup();
 
             userGroup.setName( StringUtils.trimToNull( name ) );
             //Update UserGroup

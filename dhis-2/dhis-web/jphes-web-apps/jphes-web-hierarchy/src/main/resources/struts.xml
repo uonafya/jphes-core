@@ -152,7 +152,7 @@
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/agency/allAgencyUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">res/javascript/agency/AgencyUnit.js,res/javascript/filterTable.js</param>
+      <param name="javascripts">res/javascript/agency/agencyUnit.js,res/javascript/filterTable.js</param>
       <param name="requiredAuthorities">F_AGENCY_UNIT_LIST</param>
     </action>
 
@@ -214,7 +214,7 @@
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/mechanism/allMechanismUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">res/javascript/mechanism/MechanismUnit.js,res/javascript/filterTable.js</param>
+      <param name="javascripts">res/javascript/mechanism/mechanismUnit.js,res/javascript/filterTable.js</param>
       <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
     </action>
 
@@ -226,7 +226,7 @@
 
     <action name="addMechanismUnit" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction">
       <result name="success" type="redirect">allMechanismUnit.action</result>
-      <result name="error" type="redirect">showAddAMechanismUnitForm.action</result>
+      <result name="error" type="redirect">showAddMechanismUnitForm.action</result>
       <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
     </action>
 
