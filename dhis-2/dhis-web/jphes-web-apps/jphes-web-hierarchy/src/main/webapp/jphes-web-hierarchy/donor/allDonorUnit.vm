@@ -66,7 +66,7 @@
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
         <p><label>$i18n.getString( "jphes_categoryoptiongroup" ):</label><br/><span id="categoryOptionGroupField"></span></p>
-        <p><label>$i18n.getString( "jphes_categoryoptiongroupset" ):</label><br/><span id="categoryOptionGroupSetField"></span></p>
+        <p><label>$i18n.getString( "jphes_national" ):</label><br/><span id="nationalUnitField"></span></p>
       </div>
 
       <div id="warningArea">

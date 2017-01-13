@@ -140,13 +140,13 @@ public class AddDonorUnitAction implements Action
             UserGroup userGroup = new UserGroup();
 
             userGroup.setName( StringUtils.trimToNull(name) );
-
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
             //CategoryOptionGroup
             CategoryOptionGroup categoryOptionGroup = new CategoryOptionGroup( );
             categoryOptionGroup.setName( StringUtils.trimToNull( name ) );
+            categoryOptionGroup.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOptionGroup.setCode( StringUtils.trimToNull( code ) );
             categoryOptionGroup.setDataDimensionType( DataDimensionType.ATTRIBUTE );
 

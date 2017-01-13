@@ -7,6 +7,6 @@
 "programs": "$!{donorUnit.programs.size()}",
 "usergroup": "$!{donorUnit.userGroup.name}",
 "categoryoptiongroup": "$!{donorUnit.categoryOptionGroup.name}",
-"categoryoptiongroupset": "$!{donorUnit.categoryOptionGroupSet.name}"
+"national": "$!{donorUnit.nationalUnit.name}"
 }
 }

@@ -10,7 +10,7 @@ function showDonorUnitDetails( context ) {
     setInnerHTML('idField', json.donorUnit.uid);
     setInnerHTML('userGroupField', json.donorUnit.usergroup);
     setInnerHTML('categoryOptionGroupField', json.donorUnit.categoryoptiongroup);
-    setInnerHTML('categoryOptionGroupSetField', json.donorUnit.categoryoptiongroupset);
+    setInnerHTML('nationalUnitField', json.donorUnit.national);
 
     showDetails();
   });
