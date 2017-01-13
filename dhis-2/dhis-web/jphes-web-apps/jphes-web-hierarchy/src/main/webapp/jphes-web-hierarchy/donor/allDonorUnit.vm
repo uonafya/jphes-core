@@ -63,7 +63,7 @@
         <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
         <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
         <p><label>$i18n.getString( "jphes_number_of_programs" ):</label><br/><span id="programsField"></span></p>
-        <p><label>$i18n.getString( "jphes_number_of_agency" ):</label><br/><span id="agencyUnitField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_agencies" ):</label><br/><span id="agencyUnitField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
         <p><label>$i18n.getString( "jphes_categoryoptiongroup" ):</label><br/><span id="categoryOptionGroupField"></span></p>
