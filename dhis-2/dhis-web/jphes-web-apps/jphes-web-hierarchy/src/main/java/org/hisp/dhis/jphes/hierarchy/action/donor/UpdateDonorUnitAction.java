@@ -149,7 +149,7 @@ public class UpdateDonorUnitAction implements Action
             categoryService.updateCategoryOptionGroup(categoryOptionGroup);
 
             //adding CategoryOptionGroup to DonorGroupSet if missing
-            if(!(categoryOptionGroup.getMembers().contains( categoryOptionGroup ))){
+            if(!(categoryOptionGroupSetDonor.getMembers().contains( categoryOptionGroup ))){
                 categoryOptionGroupSetDonor.getMembers().add( categoryOptionGroup );
                 categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSetDonor );
             }
