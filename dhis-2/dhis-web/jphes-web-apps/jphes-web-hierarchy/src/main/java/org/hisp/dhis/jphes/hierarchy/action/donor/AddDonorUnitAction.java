@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by afya on 05/01/17.
+ * Created by @bangadennis on 05/01/17.
  */
 public class AddDonorUnitAction implements Action
 {
@@ -42,7 +42,6 @@ public class AddDonorUnitAction implements Action
     {
         this.nationalUnitService =nationalUnitService;
     }
-
 
     private UserGroupService userGroupService;
 

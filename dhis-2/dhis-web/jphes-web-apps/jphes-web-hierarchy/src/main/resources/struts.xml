@@ -68,7 +68,7 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
-    <action name="removeNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
+    <action name="removeNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.RemoveNationalUnitAction">
       <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <result name="logout" type="redirect">/</result>
@@ -122,6 +122,21 @@
       <result name="error" type="redirect">showUpdateDonorUnitForm.action</result>
       <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
     </action>
+
+    <action name="removeDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.RemoveDonorUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <result name="logout" type="redirect">/</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="requiredAuthorities">F_DONOR_UNIT_DELETE</param>
+    </action>
+
+    <action name="validateDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
 
     <!-- Json Actions -->
 

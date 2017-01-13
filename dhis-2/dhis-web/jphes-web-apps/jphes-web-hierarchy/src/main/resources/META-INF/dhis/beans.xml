@@ -57,6 +57,13 @@
   <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" scope="prototype" >
     <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
   </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.AddDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.AddDonorUnitAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+  </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" scope="prototype" >
     <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
