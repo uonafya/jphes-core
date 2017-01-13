@@ -68,5 +68,10 @@
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction"
+    scope="prototype">
+  </bean>
+
+
 
 </beans>

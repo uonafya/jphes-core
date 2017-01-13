@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.IntegrationTest;
 import org.hisp.dhis.common.DataDimensionType;
+import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryCombo;
@@ -114,7 +115,9 @@ public class AddDonorUnitAction implements Action
 
         if(userGroupService.getUserGroupByName( name ).size() == 0 )
         {
+            //Dependent objects
             NationalUnit nationalUnit = nationalUnitService.getNationalUnit( id );
+            CategoryOptionGroupSet categoryOptionGroupSetDonor = nationalUnit.getCategoryOptionGroupSet();
 
             DonorUnit donorUnit = new DonorUnit();
 
@@ -142,45 +145,30 @@ public class AddDonorUnitAction implements Action
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
-            //CategoryOptionGroupSet
+            //CategoryOptionGroup
+            CategoryOptionGroup categoryOptionGroup = new CategoryOptionGroup( );
+            categoryOptionGroup.setName( StringUtils.trimToNull( name ) );
+            categoryOptionGroup.setCode( StringUtils.trimToNull( code ) );
+            categoryOptionGroup.setDataDimensionType( DataDimensionType.ATTRIBUTE );
 
-            CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
-            categoryOptionGroupSet.setName(  "A. Donors-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
-            categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
-            categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-            categoryOptionGroupSet.setDataDimension( true );
+            //save categoryOptionGroup
+            categoryService.saveCategoryOptionGroup( categoryOptionGroup );
 
-            //save categoryOptionGroupSet
-            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
-
-            //Mechanism Category
-            DataElementCategory category = new DataElementCategory(  );
-            category.setName( "C. Mechanisms-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
-            category.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-            category.setDataDimension( true );
-
-            // Save Category
-            categoryService.addDataElementCategory( category );
-
-            //Mechanism CategoryCombo
-            DataElementCategoryCombo categoryCombo = new DataElementCategoryCombo(  );
-            categoryCombo.setName( "Mechanisms Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
-            categoryCombo.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-            categoryCombo.setSkipTotal( true );
-            //add Mechanism Category to Mechanism CategoryCombo
-            categoryCombo.getCategories().add( categoryService.getDataElementCategory( category.getUid() )  );
-            //Save CategoryCombo
-            categoryService.addDataElementCategoryCombo( categoryCombo );
+            //adding CategoryOptionGroup to DonorGroupSet
+            categoryOptionGroupSetDonor.getMembers().add( categoryOptionGroup );
+            categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSetDonor );
 
             //Setting attributes
+            donorUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
+            donorUnit.setCategoryOptionGroup( categoryService.getCategoryOptionGroup( categoryOptionGroup.getUid() ) );
 
-            nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
-            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
-            nationalUnit.setMechanismCategory( categoryService.getDataElementCategory( category.getUid() ) );
-            nationalUnit.setMechanismCombo( categoryService.getDataElementCategoryCombo( categoryCombo.getUid() ) );
+            // Saving DonorUnit
+            donorUnitService.addDonorUnit( donorUnit );
 
-            // Saving NationalUnit
-            nationalUnitService.addNationalUnit( nationalUnit );
+            //Adding donorUnit to NationUnit Set
+            nationalUnit.getDonorUnits().add( donorUnit );
+            nationalUnitService.updateNationalUnit( nationalUnit );
+
         }
         else
         {
