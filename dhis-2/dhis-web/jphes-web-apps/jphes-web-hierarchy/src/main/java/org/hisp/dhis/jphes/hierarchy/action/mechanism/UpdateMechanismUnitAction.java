@@ -3,6 +3,7 @@ package org.hisp.dhis.jphes.hierarchy.action.mechanism;
 import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.dataelement.CategoryOptionGroup;
+import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
@@ -10,14 +11,18 @@ import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitService;
+import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
 import org.hisp.dhis.user.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by afya on 13/01/17.
@@ -112,8 +117,10 @@ public class UpdateMechanismUnitAction implements Action
             //Dependent objects
             AgencyUnit agencyUnit = mechanismUnit.getAgencyUnit();
             DonorUnit donorUnit = agencyUnit.getDonorUnit();
+            NationalUnit nationalUnit = donorUnit.getNationalUnit();
             CategoryOptionGroup categoryOptionGroupAgency = agencyUnit.getCategoryOptionGroup();
             CategoryOptionGroup categoryOptionGroupDonor = donorUnit.getCategoryOptionGroup();
+            DataElementCategory mechanismCategory = nationalUnit.getMechanismCategory();
 
 
             mechanismUnit.setName( StringUtils.trimToNull( name ) );
@@ -149,6 +156,12 @@ public class UpdateMechanismUnitAction implements Action
 
             //update categoryOption
             categoryService.updateDataElementCategoryOption( categoryOption );
+
+            //Update categoryOption to MechanismCategory
+            if(!mechanismCategory.getCategoryOptions().contains( categoryOption )){
+                mechanismCategory.getCategoryOptions().add( categoryOption );
+                categoryService.updateDataElementCategory( mechanismCategory );
+            }
 
             //adding CategoryOption to AgencyOptionGroup
             if ( !categoryOptionGroupAgency.getMembers().contains( categoryOption ) )

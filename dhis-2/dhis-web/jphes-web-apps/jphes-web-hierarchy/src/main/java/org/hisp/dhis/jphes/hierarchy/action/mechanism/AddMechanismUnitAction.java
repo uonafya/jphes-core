@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.common.DataDimensionType;
 import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
@@ -18,12 +19,17 @@ import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.nfunk.jep.function.Str;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.xml.soap.SAAJResult;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by afya on 05/01/17.
@@ -46,6 +52,9 @@ public class AddMechanismUnitAction implements Action
 
     @Autowired
     private ProgramService programService;
+
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
 
 
     // -------------------------------------------------------------------------
@@ -90,6 +99,8 @@ public class AddMechanismUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
+    private static final String NOPUBLICACCESS = "--------";
+    private static final String READWRITEACCESS = "rw------";
 
     // -------------------------------------------------------------------------
     // Implementation
@@ -105,8 +116,10 @@ public class AddMechanismUnitAction implements Action
             //Dependent objects
             AgencyUnit agencyUnit = agencyUnitService.getAgencyUnit( id );
             DonorUnit donorUnit = agencyUnit.getDonorUnit();
+            NationalUnit nationalUnit = donorUnit.getNationalUnit();
             CategoryOptionGroup categoryOptionGroupAgency = agencyUnit.getCategoryOptionGroup();
             CategoryOptionGroup categoryOptionGroupDonor = donorUnit.getCategoryOptionGroup();
+            DataElementCategory mechanismCategory = nationalUnit.getMechanismCategory();
 
             MechanismUnit mechanismUnit = new MechanismUnit();
 
@@ -134,14 +147,48 @@ public class AddMechanismUnitAction implements Action
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
+            //UserGroup Access
+            UserGroupAccess accessMechanism = new UserGroupAccess();
+            accessMechanism.setUserGroup( userGroup );
+            accessMechanism.setAccess( READWRITEACCESS );
+
+            UserGroupAccess accessAgency = new UserGroupAccess();
+            accessAgency.setUserGroup( agencyUnit.getUserGroup() );
+            accessAgency.setAccess( READWRITEACCESS );
+
+            UserGroupAccess accessDonor = new UserGroupAccess();
+            accessDonor.setUserGroup( donorUnit.getUserGroup() );
+            accessDonor.setAccess( READWRITEACCESS );
+
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setAccess( READWRITEACCESS );
+
+            userGroupAccessService.addUserGroupAccess( accessMechanism );
+            userGroupAccessService.addUserGroupAccess( accessAgency );
+            userGroupAccessService.addUserGroupAccess( accessDonor );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            Set<UserGroupAccess> userGroupAccesses = new HashSet<>(  );
+            userGroupAccesses.add( accessMechanism );
+            userGroupAccesses.add( accessAgency );
+            userGroupAccesses.add( accessDonor );
+            userGroupAccesses.add( accessNational );
+
             //CategoryOption
             DataElementCategoryOption categoryOption = new DataElementCategoryOption( );
             categoryOption.setName( StringUtils.trimToNull( name ) );
             categoryOption.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOption.setCode( StringUtils.trimToNull( code ) );
+            categoryOption.setPublicAccess( NOPUBLICACCESS );
+            categoryOption.setUserGroupAccesses( userGroupAccesses );
 
             //save categoryOption
             categoryService.addDataElementCategoryOption( categoryOption );
+
+            //Add to Mechanism Category
+            mechanismCategory.getCategoryOptions().add( categoryOption );
+            categoryService.updateDataElementCategory( mechanismCategory );
 
             //adding CategoryOption to AgencyOptionGroup
             categoryOptionGroupAgency.getMembers().add( categoryOption );
