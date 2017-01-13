@@ -1,4 +1,4 @@
-<script type="text/javascript" src="javascript/national/addNationalUnitForm.js"></script>
+<script type="text/javascript" src="res/javascript/national/addNationalUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
 

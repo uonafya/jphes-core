@@ -1,7 +1,7 @@
 
 ###sharingDialog()
 
-<script type="text/javascript" src="javascript/national/allNationalUnit.js"></script>
+<script type="text/javascript" src="res/javascript/national/allNationalUnit.js"></script>
 <script type="text/javascript">
   var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_national_unit" ) , "'")';
   var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
@@ -69,7 +69,7 @@
         <p><label>$i18n.getString( 'jphes_usergroup' ):</label><br/><span id="userGroupField"></span></p>
         <p><label>$i18n.getString( 'jphes_donorgroupset' ):</label><br/><span id="donorGroupSetField"></span></p>
         <p><label>$i18n.getString( 'jphes_agencygroupset' ):</label><br/><span id="agencyGroupSetField"></span></p>
-        <p><label>$i18n.getString( 'jphes_category' ):</label><br/><span id="mechanismCategoryField"></span></p>
+        <p><label>$i18n.getString( 'jphes_mechanismcategory' ):</label><br/><span id="mechanismCategoryField"></span></p>
         <p><label>$i18n.getString( 'jphes_categorycombo' ):</label><br/><span id="mechanismComboField"></span></p>
       </div>
 

@@ -1,19 +1,21 @@
-<script type="text/javascript" src="javascript/donor/updateDonorUnitForm.js"></script>
+<script type="text/javascript" src="res/javascript/donor/updateDonorUnitForm.js"></script>
 <script type="text/javascript">
   jQuery(function() {
 
-//    jQuery("#availableProgramList").dhisAjaxSelect({
-//      source: "getNationalUnitProgramList.action",
-//      iterator: 'programs',
-//      connectedTo: 'selectedProgramList',
-//      handler: function( item ) {
-//        var option = jQuery("<option />");
-//        option.text(item.name);
-//        option.attr("value", item.id);
-//
-//        return option;
-//      }
-//    });
+    var nationalUnitId="${nationalUnit.id}";
+
+    jQuery("#availableProgramList").dhisAjaxSelect({
+      source: "getNationalProgramList.action?id="+nationalUnitId,
+      iterator: 'programs',
+      connectedTo: 'selectedProgramList',
+      handler: function( item ) {
+        var option = jQuery("<option />");
+        option.text(item.name);
+        option.attr("value", item.id);
+
+        return option;
+      }
+    });
 
   });
 
@@ -67,9 +69,6 @@
       <td><label>$i18n.getString( "jphes_programs" )</label></td>
       <td>
         <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
-          #foreach ( $availableProgram in $availableProgramList )
-            <option value="$availableProgram.uid">$encoder.htmlEncode( $availableProgram.name )</option>
-          #end
         </select>
       </td>
 

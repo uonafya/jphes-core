@@ -20,7 +20,7 @@
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/allPartner.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">javascript/partner.js,javascript/filterTable.js</param>
+      <param name="javascripts">res/javascript/partner.js,res/javascript/filterTable.js</param>
     </action>
 
     <!--National Unit Actions-->
@@ -28,7 +28,7 @@
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/national/allNationalUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">javascript/national/nationalUnit.js,javascript/filterTable.js</param>
+      <param name="javascripts">res/javascript/national/nationalUnit.js,res/javascript/filterTable.js</param>
       <param name="requiredAuthorities">F_NATIONAL_UNIT_LIST</param>
     </action>
 
@@ -45,7 +45,7 @@
     </action>
 
     <action name="getNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction">
-      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonNationalUnit.vm</result>
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonNationalUnit.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
       <param name="anyAuthorities">F_NATIONAL_UNIT_ADD, F_NATIONAL_UNIT_LIST</param>
     </action>
@@ -79,7 +79,7 @@
     <!-- NationalUnit Json Actions -->
 
     <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
-      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonProgramList.vm</result>
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
@@ -89,7 +89,7 @@
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/donor/allDonorUnit.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">javascript/donor/donorUnit.js,javascript/filterTable.js</param>
+      <param name="javascripts">res/javascript/donor/donorUnit.js,res/javascript/filterTable.js</param>
       <param name="requiredAuthorities">F_DONOR_UNIT_LIST</param>
     </action>
 
@@ -106,7 +106,7 @@
     </action>
 
     <action name="getDonorUnit" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction">
-      <result name="success" type="velocity-json">/jphes-web-hierarchy/ajax/jsonDonorUnit.vm</result>
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonDonorUnit.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
       <param name="anyAuthorities">F_DONOR_UNIT_ADD, F_DONOR_UNIT_LIST</param>
     </action>
@@ -121,6 +121,13 @@
       <result name="success" type="redirect">allDonorUnit.action</result>
       <result name="error" type="redirect">showUpdateDonorUnitForm.action</result>
       <param name="requiredAuthorities">F_DONOR_UNIT_ADD</param>
+    </action>
+
+    <!-- Json Actions -->
+
+    <action name="getNationalProgramList" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction">
+      <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonProgramList.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
     </action>
 
 

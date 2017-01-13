@@ -77,8 +77,6 @@ public class GetDonorUnitAction implements Action
 
         categoryOptionGroup = donorUnit.getCategoryOptionGroup();
 
-        categoryOptionGroupSet = donorUnit.getCategoryOptionGroupSet();
-
         programList = new ArrayList<>(donorUnit.getPrograms());
 
         Collections.sort( programList );
