@@ -16,13 +16,6 @@
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
     </action>
 
-    <action name="allPartner" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction">
-      <result name="success" type="velocity">/main.vm</result>
-      <param name="page">/jphes-web-hierarchy/allPartner.vm</param>
-      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">res/javascript/partner.js,res/javascript/filterTable.js</param>
-    </action>
-
     <!--National Unit Actions-->
     <action name="allNationalUnit" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction">
       <result name="success" type="velocity">/main.vm</result>

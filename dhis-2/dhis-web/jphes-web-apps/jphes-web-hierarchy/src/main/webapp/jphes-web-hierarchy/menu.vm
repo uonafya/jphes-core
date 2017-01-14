@@ -2,6 +2,6 @@
 <ul>
   <li><a href="allNationalUnit.action">$i18n.getString( "jphes_national" )&nbsp;</a></li>
   <li><a href="allDonorUnit.action">$i18n.getString( "jphes_donor" )&nbsp;</a></li>
-  <li><a href="allPartner.action">$i18n.getString( "jphes_agency" )&nbsp;</a></li>
-  <li><a href="allPartner.action">$i18n.getString( "jphes_mechanism" )&nbsp;</a></li>
+  <li><a href="allAgencyUnit.action">$i18n.getString( "jphes_agency" )&nbsp;</a></li>
+  <li><a href="allMechanismUnit.action">$i18n.getString( "jphes_mechanism" )&nbsp;</a></li>
 </ul>

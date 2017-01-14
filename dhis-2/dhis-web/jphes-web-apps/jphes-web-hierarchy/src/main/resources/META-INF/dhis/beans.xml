@@ -4,16 +4,6 @@
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
 
-  <bean id="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
-
-  <bean id="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" class="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
-
   <!--National Unit Actions beans -->
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
