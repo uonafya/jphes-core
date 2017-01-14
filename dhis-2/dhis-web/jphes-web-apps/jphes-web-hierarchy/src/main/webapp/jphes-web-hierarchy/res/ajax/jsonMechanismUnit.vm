@@ -8,6 +8,6 @@
 "programs": "$!{mechanismUnit.programs.size()}",
 "usergroup": "$!{mechanismUnit.userGroup.name}",
 "categoryoption": "$!{mechanismUnit.categoryOption.name}",
-"agency": "$!{mechanismUnit.agencyUnit.name}",
+"agency": "$!{mechanismUnit.agencyUnit.name}"
 }
 }
