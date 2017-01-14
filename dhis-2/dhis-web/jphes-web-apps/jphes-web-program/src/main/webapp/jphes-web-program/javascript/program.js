@@ -2,7 +2,7 @@
 // View details
 // -----------------------------------------------------------------------------
 
-function showPartnerDetails( context ) {
+function showProgramDetails( context ) {
   jQuery.post('getProgram.action', { id: context.id }, function( json ) {
     setInnerHTML('nameField', json.program.name);
     setInnerHTML('createdField', json.program.created);
@@ -15,10 +15,10 @@ function showPartnerDetails( context ) {
 }
 
 // -----------------------------------------------------------------------------
-// Remove Partner
+// Remove Program
 // -----------------------------------------------------------------------------
 
-function removePartner( context ) {
+function removeProgram( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeProgram.action');
 }
 

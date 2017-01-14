@@ -2,6 +2,8 @@
 <script type="text/javascript">
   jQuery(function() {
 
+      sortList( 'availableProgramList', 'ASC' );
+
     jQuery("#availableProgramList").dhisAjaxSelect({
       source: "getProgramList.action",
       iterator: 'programs',

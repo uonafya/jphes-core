@@ -32,7 +32,15 @@
       <result name="success" type="redirect">allProgram.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
       <result name="error" type="redirect">showAddProgramForm.action</result>
     </action>
+    <action name="updateProgram" class="org.hisp.dhis.jphes.program.action.UpdateProgramAction">
+      <result name="success" type="redirect">allProgram.action</result>
+      <result name="error" type="redirect">showUpdateProgramForm.action</result>
+    </action>
 
+    <action name="showUpdateProgramForm" class="org.hisp.dhis.jphes.program.action.GetProgramAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/updateProgramForm.vm</param>
+    </action>
 
   </package>
 </struts>

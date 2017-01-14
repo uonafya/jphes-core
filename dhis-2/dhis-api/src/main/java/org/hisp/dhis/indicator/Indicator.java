@@ -321,7 +321,7 @@ public class Indicator
         return jphesprograms;
     }
 
-    public void setJphesrograms( Set<Program> programs )
+    public void setJphesprograms( Set<Program> programs )
     {
         this.jphesprograms=programs;
     }

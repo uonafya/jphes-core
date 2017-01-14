@@ -1,7 +1,12 @@
 package org.hisp.dhis.jphes.program.action;
 
 import com.opensymphony.xwork2.Action;
+import org.hisp.dhis.dataelement.DataElement;
+import org.hisp.dhis.dataelement.DataElementGroup;
 import org.hisp.dhis.dataelement.DataElementService;
+import org.hisp.dhis.indicator.Indicator;
+import org.hisp.dhis.indicator.IndicatorGroup;
+import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.jphes.program.ProgramService;
@@ -21,9 +26,24 @@ public class AddProgramAction implements Action
 
     private ProgramService programService;
 
+    private DataElementGroup dataElementGroup;
+
+    public void setDataElementGroup(DataElementGroup dataElementGroup) {
+        this.dataElementGroup = dataElementGroup;
+    }
+
+    private IndicatorGroup indicatorGroup;
+
+    public void setIndicatorGroup(IndicatorGroup indicatorGroup) {
+        this.indicatorGroup = indicatorGroup;
+    }
+
     public void setProgramService(ProgramService programService) {
         this.programService = programService;
     }
+
+    @Autowired
+    private IndicatorService indicatorService;
 
     @Autowired
     private DataElementService dataElementService;
@@ -79,13 +99,32 @@ public class AddProgramAction implements Action
         program.setEndDate(null);
 
         Set<ProgramElement> programElements = new HashSet<>();
+        Set<DataElement> dataElementGroupMembers = new HashSet<>();
+        Set<Indicator> indicators = new HashSet<>();
 
         for (String id:deSelected){
             programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
+            dataElementGroupMembers.add(dataElementService.getDataElement(id));
         }
         program.setProgramElements(programElements);
 
+        for (String id:iSelected){
+            indicators.add(indicatorService.getIndicator(id));
+        }
+        program.setIndicators(indicators);
+
+        dataElementGroup.setName(displayName);
+        dataElementGroup.setCode(code);
+        dataElementGroup.setShortName(name);
+        dataElementGroup.setMembers(dataElementGroupMembers);
+
+        indicatorGroup.setName(name);
+        indicatorGroup.setCode(code);
+        indicatorGroup.setMembers(indicators);
+
         programService.addProgram(program);
+        dataElementService.addDataElementGroup(dataElementGroup);
+        indicatorService.addIndicatorGroup(indicatorGroup);
 
         return SUCCESS;
     }

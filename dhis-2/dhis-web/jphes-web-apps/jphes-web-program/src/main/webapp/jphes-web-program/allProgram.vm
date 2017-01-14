@@ -11,7 +11,7 @@
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
-    <li data-enabled="canUpdate"><a data-target-fn=""><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+    <li data-enabled="canUpdate"><a data-target-fn="showUpdateProgramForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
     <li data-enabled="canDelete"><a data-target-fn=""><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
     <li><a data-target-fn=""><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
   </ul>
@@ -37,7 +37,7 @@
         </thead>
         <tbody id="list">
           #foreach( $program in $programs )
-          <tr id="tr${program.id}" data-id="$!program.id" data-uid="$!program.uid" data-type="Program" data-name="$encoder.htmlEncode( $!program.formName )"
+          <tr id="tr${program.id}" data-id="$!program.id" data-uid="$!program.uid" data-type="Program" data-name="$encoder.htmlEncode( $!program.displayName )"
               data-can-manage="$security.canManage( $program )"
               data-can-update="$security.canUpdate( $program )"
               data-can-delete="$security.canDelete( $program )">
