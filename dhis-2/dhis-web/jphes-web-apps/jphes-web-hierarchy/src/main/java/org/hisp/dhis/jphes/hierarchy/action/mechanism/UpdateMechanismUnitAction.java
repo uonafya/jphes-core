@@ -16,6 +16,7 @@ import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,6 +46,9 @@ public class UpdateMechanismUnitAction implements Action
 
     @Autowired
     private ProgramService programService;
+
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
 
 
     // -------------------------------------------------------------------------
@@ -101,6 +105,9 @@ public class UpdateMechanismUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
+    private static final String NOPUBLICACCESS = "--------";
+
+    private static final String READWRITEACCESS = "rw------";
 
     // -------------------------------------------------------------------------
     // Implementation
@@ -187,6 +194,7 @@ public class UpdateMechanismUnitAction implements Action
                 agencyUnit.getMechanismUnits().add( mechanismUnit );
                 agencyUnitService.updateAgencyUnit( agencyUnit );
             }
+
         }
         else
         {

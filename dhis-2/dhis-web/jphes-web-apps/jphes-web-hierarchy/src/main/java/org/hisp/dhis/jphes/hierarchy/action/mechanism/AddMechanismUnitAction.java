@@ -147,44 +147,15 @@ public class AddMechanismUnitAction implements Action
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
-            //UserGroup Access
-            UserGroupAccess accessMechanism = new UserGroupAccess();
-            accessMechanism.setUserGroup( userGroup );
-            accessMechanism.setAccess( READWRITEACCESS );
-
-            UserGroupAccess accessAgency = new UserGroupAccess();
-            accessAgency.setUserGroup( agencyUnit.getUserGroup() );
-            accessAgency.setAccess( READWRITEACCESS );
-
-            UserGroupAccess accessDonor = new UserGroupAccess();
-            accessDonor.setUserGroup( donorUnit.getUserGroup() );
-            accessDonor.setAccess( READWRITEACCESS );
-
-            UserGroupAccess accessNational = new UserGroupAccess();
-            accessNational.setUserGroup( nationalUnit.getUserGroup() );
-            accessNational.setAccess( READWRITEACCESS );
-
-            userGroupAccessService.addUserGroupAccess( accessMechanism );
-            userGroupAccessService.addUserGroupAccess( accessAgency );
-            userGroupAccessService.addUserGroupAccess( accessDonor );
-            userGroupAccessService.addUserGroupAccess( accessNational );
-
-            Set<UserGroupAccess> userGroupAccesses = new HashSet<>(  );
-            userGroupAccesses.add( accessMechanism );
-            userGroupAccesses.add( accessAgency );
-            userGroupAccesses.add( accessDonor );
-            userGroupAccesses.add( accessNational );
-
             //CategoryOption
             DataElementCategoryOption categoryOption = new DataElementCategoryOption( );
             categoryOption.setName( StringUtils.trimToNull( name ) );
             categoryOption.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOption.setCode( StringUtils.trimToNull( code ) );
-            categoryOption.setPublicAccess( NOPUBLICACCESS );
-            categoryOption.setUserGroupAccesses( userGroupAccesses );
 
             //save categoryOption
             categoryService.addDataElementCategoryOption( categoryOption );
+
 
             //Add to Mechanism Category
             mechanismCategory.getCategoryOptions().add( categoryOption );
@@ -209,6 +180,42 @@ public class AddMechanismUnitAction implements Action
             //Adding mechanismUnit to AgencyUnit Set
             agencyUnit.getMechanismUnits().add( mechanismUnit );
             agencyUnitService.updateAgencyUnit( agencyUnit );
+
+            //Setting CategoryOption UserGroupAccesses
+            UserGroupAccess accessMechanism = new UserGroupAccess();
+            accessMechanism.setUserGroup( userGroup );
+            accessMechanism.setUid( userGroup.getUid() );
+            accessMechanism.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessMechanism );
+
+            UserGroupAccess accessAgency = new UserGroupAccess();
+            accessAgency.setUserGroup( agencyUnit.getUserGroup() );
+            accessAgency.setUid( agencyUnit.getUserGroup().getUid() );
+            accessAgency.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessAgency );
+
+            UserGroupAccess accessDonor = new UserGroupAccess();
+            accessDonor.setUserGroup( donorUnit.getUserGroup() );
+            accessDonor.setUid( donorUnit.getUserGroup().getUid() );
+            accessDonor.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessDonor );
+
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setUid( nationalUnit.getUserGroup().getUid() );
+            accessNational.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            categoryOption.getUserGroupAccesses().add( accessMechanism );
+            categoryOption.getUserGroupAccesses().add( accessAgency );
+            categoryOption.getUserGroupAccesses().add( accessDonor );
+            categoryOption.getUserGroupAccesses().add( accessNational );
+
+            //Setting NOPUBLICACCESS
+            categoryOption.setPublicAccess( NOPUBLICACCESS );
+
+            categoryService.updateDataElementCategoryOption( categoryOption );
+
         }
         else
         {
