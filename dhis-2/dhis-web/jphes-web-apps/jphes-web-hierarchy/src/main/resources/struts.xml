@@ -220,7 +220,7 @@
 
     <action name="showAddMechanismUnitForm" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction">
       <result name="success" type="velocity">/main.vm</result>
-      <param name="page">/jphes-web-hierarchy/mechanism/addAMechanismUnitForm.vm</param>
+      <param name="page">/jphes-web-hierarchy/mechanism/addMechanismUnitForm.vm</param>
       <param name="requiredAuthorities">F_MECHANISM_UNIT_ADD</param>
     </action>
 
