@@ -258,7 +258,7 @@
 
     <!-- Json Actions -->
 
-    <action name="getDonorProgramList" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction">
+    <action name="getAgencyProgramList" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetAgencyProgramListAction">
       <result name="success" type="velocity-json">/jphes-web-hierarchy/res/ajax/jsonProgramList.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
     </action>
