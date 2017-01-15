@@ -3,6 +3,7 @@ package org.hisp.dhis.jphes.program.action;
 import com.opensymphony.xwork2.Action;
 import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementGroup;
+import org.hisp.dhis.dataelement.DataElementGroupService;
 import org.hisp.dhis.dataelement.DataElementService;
 import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorGroup;
@@ -26,11 +27,17 @@ public class AddProgramAction implements Action
 
     private ProgramService programService;
 
-    private DataElementGroup dataElementGroup;
+//    private DataElementGroup dataElementGroup;
 
-    public void setDataElementGroup(DataElementGroup dataElementGroup) {
-        this.dataElementGroup = dataElementGroup;
+    private DataElementGroupService dataElementGroupService;
+
+    public void setDataElementGroupService(DataElementGroupService dataElementGroupService) {
+        this.dataElementGroupService = dataElementGroupService;
     }
+
+//    public void setDataElementGroup(DataElementGroup dataElementGroup) {
+//        this.dataElementGroup = dataElementGroup;
+//    }
 
     private IndicatorGroup indicatorGroup;
 
@@ -91,6 +98,8 @@ public class AddProgramAction implements Action
     @Override public String execute() throws Exception
     {
         Program program = new Program();
+        DataElementGroup dataElementGroup = new DataElementGroup();
+        IndicatorGroup indicatorGroup = new IndicatorGroup();
 
         program.setDisplayName(displayName);
         program.setName(name);

@@ -1900,6 +1900,10 @@
     <property name="cacheable" value="true"/>
   </bean>
 
+  <bean id="org.hisp.dhis.dataelement.DataElementGroupService" class="org.hisp.dhis.dataelement.DefaultDataElementGroupService">
+    <property name="dataElementGroupStore" ref="org.hisp.dhis.dataelement.DataElementGroupStore"/>
+  </bean>
+
 
   <!-- AOP definitions -->
 

@@ -10,6 +10,7 @@
 
   <bean id="org.hisp.dhis.jphes.program.action.AddProgramAction" class="org.hisp.dhis.jphes.program.action.AddProgramAction" scope="prototype" >
     <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService" />
+    <property name="dataElementGroupService" ref="org.hisp.dhis.dataelement.DataElementGroupService"/>
   </bean>
 
 </beans>
