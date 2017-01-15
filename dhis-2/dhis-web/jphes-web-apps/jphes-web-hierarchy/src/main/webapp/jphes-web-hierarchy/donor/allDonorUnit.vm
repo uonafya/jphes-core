@@ -32,6 +32,7 @@
           <th>$i18n.getString( "jphes_name")</th>
           <th>$i18n.getString( "jphes_shortname")</th>
           <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_national")</th>
           <th>$i18n.getString( "jphes_lastupdated")</th>
         </tr>
         </thead>
@@ -44,6 +45,7 @@
               <td>$!encoder.htmlEncode( $donorUnit.name )</td>
               <td>$!encoder.htmlEncode( $donorUnit.shortName )</td>
               <td>$!encoder.htmlEncode( $donorUnit.code )</td>
+              <td>$!encoder.htmlEncode( $donorUnit.nationalUnit.name )</td>
               <td>$!format.formatDate( $donorUnit.lastUpdated )</td>
             </tr>
             #end

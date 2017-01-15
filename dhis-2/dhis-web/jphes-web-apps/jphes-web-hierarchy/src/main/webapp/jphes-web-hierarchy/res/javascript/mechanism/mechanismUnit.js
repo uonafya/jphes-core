@@ -7,11 +7,13 @@ function showMechanismUnitDetails( context ) {
     setInnerHTML('nameField', json.mechanismUnit.name);
     setInnerHTML('partnerField', json.mechanismUnit.partner);
     setInnerHTML('programsField', json.mechanismUnit.programs);
+    setInnerHTML('orgunitsField', json.mechanismUnit.orgunits);
     setInnerHTML('codeField', json.mechanismUnit.code);
     setInnerHTML('idField', json.mechanismUnit.uid);
     setInnerHTML('userGroupField', json.mechanismUnit.usergroup);
     setInnerHTML('categoryOptionField', json.mechanismUnit.categoryoption);
     setInnerHTML('agencyUnitField', json.mechanismUnit.agency);
+    setInnerHTML('hrefField', json.mechanismUnit.href);
 
     showDetails();
   });

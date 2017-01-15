@@ -32,6 +32,7 @@
           <th>$i18n.getString( "jphes_shortname")</th>
           <th>$i18n.getString( "jphes_partner")</th>
           <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_agency")</th>
           <th>$i18n.getString( "jphes_lastupdated")</th>
         </tr>
         </thead>
@@ -45,6 +46,7 @@
               <td>$!encoder.htmlEncode( $mechanismUnit.shortName )</td>
               <td>$!encoder.htmlEncode( $mechanismUnit.partner )</td>
               <td>$!encoder.htmlEncode( $mechanismUnit.code )</td>
+              <td>$!encoder.htmlEncode( $mechanismUnit.agencyUnit.name )</td>
               <td>$!format.formatDate( $mechanismUnit.lastUpdated )</td>
             </tr>
             #end
@@ -64,10 +66,12 @@
         <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
         <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
         <p><label>$i18n.getString( "jphes_number_of_programs" ):</label><br/><span id="programsField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_orgunits" ):</label><br/><span id="orgunitsField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
         <p><label>$i18n.getString( "jphes_categoryoption" ):</label><br/><span id="categoryOptionField"></span></p>
         <p><label>$i18n.getString( "jphes_agency" ):</label><br/><span id="agencyUnitField"></span></p>
+        <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
       </div>
 
       <div id="warningArea">

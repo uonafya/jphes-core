@@ -6,8 +6,10 @@
 "code": "$!encoder.jsonEncode( ${mechanismUnit.code} )",
 "uid": "$!{mechanismUnit.uid}",
 "programs": "$!{mechanismUnit.programs.size()}",
+"orgunits": "$!{mechanismUnit.categoryOption.organisationUnits.size()}",
 "usergroup": "$!{mechanismUnit.userGroup.name}",
 "categoryoption": "$!{mechanismUnit.categoryOption.name}",
-"agency": "$!{mechanismUnit.agencyUnit.name}"
+"agency": "$!{mechanismUnit.agencyUnit.name}",
+"href": "$!{mechanismUnit.href}"
 }
 }
