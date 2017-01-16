@@ -69,8 +69,8 @@
         <p><label>$i18n.getString( "jphes_number_of_orgunits" ):</label><br/><span id="orgunitsField"></span></p>
         <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
         <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
-        <p><label>$i18n.getString( "jphes_categoryoption" ):</label><br/><span id="categoryOptionField"></span></p>
-        <p><label>$i18n.getString( "jphes_agency" ):</label><br/><span id="agencyUnitField"></span></p>
+        <p><label>$i18n.getString( "jphes_startdate" ):</label><br/><span id="startDateField"></span></p>
+        <p><label>$i18n.getString( "jphes_enddate" ):</label><br/><span id="endDateField"></span></p>
         <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
       </div>
 

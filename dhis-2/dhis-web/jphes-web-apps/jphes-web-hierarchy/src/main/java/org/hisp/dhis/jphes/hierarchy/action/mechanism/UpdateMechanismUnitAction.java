@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -97,6 +98,18 @@ public class UpdateMechanismUnitAction implements Action
         this.description = description;
     }
 
+    private Date startDate;
+
+    public void setStartDate(Date startDate){
+        this.startDate = startDate;
+    }
+
+    private Date endDate;
+
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
+    }
+
 
     private Collection<String> selectedProgramList = new ArrayList<>();
 
@@ -160,6 +173,8 @@ public class UpdateMechanismUnitAction implements Action
             categoryOption.setName( StringUtils.trimToNull( name ) );
             categoryOption.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOption.setCode( StringUtils.trimToNull( code ) );
+            categoryOption.setStartDate( startDate );
+            categoryOption.setEndDate( endDate );
 
             //update categoryOption
             categoryService.updateDataElementCategoryOption( categoryOption );

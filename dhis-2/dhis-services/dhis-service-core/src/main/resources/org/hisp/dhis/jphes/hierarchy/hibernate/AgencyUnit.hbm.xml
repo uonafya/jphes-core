@@ -6,7 +6,7 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" table="agencyunit">
+  <class name="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" table="jphes_agencyunit">
 
     <id name="id" column="agencyunitid">
       <generator class="native" />
@@ -30,13 +30,13 @@
     <many-to-one name="categoryOptionGroup" column="categoryoptiongroupid" class="org.hisp.dhis.dataelement.CategoryOptionGroup"
       foreign-key="fk_agencyunitcategoryoptiongroupid" not-null="true" />
 
-    <set name="programs" table="agencyunitprograms">
+    <set name="programs" table="jphes_agencyunitprograms">
       <key column="agencyunitid" foreign-key="fk_agencyunitprograms_agencyunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_agencyunitprograms_programid" />
     </set>
 
-    <set name="mechanismUnits" table="agencyunitmechanismunits">
+    <set name="mechanismUnits" table="jphes_agencyunitmechanismunits">
       <key column="agencyunitid" foreign-key="fk_agencyunitmechanismunits_agencyunitid" />
       <many-to-many class="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" column="mechanismunitid"
         foreign-key="fk_agencyunitmechanismunit_mechanismunitid" />

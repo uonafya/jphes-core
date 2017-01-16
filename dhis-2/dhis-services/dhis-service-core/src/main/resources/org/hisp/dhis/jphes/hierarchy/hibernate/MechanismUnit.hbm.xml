@@ -6,7 +6,7 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" table="mechanismunit">
+  <class name="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" table="jphes_mechanismunit">
 
     <id name="id" column="mechanismunitid">
       <generator class="native" />
@@ -32,7 +32,7 @@
     <many-to-one name="categoryOption" column="categoryoptionid" class="org.hisp.dhis.dataelement.DataElementCategoryOption"
       foreign-key="fk_mechanismunitcategoryoptionid" not-null="true" />
 
-    <set name="programs" table="mechanismunitprograms">
+    <set name="programs" table="jphes_mechanismunitprograms">
       <key column="mechanismunitid" foreign-key="fk_mechanismunitprograms_mechanismunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_mechanismunitprograms_programid" />

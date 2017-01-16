@@ -64,6 +64,16 @@
     </tr>
 
     <tr>
+      <td><label for="startDate">$i18n.getString( "jphes_startdate" )</label></td>
+      <td colspan="3"><input type="date" id="startDate" name="startDate" value="$!encoder.htmlEncode( $mechanismUnit.categoryOption.startdate )"></td>
+    </tr>
+
+    <tr>
+      <td><label for="endDate">$i18n.getString( "jphes_enddate" )</label></td>
+      <td colspan="3"><input type="date" id="endDate" name="endDate" value="$!encoder.htmlEncode( $mechanismUnit.categoryOption.enddate )"></td>
+    </tr>
+
+    <tr>
       <td></td>
       <th>$i18n.getString( "available" )</th>
       <th></th>

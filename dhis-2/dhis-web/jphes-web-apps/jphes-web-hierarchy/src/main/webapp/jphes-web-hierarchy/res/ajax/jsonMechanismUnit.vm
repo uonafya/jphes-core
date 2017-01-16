@@ -10,6 +10,8 @@
 "usergroup": "$!{mechanismUnit.userGroup.name}",
 "categoryoption": "$!{mechanismUnit.categoryOption.name}",
 "agency": "$!{mechanismUnit.agencyUnit.name}",
-"href": "$!{mechanismUnit.href}"
+"href": "$!{mechanismUnit.href}",
+"startdate": "$!{mechanismUnit.categoryOption.startDate}",
+"enddate": "$!{mechanismUnit.categoryOption.endDate}"
 }
 }

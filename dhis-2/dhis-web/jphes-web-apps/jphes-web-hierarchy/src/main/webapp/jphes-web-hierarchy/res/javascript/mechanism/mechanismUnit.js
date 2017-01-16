@@ -11,8 +11,8 @@ function showMechanismUnitDetails( context ) {
     setInnerHTML('codeField', json.mechanismUnit.code);
     setInnerHTML('idField', json.mechanismUnit.uid);
     setInnerHTML('userGroupField', json.mechanismUnit.usergroup);
-    setInnerHTML('categoryOptionField', json.mechanismUnit.categoryoption);
-    setInnerHTML('agencyUnitField', json.mechanismUnit.agency);
+    setInnerHTML('startDateField', json.mechanismUnit.startdate);
+    setInnerHTML('endDateField', json.mechanismUnit.enddate);
     setInnerHTML('hrefField', '../api/mechanismUnits/'+json.mechanismUnit.uid);
 
     showDetails();

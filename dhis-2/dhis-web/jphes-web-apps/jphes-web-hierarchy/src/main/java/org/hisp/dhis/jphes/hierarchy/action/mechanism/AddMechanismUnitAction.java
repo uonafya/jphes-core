@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.xml.soap.SAAJResult;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -91,6 +92,17 @@ public class AddMechanismUnitAction implements Action
 
     public void setDescription(String description){this.description = description;}
 
+    private Date startDate;
+
+    public void setStartDate(Date startDate){
+        this.startDate = startDate;
+    }
+
+    private Date endDate;
+
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
+    }
 
     private Collection<String> selectedProgramList = new ArrayList<>();
 
@@ -152,6 +164,8 @@ public class AddMechanismUnitAction implements Action
             categoryOption.setName( StringUtils.trimToNull( name ) );
             categoryOption.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOption.setCode( StringUtils.trimToNull( code ) );
+            categoryOption.setStartDate( startDate );
+            categoryOption.setEndDate( endDate );
 
             //save categoryOption
             categoryService.addDataElementCategoryOption( categoryOption );

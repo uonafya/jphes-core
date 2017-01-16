@@ -6,7 +6,7 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit" table="donorunit">
+  <class name="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit" table="jphes_donorunit">
 
     <id name="id" column="donorunitid">
       <generator class="native" />
@@ -31,13 +31,13 @@
       foreign-key="fk_donorunitcategoryoptiongroupid" not-null="true" />
 
 
-    <set name="agencyUnits" table="donorunitagencyunits">
+    <set name="agencyUnits" table="jphes_donorunitagencyunits">
       <key column="donorunitid" foreign-key="fk_donorunitagencyunits_donorunitid" />
       <many-to-many class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" column="agencyunitid"
         foreign-key="fk_donorunitagencyunits_agencyunitid" />
     </set>
 
-    <set name="programs" table="donorunitprograms">
+    <set name="programs" table="jphes_donorunitprograms">
       <key column="donorunitid" foreign-key="fk_donorunitprograms_donorunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_donorunitprograms_programid" />
