@@ -1636,6 +1636,7 @@
         <value>nationalunit</value>
         <value>donorunit</value>
         <value>agencyunit</value>
+        <value>mechanismunit</value>
       </list>
     </property>
   </bean>

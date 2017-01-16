@@ -12,6 +12,7 @@ function showAgencyUnitDetails( context ) {
     setInnerHTML('userGroupField', json.agencyUnit.usergroup);
     setInnerHTML('categoryOptionGroupField', json.agencyUnit.categoryoptiongroup);
     setInnerHTML('donorUnitField', json.agencyUnit.donor);
+    setInnerHTML('hrefField', '../api/agencyUnits/'+json.agencyUnit.uid);
 
     showDetails();
   });

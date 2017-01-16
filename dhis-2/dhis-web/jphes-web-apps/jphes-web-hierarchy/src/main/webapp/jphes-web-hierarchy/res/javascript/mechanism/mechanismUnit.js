@@ -13,7 +13,7 @@ function showMechanismUnitDetails( context ) {
     setInnerHTML('userGroupField', json.mechanismUnit.usergroup);
     setInnerHTML('categoryOptionField', json.mechanismUnit.categoryoption);
     setInnerHTML('agencyUnitField', json.mechanismUnit.agency);
-    setInnerHTML('hrefField', json.mechanismUnit.href);
+    setInnerHTML('hrefField', '../api/mechanismUnits/'+json.mechanismUnit.uid);
 
     showDetails();
   });

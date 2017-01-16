@@ -14,6 +14,7 @@ function showNationalUnitDetails( context ) {
     setInnerHTML('agencyGroupSetField', json.nationalUnit.agencygroupset);
     setInnerHTML('mechanismCategoryField', json.nationalUnit.mechanismcategory);
     setInnerHTML('mechanismComboField', json.nationalUnit.mechanismcombo);
+    setInnerHTML('hrefField', '../api/nationalUnits/'+json.nationalUnit.uid);
 
     showDetails();
   });
