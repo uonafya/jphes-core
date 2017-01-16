@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+  [<!ENTITY identifiableProperties SYSTEM "classpath://org/hisp/dhis/common/identifiableProperties.hbm">]
+  >
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit" table="jphes_donorunit">
+
+    <id name="id" column="donorunitid">
+      <generator class="native" />
+    </id>
+    &identifiableProperties;
+
+    <property name="name" column="name" not-null="true" unique="true" length="230" />
+
+    <property name="shortName" column="shortname" not-null="false" unique="true" length="50" />
+
+    <property name="enabled" column="enabled" type="boolean"  />
+
+    <property name="description" type="text" />
+
+    <many-to-one name="nationalUnit" column="nationalunitid" class="org.hisp.dhis.jphes.hierarchy.national.NationalUnit"
+      foreign-key="fk_donorunitnationalunitid" not-null="true" />
+
+    <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"
+      foreign-key="fk_donorunitusergroupid" not-null="true" />
+
+    <many-to-one name="categoryOptionGroup" column="categoryoptiongroupid" class="org.hisp.dhis.dataelement.CategoryOptionGroup"
+      foreign-key="fk_donorunitcategoryoptiongroupid" not-null="true" />
+
+
+    <set name="agencyUnits" table="jphes_donorunitagencyunits">
+      <key column="donorunitid" foreign-key="fk_donorunitagencyunits_donorunitid" />
+      <many-to-many class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" column="agencyunitid"
+        foreign-key="fk_donorunitagencyunits_agencyunitid" />
+    </set>
+
+    <set name="programs" table="jphes_donorunitprograms">
+      <key column="donorunitid" foreign-key="fk_donorunitprograms_donorunitid" />
+      <many-to-many class="org.hisp.dhis.program.Program" column="programid"
+        foreign-key="fk_donorunitprograms_programid" />
+    </set>
+  </class>
+
+</hibernate-mapping>

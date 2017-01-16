@@ -2,6 +2,124 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-  <bean id="org.hisp.dhis.partner.action.NoAction" class="org.hisp.dhis.hierarchy.action.NoAction" scope="prototype" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
+
+  <!--National Unit Actions beans -->
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitAction" scope="prototype" >
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.AddNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.AddNationalUnitAction" scope="prototype" >
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+   </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" scope="prototype" >
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="userService" ref="org.hisp.dhis.user.UserService" />
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService"/>
+  </bean>
+
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.ValidateNationalUnitAction"
+    scope="prototype">
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction"
+    scope="prototype">
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+  </bean>
+
+  <!--Donor Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+  </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.AddDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.AddDonorUnitAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.UpdateDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.UpdateDonorUnitAction" scope="prototype" >
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+    <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+    <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
+    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction"
+    scope="prototype">
+    <property name="donorUnitService" ref="org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService" />
+    <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction"
+    scope="prototype">
+  </bean>
+
+  <!--Donor Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" scope="prototype" >
+  </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.AddAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.AddAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.UpdateAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.UpdateAgencyUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.ValidateAgencyUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.ValidateAgencyUnitAction"
+    scope="prototype">
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction"
+    scope="prototype">
+  </bean>
+
+  <!--Mechanism Unit Actions beans -->
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitListAction" scope="prototype" >
+  </bean>
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.AddMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.UpdateMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.UpdateMechanismUnitAction" scope="prototype" >
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.ValidateMechanismUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ValidateMechanismUnitAction"
+    scope="prototype">
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetAgencyProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.GetAgencyProgramListAction"
+    scope="prototype">
+  </bean>
+
+
+
+
 
 </beans>

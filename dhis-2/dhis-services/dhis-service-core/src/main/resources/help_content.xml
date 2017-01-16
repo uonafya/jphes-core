@@ -8084,4 +8084,29 @@ it manually and copy your GeoJSON files there.</para>
 </section>
 </section>
 </chapter>
+  <!--JPHES modules help content-->
+<chapter>
+  <title>JPHES Hierarchy</title>
+  <para>In this section you will learn how to:</para>
+  <para><itemizedlist>
+    <listitem>
+      <para>Create, update, remove National Units</para>
+    </listitem>
+    <listitem>
+      <para>Create, update, remove Donor Units</para>
+    </listitem>
+    <listitem>
+      <para>Create, update, remove Agency Units</para>
+    </listitem>
+    <listitem><para>Create, update, remove Mechanism Units</para></listitem>
+  </itemizedlist></para>
+  <section id="jphes_hierarchy">
+    <title>JPHES hierarchy</title>
+    <para>JPHES hierarchy defines the attribution hierarchy of programs and data.</para>
+      <important>
+        <para>Because the most recent information which is contained in the organisational unit hierarchy is always used for aggregation, it is important to keep in mind that changes to it (such as the division of districts into two separate districts) will not be respected over time. As an example, District A may be sub-divided into District B and District C. This is a process which often happens for political reasons. Facilities which belong to District A would need to be reassigned to District B and C. However, any historical data, which was entered before the split actually occurred, would still be registered as belonging to District B and C and not the defunct District A. This temporal representation of the organisational hierarchy across time will be lost. </para>
+    </important>
+  </section>
+
+</chapter>
 </book>

@@ -144,6 +144,7 @@ public class DefaultSchemaService
         add( new ExternalFileResourceSchemaDescriptor() ).
         add( new OptionGroupSchemaDescriptor() ).
         add( new OptionGroupSetSchemaDescriptor()).
+        add( new NationalUnitSchemaDescriptor()).
         build();
 
     private Map<Class<?>, Schema> classSchemaMap = new HashMap<>();

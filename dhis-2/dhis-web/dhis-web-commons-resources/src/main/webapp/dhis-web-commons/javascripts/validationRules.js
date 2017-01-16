@@ -594,5 +594,53 @@ var validationRules = {
         "organisationUnitLevel" : {
             "required" : true
         }
+    },
+//  JPHES Rules
+    "nationalUnit" : {
+        "name" : {
+            "required" : true,
+            "rangelength" : [ 2, 230 ]
+        },
+        "shortName" : {
+            "required" : true,
+            "rangelength" : [ 2, 50 ]
+        },
+        "code" : {
+            "rangelength" : [ 0, 50 ],
+            "alphanumericwithbasicpuncspaces" : true,
+            "notOnlyDigits" : false
+        }
+    },
+    "agencyUnit" : {
+        "name" : {
+            "required" : true,
+            "rangelength" : [ 2, 230 ]
+        },
+        "shortName" : {
+            "required" : true,
+            "rangelength" : [ 2, 50 ]
+        },
+        "code" : {
+            "rangelength" : [ 0, 50 ],
+            "alphanumericwithbasicpuncspaces" : true,
+            "notOnlyDigits" : false
+        }
+    },
+    "mechanismUnit" : {
+        "name" : {
+            "required" : true,
+            "rangelength" : [ 2, 230 ]
+        },
+        "shortName" : {
+            "required" : true,
+            "rangelength" : [ 2, 50 ]
+        },
+        "code" : {
+            "rangelength" : [ 0, 50 ],
+            "alphanumericwithbasicpuncspaces" : true,
+            "notOnlyDigits" : false
+        }
     }
+
+
 };

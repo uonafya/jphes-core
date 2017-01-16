@@ -1,0 +1,113 @@
+<script type="text/javascript" src="res/javascript/mechanism/addMechanismUnitForm.js"></script>
+<script type="text/javascript">
+  jQuery(function() {
+
+    var agencyUnitId="${agencyUnit.id}";
+
+    jQuery("#availableProgramList").dhisAjaxSelect({
+      source: "getAgencyProgramList.action?id="+agencyUnitId,
+      iterator: 'programs',
+      connectedTo: 'selectedProgramList',
+      handler: function( item ) {
+        var option = jQuery("<option />");
+        option.text(item.name);
+        option.attr("value", item.id);
+
+        return option;
+      }
+    });
+
+    datePickerInRange( 'startDate' , 'endDate' );
+
+  });
+  var i18n_adding_mechanism_unit_failed = '$encoder.jsEscape( $i18n.getString( "adding_mechanism_unit_failed" ) , "'")';
+</script>
+
+<h3>$i18n.getString( "create_new_mechanism_unit" )</h3>
+
+###sharingCreateNotification( "" )
+
+<form id="addMechanismUnitForm" name="addMechanismUnitForm" action="addMechanismUnit.action" method="post" class="inputForm">
+  <table>
+    <col style="width: 120px"/>
+    <col style="width: 500px;"/>
+    <col/>
+    <col style="width: 500px;"/>
+
+    <tr>
+      <th colspan="2">$i18n.getString( "details" )</th>
+      <td colspan="2"></td>
+    </tr>
+
+    <div><input type="hidden" id="id" name="id" value="$agencyUnit.id"/></div>
+
+    <tr>
+      <td><label for="name">$i18n.getString( "jphes_name" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="name" name="name"></td>
+    </tr>
+
+    <tr>
+      <td><label for="shortname">$i18n.getString( "jphes_shortname" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="shortName" name="shortName"></td>
+    </tr>
+
+    <tr>
+      <td><label for="partner">$i18n.getString( "jphes_partner" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td colspan="3"><input type="text" id="partner" name="partner"></td>
+    </tr>
+
+    <tr>
+      <td><label for="code">$i18n.getString( "jphes_code" )</label></td>
+      <td colspan="3"><input type="text" id="code" name="code"></td>
+    </tr>
+
+    <tr>
+      <td><label for="description">$i18n.getString( "jphes_description" )</label></td>
+      <td colspan="3"><input type="text" id="description" name="description"></td>
+    </tr>
+
+    <tr>
+      <td><label for="startDate">$i18n.getString( "jphes_startdate" )</label></td>
+      <td colspan="3"><input type="text" id="startDate" name="startDate"></td>
+    </tr>
+
+    <tr>
+      <td><label for="endDate">$i18n.getString( "jphes_enddate" )</label></td>
+      <td colspan="3"><input type="text" id="endDate" name="endDate"></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <th>$i18n.getString( "available" )</th>
+      <th></th>
+      <th>$i18n.getString( "selected" )</th>
+    </tr>
+
+    <tr>
+      <td><label>$i18n.getString( "jphes_programs" )</label></td>
+      <td>
+        <select id="availableProgramList" name="availableProgramList" multiple="multiple" style="height: 200px; width: 100%;">
+        </select>
+      </td>
+
+      <td style="text-align:center">
+        <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'availableProgramList' );"/><br/>
+        <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'selectedProgramList' );"/><br/>
+        <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'availableProgramList' );"/><br/>
+        <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'selectedProgramList' );"/>
+      </td>
+
+      <td>
+        <select id="selectedProgramList" name="selectedProgramList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;"></select>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td valign="top">
+        <input type="submit" value="$i18n.getString( 'add' )" style="width:10em"/>
+        <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allMechanismUnit.action' )" style="width:10em"/>
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,86 @@
+
+###sharingDialog()
+
+<script type="text/javascript" src="res/javascript/national/allNationalUnit.js"></script>
+<script type="text/javascript">
+  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_national_unit" ) , "'")';
+  var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
+</script>
+
+<h3>$i18n.getString( 'jphes_national' ) #openHelp( "jphes_hierarchy" )</h3>
+
+<div id="contextMenu" class="contextMenu">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    <li data-enabled="canUpdate"><a data-target-fn="showAddDonorUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_donor" )</a></li>
+    <li data-enabled="canUpdate"><a data-target-fn="showUpdateNationalUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+    <li data-enabled="canDelete"><a data-target-fn="removeNationalUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li><a data-target-fn="showNationalUnitDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+  </ul>
+</div>
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+        <tr>
+          <td>#filterDiv( "allNationalUnit" )</td>
+          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'add_new' )" onclick="window.location.href='showAddNationalUnitForm.action'"/></td>
+        </tr>
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( 'jphes_name' )</th>
+          <th>$i18n.getString( 'jphes_shortname' )</th>
+          <th>$i18n.getString( 'jphes_code' )</th>
+          <th>$i18n.getString( 'jphes_lastupdated' )</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $nationalUnit in $nationalUnits )
+            <tr id="tr${nationalUnit.id}" data-id="$!nationalUnit.id" data-uid="$!nationalUnit.uid" data-type="NationalUnit" data-name="$encoder.htmlEncode( $!nationalUnit.name )"
+                data-can-manage="$security.canManage( $nationalUnit )"
+                data-can-update="$security.canUpdate( $nationalUnit )"
+                data-can-delete="$security.canDelete( $nationalUnit )">
+              <td>$!encoder.htmlEncode( $nationalUnit.name )</td>
+              <td>$!encoder.htmlEncode( $nationalUnit.shortName )</td>
+              <td>$!encoder.htmlEncode( $nationalUnit.code )</td>
+              <td>$!format.formatDate( $nationalUnit.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+    <td id="detailsData">
+      <div id="detailsArea">
+        <div id="hideDetailsArea">
+          <a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
+        </div>
+        <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
+        <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
+        <p><label>$i18n.getString( 'jphes_number_of_programs' ):</label><br/><span id="programsField"></span></p>
+        <p><label>$i18n.getString( 'jphes_number_of_donors' ):</label><br/><span id="donorsField"></span></p>
+        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
+        <p><label>$i18n.getString( 'jphes_usergroup' ):</label><br/><span id="userGroupField"></span></p>
+        <p><label>$i18n.getString( 'jphes_donorgroupset' ):</label><br/><span id="donorGroupSetField"></span></p>
+        <p><label>$i18n.getString( 'jphes_agencygroupset' ):</label><br/><span id="agencyGroupSetField"></span></p>
+        <p><label>$i18n.getString( 'jphes_mechanismcategory' ):</label><br/><span id="mechanismCategoryField"></span></p>
+        <p><label>$i18n.getString( 'jphes_categorycombo' ):</label><br/><span id="mechanismComboField"></span></p>
+        <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
+      </div>
+
+      <div id="warningArea">
+        <div id="hideDetailsArea">
+          <a href="javascript:hideWarning()" title="$i18n.getString( 'hide_warning' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_warning' )"/></a>
+        </div>
+        <p><span id="warningField"></span></p>
+      </div>
+
+    </td>
+  </tr>
+</table>

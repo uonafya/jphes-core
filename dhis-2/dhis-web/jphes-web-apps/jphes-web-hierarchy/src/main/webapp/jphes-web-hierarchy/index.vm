@@ -1,5 +1,8 @@
-<h3>$i18n.getString( "hierarchy" )&nbsp; #openHelp( "partners" )</h3>
+<h3>$i18n.getString( "jphes_hierarchy" )&nbsp; #openHelp( "jphes_hierarchy" )</h3>
 
 <ul class="introList">
-    #introListImgItem( "" "hirerachy" "user" )
+    #introListImgItem( "allNationalUnit.action" "jphes_national" "jphes_level" )
+    #introListImgItem( "allDonorUnit.action" "jphes_donor" "jphes_level" )
+    #introListImgItem( "allAgencyUnit.action" "jphes_agency" "jphes_level" )
+    #introListImgItem( "allMechanismUnit.action" "jphes_mechanism" "jphes_level" )
 </ul>

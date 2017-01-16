@@ -1,0 +1,86 @@
+
+###sharingDialog()
+
+<script type="text/javascript" src="res/javascript/mechanism/allMechanismUnit.js"></script>
+<script type="text/javascript">
+  var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_mechanism_unit" ) , "'")';
+  var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
+</script>
+
+<h3>$i18n.getString( 'jphes_mechanism' ) #openHelp( "jphes_hierarchy" )</h3>
+
+<div id="contextMenu" class="contextMenu">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    <li data-enabled="canUpdate"><a data-target-fn="showUpdateMechanismUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
+    <li data-enabled="canDelete"><a data-target-fn="removeMechanismUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li><a data-target-fn="showMechanismUnitDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+  </ul>
+</div>
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+        <tr>
+          <td>#filterDiv( "allMechanismUnit" )</td>
+        </tr>
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_shortname")</th>
+          <th>$i18n.getString( "jphes_partner")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_agency")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $mechanismUnit in $mechanismUnits )
+            <tr id="tr${mechanismUnit.id}" data-id="$!mechanismUnit.id" data-uid="$!mechanismUnit.uid" data-type="MechanismUnit" data-name="$encoder.htmlEncode( $!mechanismUnit.name )"
+                data-can-manage="$security.canManage( $mechanismUnit )"
+                data-can-update="$security.canUpdate( $mechanismUnit )"
+                data-can-delete="$security.canDelete( $mechanismUnit )">
+              <td>$!encoder.htmlEncode( $mechanismUnit.name )</td>
+              <td>$!encoder.htmlEncode( $mechanismUnit.shortName )</td>
+              <td>$!encoder.htmlEncode( $mechanismUnit.partner )</td>
+              <td>$!encoder.htmlEncode( $mechanismUnit.code )</td>
+              <td>$!encoder.htmlEncode( $mechanismUnit.agencyUnit.name )</td>
+              <td>$!format.formatDate( $mechanismUnit.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+    <td id="detailsData">
+      <div id="detailsArea">
+        <div id="hideDetailsArea">
+          <a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
+        </div>
+        <p><label>$i18n.getString( "jphes_name" ):</label><br/><span id="nameField"></span></p>
+        <p><label>$i18n.getString( "jphes_code" ):</label><br/><span id="codeField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_programs" ):</label><br/><span id="programsField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_of_orgunits" ):</label><br/><span id="orgunitsField"></span></p>
+        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
+        <p><label>$i18n.getString( "jphes_usergroup" ):</label><br/><span id="userGroupField"></span></p>
+        <p><label>$i18n.getString( "jphes_startdate" ):</label><br/><span id="startDateField"></span></p>
+        <p><label>$i18n.getString( "jphes_enddate" ):</label><br/><span id="endDateField"></span></p>
+        <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
+      </div>
+
+      <div id="warningArea">
+        <div id="hideDetailsArea">
+          <a href="javascript:hideWarning()" title="$i18n.getString( 'hide_warning' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_warning' )"/></a>
+        </div>
+        <p><span id="warningField"></span></p>
+      </div>
+
+    </td>
+  </tr>
+</table>
