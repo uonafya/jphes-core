@@ -18,7 +18,6 @@
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
     <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
    </bean>
 

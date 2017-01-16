@@ -38,13 +38,6 @@ public class AddNationalUnitAction implements Action
         this.nationalUnitService =nationalUnitService;
     }
 
-    private UserService userService;
-
-    public void setUserService( UserService userService )
-    {
-        this.userService = userService;
-    }
-
     private UserGroupService userGroupService;
 
     public void setUserGroupService(UserGroupService userGroupService){
@@ -118,16 +111,6 @@ public class AddNationalUnitAction implements Action
             nationalUnit.setEnabled( true );
             nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
 
-            // Add programList
-            Set<Program> nationalUnitProgramSet = new HashSet<>(  );
-            for ( String id : selectedProgramList )
-            {
-                Program program = programService.getProgram( id );
-                nationalUnitProgramSet.add( program );
-
-            }
-            nationalUnit.setPrograms( nationalUnitProgramSet );
-
             // User group
             UserGroup userGroup = new UserGroup();
 
@@ -188,6 +171,18 @@ public class AddNationalUnitAction implements Action
 
             // Saving NationalUnit
             nationalUnitService.addNationalUnit( nationalUnit );
+
+            // Add programList
+            for ( String id : selectedProgramList )
+            {
+                Program program = programService.getProgram( id );
+                nationalUnit.getPrograms().add( program );
+
+            }
+
+            //update with programs
+            nationalUnitService.updateNationalUnit( nationalUnit );
+
         }
         else
         {
