@@ -6,6 +6,7 @@ import org.hisp.dhis.dataelement.CategoryOptionGroup;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
+import org.hisp.dhis.i18n.I18nFormat;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
@@ -50,6 +51,13 @@ public class UpdateMechanismUnitAction implements Action
 
     @Autowired
     private UserGroupAccessService userGroupAccessService;
+
+    private I18nFormat format;
+
+    public void setFormat( I18nFormat format )
+    {
+        this.format = format;
+    }
 
 
     // -------------------------------------------------------------------------
@@ -98,15 +106,15 @@ public class UpdateMechanismUnitAction implements Action
         this.description = description;
     }
 
-    private Date startDate;
+    private String startDate;
 
-    public void setStartDate(Date startDate){
+    public void setStartDate(String startDate){
         this.startDate = startDate;
     }
 
-    private Date endDate;
+    private String endDate;
 
-    public void setEndDate(Date endDate){
+    public void setEndDate(String endDate){
         this.endDate = endDate;
     }
 
@@ -173,8 +181,8 @@ public class UpdateMechanismUnitAction implements Action
             categoryOption.setName( StringUtils.trimToNull( name ) );
             categoryOption.setShortName( StringUtils.trimToNull( shortName ) );
             categoryOption.setCode( StringUtils.trimToNull( code ) );
-            categoryOption.setStartDate( startDate );
-            categoryOption.setEndDate( endDate );
+            categoryOption.setStartDate( format.parseDate( startDate ) );
+            categoryOption.setEndDate( format.parseDate( endDate ) );
 
             //update categoryOption
             categoryService.updateDataElementCategoryOption( categoryOption );

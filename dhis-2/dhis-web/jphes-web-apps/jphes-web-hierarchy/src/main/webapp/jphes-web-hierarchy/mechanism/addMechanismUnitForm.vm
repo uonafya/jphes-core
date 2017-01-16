@@ -17,6 +17,8 @@
       }
     });
 
+    datePickerInRange( 'startDate' , 'endDate' );
+
   });
   var i18n_adding_mechanism_unit_failed = '$encoder.jsEscape( $i18n.getString( "adding_mechanism_unit_failed" ) , "'")';
 </script>
@@ -66,12 +68,12 @@
 
     <tr>
       <td><label for="startDate">$i18n.getString( "jphes_startdate" )</label></td>
-      <td colspan="3"><input type="date" id="startDate" name="startDate"></td>
+      <td colspan="3"><input type="text" id="startDate" name="startDate"></td>
     </tr>
 
     <tr>
       <td><label for="endDate">$i18n.getString( "jphes_enddate" )</label></td>
-      <td colspan="3"><input type="date" id="endDate" name="endDate"></td>
+      <td colspan="3"><input type="text" id="endDate" name="endDate"></td>
     </tr>
 
     <tr>
