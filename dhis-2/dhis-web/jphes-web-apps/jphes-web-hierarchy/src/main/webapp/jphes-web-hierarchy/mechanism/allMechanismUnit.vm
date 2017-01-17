@@ -24,6 +24,16 @@
         <tr>
           <td>#filterDiv( "allMechanismUnit" )</td>
         </tr>
+        <tr>
+          <td>
+            <select id="agencyUnits" style="width:180px" onchange="filterAgencyUnits()">
+              <option value="">[$i18n.getString( "jphes_show_by_agency_unit" )]</option>
+              #foreach( $agency in $agencyUnits )
+                <option value="${agency.uid}"#if( $agencyUnits == $agency.uid ) selected="selected"#end>$!encoder.htmlEncode( $agency.name )</option>
+              #end
+            </select>
+          </td>
+        </tr>
       </table>
       <table class="listTable" id="listTable">
         <thead>

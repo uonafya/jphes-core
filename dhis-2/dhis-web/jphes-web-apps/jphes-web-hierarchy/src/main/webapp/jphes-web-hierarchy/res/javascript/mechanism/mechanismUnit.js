@@ -27,3 +27,17 @@ function removeMechanismUnit( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeMechanismUnit.action');
 }
 
+// -----------------------------------------------------------------------------
+// filter MechanismUnits by AgencyUnit
+// -----------------------------------------------------------------------------
+
+function filterAgencyUnits() {
+
+  var agencyUnit = $('#agencyUnits').val();
+
+  var url = 'allMechanismUnit.action?';
+
+  url += agencyUnit ? 'agencyUnit=' + agencyUnit + '&' : '';
+
+  window.location.href = url;
+}
