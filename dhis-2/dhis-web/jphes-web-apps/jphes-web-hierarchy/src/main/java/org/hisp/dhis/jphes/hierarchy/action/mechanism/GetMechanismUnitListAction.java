@@ -7,6 +7,7 @@ import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitService;
 import org.hisp.dhis.paging.ActionPagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -89,7 +90,7 @@ public class GetMechanismUnitListAction extends ActionPagingSupport<MechanismUni
 
             this.paging = createPaging(agency.getMechanismUnits().size());
 
-            mechanismUnits = (List<MechanismUnit>) agency.getMechanismUnits();
+            mechanismUnits = new ArrayList<>( agency.getMechanismUnits() );
         }
 
         return SUCCESS;
