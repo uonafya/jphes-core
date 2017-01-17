@@ -639,6 +639,10 @@ var validationRules = {
             "rangelength" : [ 0, 50 ],
             "alphanumericwithbasicpuncspaces" : true,
             "notOnlyDigits" : false
+        },
+        "partner" : {
+            "required" : true,
+            "rangelength" : [ 2, 230]
         }
     }
 
