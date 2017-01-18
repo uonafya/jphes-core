@@ -34,7 +34,7 @@
               <td>$!encoder.htmlEncode( $orgUnit.shortName )</td>
               <td>$!encoder.htmlEncode( $orgUnit.code )</td>
               <td>$!encoder.htmlEncode( $orgUnit.hierarchyLevel )</td>
-              <td>$!encoder.htmlEncode( $orgUnit.created )</td>
+              <td>$!format.formatDate( $orgUnit.created )</td>
               <td>$!format.formatDate( $orgUnit.lastUpdated )</td>
             </tr>
             #end
