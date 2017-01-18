@@ -73,6 +73,7 @@
         <p><label>$i18n.getString( 'jphes_mechanismcategory' ):</label><br/><span id="mechanismCategoryField"></span></p>
         <p><label>$i18n.getString( 'jphes_categorycombo' ):</label><br/><span id="mechanismComboField"></span></p>
         <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
+        <p><label>$i18n.getString( "jphes_created" ):</label><br/><span id="createDateField"></span></p>
       </div>
 
       <div id="warningArea">

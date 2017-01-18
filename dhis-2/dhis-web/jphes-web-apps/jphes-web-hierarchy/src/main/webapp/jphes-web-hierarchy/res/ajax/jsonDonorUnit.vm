@@ -8,6 +8,7 @@
 "agencies": "$!{donorUnit.agencyUnits.size()}",
 "usergroup": "$!{donorUnit.userGroup.name}",
 "categoryoptiongroup": "$!{donorUnit.categoryOptionGroup.name}",
-"national": "$!{donorUnit.nationalUnit.name}"
+"national": "$!{donorUnit.nationalUnit.name}",
+"created": "$!format.formatDate( ${donorUnit.created} )"
 }
 }

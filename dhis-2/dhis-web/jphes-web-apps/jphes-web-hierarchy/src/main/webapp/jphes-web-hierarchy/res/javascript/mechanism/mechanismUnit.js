@@ -13,6 +13,7 @@ function showMechanismUnitDetails( context ) {
     setInnerHTML('userGroupField', json.mechanismUnit.usergroup);
     setInnerHTML('startDateField', json.mechanismUnit.startdate);
     setInnerHTML('endDateField', json.mechanismUnit.enddate);
+    setInnerHTML('createDateField', json.mechanismUnit.created);
     setInnerHTML('hrefField', '../api/mechanismUnits/'+json.mechanismUnit.uid);
 
     showDetails();
@@ -25,6 +26,17 @@ function showMechanismUnitDetails( context ) {
 
 function removeMechanismUnit( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeMechanismUnit.action');
+}
+
+
+// -----------------------------------------------------------------------------
+// View Organisation Units for a MechanismUnit
+// -----------------------------------------------------------------------------
+
+function viewOrganistionUnits( context ) {
+
+  location.href = 'viewOrganisationUnits.action?uid=' + context.uid;
+
 }
 
 // -----------------------------------------------------------------------------
