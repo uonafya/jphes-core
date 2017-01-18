@@ -16,8 +16,11 @@ import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,6 +66,8 @@ public class AddDonorUnitAction implements Action
         this.programService = programService;
     }
 
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
 
     // -------------------------------------------------------------------------
     // Input
@@ -102,6 +107,8 @@ public class AddDonorUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
+    private static final String NOPUBLICACCESS = "--------";
+    private static final String READWRITEACCESS = "rw------";
 
     // -------------------------------------------------------------------------
     // Implementation
@@ -167,6 +174,34 @@ public class AddDonorUnitAction implements Action
             //Adding donorUnit to NationUnit Set
             nationalUnit.getDonorUnits().add( donorUnit );
             nationalUnitService.updateNationalUnit( nationalUnit );
+
+            //Setting CategoryOptionGroup UserGroupAccesses
+
+            UserGroupAccess accessDonor = new UserGroupAccess();
+            accessDonor.setUserGroup( userGroup );
+            accessDonor.setUid( userGroup.getUid() );
+            accessDonor.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessDonor );
+
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setUid( nationalUnit.getUserGroup().getUid() );
+            accessNational.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            //UserGroupAccess(Donor, National) DonorGroupSet
+            categoryOptionGroupSetDonor.getUserGroupAccesses().add( accessDonor );
+            categoryOptionGroupSetDonor.getUserGroupAccesses().add( accessNational );
+
+            //UserGroupAccess(Donor, National) DonorOptionGroup
+            categoryOptionGroup.getUserGroupAccesses().add( accessDonor );
+            categoryOptionGroup.getUserGroupAccesses().add( accessNational );
+
+            //update adding userGroupAccess
+            categoryService.updateCategoryOptionGroup( categoryOptionGroup );
+            categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSetDonor );
+
+
         }
         else
         {
