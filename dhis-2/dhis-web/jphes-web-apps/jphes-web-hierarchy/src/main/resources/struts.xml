@@ -255,6 +255,14 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
+    <action name="viewMechanismOrgUnits" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/mechanism/mechanismOrganisationUnits.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="javascripts">res/javascript/mechanism/mechanismUnit.js,res/javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
+    </action>
+
 
     <!-- Json Actions -->
 
@@ -263,13 +271,7 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
-    <action name="viewMechanismOrgUnits" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction">
-      <result name="success" type="velocity">/main.vm</result>
-      <param name="page">/jphes-web-hierarchy/mechanism/mechanismOrganisationUnits.vm</param>
-      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">res/javascript/mechanism/mechanismUnit.js,res/javascript/filterTable.js</param>
-      <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
-    </action>
+
 
 
   </package>

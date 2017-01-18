@@ -35,7 +35,7 @@ function removeMechanismUnit( context ) {
 
 function viewOrganistionUnits( context ) {
 
-  location.href = 'viewOrganisationUnits.action?uid=' + context.uid;
+  location.href = 'viewMechanismOrgUnits.action?uid=' + context.uid;
 
 }
 

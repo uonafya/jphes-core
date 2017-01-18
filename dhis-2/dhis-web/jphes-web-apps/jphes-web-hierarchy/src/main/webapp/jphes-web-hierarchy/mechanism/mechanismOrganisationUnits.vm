@@ -10,7 +10,7 @@
       <table width="100%">
         <tr>
           <td>#filterDiv( "allMechanismUnit" )</td>
-          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="dhis2.commons.redirectCurrentPage( 'allMechanismUnit.action' )"/></td>
+          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="window.location.href='allMechanismUnit.action'"/></td>
         </tr>
       </table>
       <table class="listTable" id="listTable">
