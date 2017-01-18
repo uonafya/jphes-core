@@ -15,6 +15,8 @@ import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,6 +48,9 @@ public class AddAgencyUnitAction implements Action
 
     @Autowired
     private ProgramService programService;
+
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
 
 
     // -------------------------------------------------------------------------
@@ -86,6 +91,8 @@ public class AddAgencyUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
+    private static final String NOPUBLICACCESS = "--------";
+    private static final String READWRITEACCESS = "rw------";
 
     // -------------------------------------------------------------------------
     // Implementation
@@ -152,6 +159,47 @@ public class AddAgencyUnitAction implements Action
             //Adding agencyUnit to DonorUnit Set
             donorUnit.getAgencyUnits().add( agencyUnit );
             donorUnitService.updateDonorUnit( donorUnit );
+
+            // -------------------------------------------------------------------------
+            // UserGroupAccess Sharing
+            // -------------------------------------------------------------------------
+
+            //Setting CategoryOptionGroup UserGroupAccesses
+
+            UserGroupAccess accessAgency = new UserGroupAccess();
+            accessAgency.setUserGroup( userGroup );
+            accessAgency.setUid( userGroup.getUid() );
+            accessAgency.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessAgency );
+
+            UserGroupAccess accessDonor = new UserGroupAccess();
+            accessDonor.setUserGroup( donorUnit.getUserGroup() );
+            accessDonor.setUid( donorUnit.getUid() );
+            accessDonor.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessDonor );
+
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setUid( nationalUnit.getUserGroup().getUid() );
+            accessNational.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            //UserGroup sharing
+            userGroup.setPublicAccess( NOPUBLICACCESS );
+            userGroup.getUserGroupAccesses().add( accessAgency );
+            userGroup.getUserGroupAccesses().add( accessDonor );
+            userGroup.getUserGroupAccesses().add( accessNational );
+
+
+            //UserGroupAccess(Agency, Donor, National) AgencyOptionGroup sharing
+            categoryOptionGroup.getUserGroupAccesses().add( accessAgency );
+            categoryOptionGroup.getUserGroupAccesses().add( accessDonor );
+            categoryOptionGroup.getUserGroupAccesses().add( accessNational );
+            categoryOptionGroup.setPublicAccess( NOPUBLICACCESS );
+
+            //update adding userGroupAccess
+            userGroupService.updateUserGroup( userGroup );
+            categoryService.updateCategoryOptionGroup( categoryOptionGroup );
         }
         else
         {

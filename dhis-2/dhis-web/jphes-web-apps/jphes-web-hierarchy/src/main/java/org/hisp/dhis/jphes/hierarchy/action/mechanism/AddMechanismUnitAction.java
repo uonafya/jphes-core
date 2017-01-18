@@ -203,7 +203,11 @@ public class AddMechanismUnitAction implements Action
             agencyUnit.getMechanismUnits().add( mechanismUnit );
             agencyUnitService.updateAgencyUnit( agencyUnit );
 
+            // -------------------------------------------------------------------------
+            // UserGroupAccess Sharing
+            // -------------------------------------------------------------------------
             //Setting CategoryOption UserGroupAccesses
+
             UserGroupAccess accessMechanism = new UserGroupAccess();
             accessMechanism.setUserGroup( userGroup );
             accessMechanism.setUid( userGroup.getUid() );
@@ -228,14 +232,22 @@ public class AddMechanismUnitAction implements Action
             accessNational.setAccess( READWRITEACCESS );
             userGroupAccessService.addUserGroupAccess( accessNational );
 
+            //UserGroup sharing
+            userGroup.setPublicAccess( NOPUBLICACCESS );
+            userGroup.getUserGroupAccesses().add( accessMechanism );
+            userGroup.getUserGroupAccesses().add( accessAgency );
+            userGroup.getUserGroupAccesses().add( accessDonor );
+            userGroup.getUserGroupAccesses().add( accessNational );
+
             categoryOption.getUserGroupAccesses().add( accessMechanism );
             categoryOption.getUserGroupAccesses().add( accessAgency );
             categoryOption.getUserGroupAccesses().add( accessDonor );
             categoryOption.getUserGroupAccesses().add( accessNational );
-
             //Setting NOPUBLICACCESS
             categoryOption.setPublicAccess( NOPUBLICACCESS );
 
+            //Updating with UserGroupAccess sharing
+            userGroupService.updateUserGroup( userGroup );
             categoryService.updateDataElementCategoryOption( categoryOption );
 
         }

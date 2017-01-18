@@ -8,6 +8,7 @@
 "mechanisms": "$!{agencyUnit.mechanismUnits.size()}",
 "usergroup": "$!{agencyUnit.userGroup.name}",
 "categoryoptiongroup": "$!{agencyUnit.categoryOptionGroup.name}",
-"donor": "$!{agencyUnit.donorUnit.name}"
+"donor": "$!{agencyUnit.donorUnit.name}",
+"created": "$!format.formatDate( ${agencyUnit.created} )"
 }
 }

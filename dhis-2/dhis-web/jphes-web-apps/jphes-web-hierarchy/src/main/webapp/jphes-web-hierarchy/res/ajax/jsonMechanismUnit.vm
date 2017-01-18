@@ -11,7 +11,8 @@
 "categoryoption": "$!{mechanismUnit.categoryOption.name}",
 "agency": "$!{mechanismUnit.agencyUnit.name}",
 "href": "$!{mechanismUnit.href}",
-"startdate": "$!{mechanismUnit.categoryOption.startDate}",
-"enddate": "$!{mechanismUnit.categoryOption.endDate}"
+"startdate": "$!format.formatDate( ${mechanismUnit.categoryOption.startDate} )",
+"enddate": "$!format.formatDate( ${mechanismUnit.categoryOption.endDate} )",
+"created": "$!format.formatDate( ${mechanismUnit.created} )"
 }
 }

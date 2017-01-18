@@ -118,6 +118,10 @@
     scope="prototype">
   </bean>
 
+  <bean id="org.hisp.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" scope="prototype">
+
+  </bean>
+
 
 
 

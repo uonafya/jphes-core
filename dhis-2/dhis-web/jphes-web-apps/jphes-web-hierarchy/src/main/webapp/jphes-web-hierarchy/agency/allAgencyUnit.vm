@@ -1,5 +1,5 @@
 
-###sharingDialog()
+#sharingDialog()
 
 <script type="text/javascript" src="res/javascript/agency/allAgencyUnit.js"></script>
 <script type="text/javascript">
@@ -11,6 +11,7 @@
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
+##      <li data-enabled="canManage"><a data-target-fn="showSharingDialogWithContext"><i class="fa fa-share"></i>&nbsp;&nbsp;$i18n.getString( "sharing_settings" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showAddMechanismUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_mechanism" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateAgencyUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
     <li data-enabled="canDelete"><a data-target-fn="removeAgencyUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
@@ -71,6 +72,7 @@
         <p><label>$i18n.getString( "jphes_categoryoptiongroup" ):</label><br/><span id="categoryOptionGroupField"></span></p>
         <p><label>$i18n.getString( "jphes_donor" ):</label><br/><span id="donorUnitField"></span></p>
         <p><label>$i18n.getString( "jphes_href" ):</label><br/><span id="hrefField"></span></p>
+        <p><label>$i18n.getString( "jphes_created" ):</label><br/><span id="createDateField"></span></p>
       </div>
 
       <div id="warningArea">

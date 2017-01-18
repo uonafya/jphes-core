@@ -12,6 +12,7 @@ function showDonorUnitDetails( context ) {
     setInnerHTML('userGroupField', json.donorUnit.usergroup);
     setInnerHTML('categoryOptionGroupField', json.donorUnit.categoryoptiongroup);
     setInnerHTML('nationalUnitField', json.donorUnit.national);
+    setInnerHTML('createDateField', json.donorUnit.created);
     setInnerHTML('hrefField', '../api/donorUnits/'+json.donorUnit.uid);
 
     showDetails();

@@ -10,6 +10,7 @@
 "donorgroupset": "$!{nationalUnit.categoryOptionGroupSet.name}",
 "agencygroupset": "$!{nationalUnit.categoryOptionGroupSetAgency.name}",
 "mechanismcombo": "$!{nationalUnit.mechanismCombo.name}",
-"mechanismcategory": "$!{nationalUnit.mechanismCategory.name}"
+"mechanismcategory": "$!{nationalUnit.mechanismCategory.name}",
+"created": "$!format.formatDate( ${nationalUnit.created} )"
 }
 }
