@@ -175,6 +175,10 @@ public class AddDonorUnitAction implements Action
             nationalUnit.getDonorUnits().add( donorUnit );
             nationalUnitService.updateNationalUnit( nationalUnit );
 
+            // -------------------------------------------------------------------------
+            // UserGroupAccess Sharing
+            // -------------------------------------------------------------------------
+
             //Setting CategoryOptionGroup UserGroupAccesses
 
             UserGroupAccess accessDonor = new UserGroupAccess();
@@ -189,17 +193,19 @@ public class AddDonorUnitAction implements Action
             accessNational.setAccess( READWRITEACCESS );
             userGroupAccessService.addUserGroupAccess( accessNational );
 
-            //UserGroupAccess(Donor, National) DonorGroupSet
-            categoryOptionGroupSetDonor.getUserGroupAccesses().add( accessDonor );
-            categoryOptionGroupSetDonor.getUserGroupAccesses().add( accessNational );
+            // UserGroup sharing
+            userGroup.setPublicAccess( NOPUBLICACCESS );
+            userGroup.getUserGroupAccesses().add( accessDonor );
+            userGroup.getUserGroupAccesses().add( accessNational );
 
-            //UserGroupAccess(Donor, National) DonorOptionGroup
+            //UserGroupAccess(Donor, National) DonorOptionGroup sharing
             categoryOptionGroup.getUserGroupAccesses().add( accessDonor );
             categoryOptionGroup.getUserGroupAccesses().add( accessNational );
+            categoryOptionGroup.setPublicAccess( NOPUBLICACCESS );
 
             //update adding userGroupAccess
+            userGroupService.updateUserGroup( userGroup );
             categoryService.updateCategoryOptionGroup( categoryOptionGroup );
-            categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSetDonor );
 
 
         }

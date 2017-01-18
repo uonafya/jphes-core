@@ -12,6 +12,8 @@ import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,9 @@ public class AddNationalUnitAction implements Action
         this.programService = programService;
     }
 
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
+
 
     // -------------------------------------------------------------------------
     // Input
@@ -91,7 +96,8 @@ public class AddNationalUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
-
+    private static final String NOPUBLICACCESS = "--------";
+    private static final String READWRITEACCESS = "rw------";
     // -------------------------------------------------------------------------
     // Implementation
     // -------------------------------------------------------------------------
@@ -183,6 +189,21 @@ public class AddNationalUnitAction implements Action
             //update with programs
             nationalUnitService.updateNationalUnit( nationalUnit );
 
+            // -------------------------------------------------------------------------
+            // UserGroupAccess Sharing
+            // -------------------------------------------------------------------------
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setUid( nationalUnit.getUserGroup().getUid() );
+            accessNational.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            // UserGroup sharing
+            userGroup.setPublicAccess( NOPUBLICACCESS);
+            userGroup.getUserGroupAccesses().add( accessNational );
+
+            //updating with UserGroupAccess sharing
+            userGroupService.updateUserGroup( userGroup );
         }
         else
         {
