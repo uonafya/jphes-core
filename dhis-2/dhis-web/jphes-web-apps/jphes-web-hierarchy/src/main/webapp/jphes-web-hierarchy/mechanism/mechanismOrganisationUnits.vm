@@ -25,7 +25,7 @@
         </tr>
         </thead>
         <tbody id="list">
-            #foreach( $orgUnit in $orgUnits )
+            #foreach( $orgUnit in $organisationUnits )
             <tr id="tr${orgUnit.id}" data-id="$!orgUnit.id" data-uid="$!orgUnit.uid" data-type="OrganisationUnit" data-name="$encoder.htmlEncode( $!orgUnit.name )"
                 data-can-manage="$security.canManage( $orgUnit )"
                 data-can-update="$security.canUpdate( $orgUnit )"
