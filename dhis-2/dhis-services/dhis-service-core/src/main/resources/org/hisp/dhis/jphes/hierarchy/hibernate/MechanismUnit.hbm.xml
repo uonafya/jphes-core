@@ -8,6 +8,8 @@
 <hibernate-mapping>
   <class name="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" table="jphes_mechanismunit">
 
+    <cache usage="read-write" />
+
     <id name="id" column="mechanismunitid">
       <generator class="native" />
     </id>
@@ -33,6 +35,7 @@
       foreign-key="fk_mechanismunitcategoryoptionid" not-null="true" />
 
     <set name="programs" table="jphes_mechanismunitprograms">
+      <cache usage="read-write" />
       <key column="mechanismunitid" foreign-key="fk_mechanismunitprograms_mechanismunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_mechanismunitprograms_programid" />
