@@ -8,6 +8,7 @@ import org.hisp.dhis.paging.ActionPagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -55,6 +56,8 @@ public class ViewMechanismOrgUnitAction extends ActionPagingSupport<Organisation
             this.paging = createPaging(mechanismUnit.getCategoryOption().getOrganisationUnits().size());
 
             organisationUnits = new ArrayList<>(mechanismUnit.getCategoryOption().getOrganisationUnits());
+
+            Collections.sort(organisationUnits);
         }
         else{
 
