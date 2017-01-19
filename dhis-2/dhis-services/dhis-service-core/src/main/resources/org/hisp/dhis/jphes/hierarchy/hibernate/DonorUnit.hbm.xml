@@ -46,6 +46,21 @@
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_donorunitprograms_programid" />
     </set>
+
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_donorunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="donorunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="donorunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
+
   </class>
 
 </hibernate-mapping>

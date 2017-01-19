@@ -45,6 +45,19 @@
       <many-to-many class="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" column="mechanismunitid"
         foreign-key="fk_agencyunitmechanismunit_mechanismunitid" />
     </set>
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_agencyunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="agencyunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="agencyunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
   </class>
 
 

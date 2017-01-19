@@ -198,7 +198,7 @@ public class AddNationalUnitAction implements Action
             accessNational.setAccess( READWRITEACCESS );
             userGroupAccessService.addUserGroupAccess( accessNational );
 
-            // UserGroup sharing
+            // UserGroup & National Unit sharing
             userGroup.setPublicAccess( NOPUBLICACCESS);
             userGroup.getUserGroupAccesses().add( accessNational );
 
