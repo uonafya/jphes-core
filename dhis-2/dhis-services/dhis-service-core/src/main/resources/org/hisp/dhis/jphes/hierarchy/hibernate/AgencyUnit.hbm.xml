@@ -8,6 +8,8 @@
 <hibernate-mapping>
   <class name="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" table="jphes_agencyunit">
 
+    <cache usage="read-write" />
+
     <id name="id" column="agencyunitid">
       <generator class="native" />
     </id>
@@ -31,16 +33,32 @@
       foreign-key="fk_agencyunitcategoryoptiongroupid" not-null="true" />
 
     <set name="programs" table="jphes_agencyunitprograms">
+      <cache usage="read-write" />
       <key column="agencyunitid" foreign-key="fk_agencyunitprograms_agencyunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_agencyunitprograms_programid" />
     </set>
 
     <set name="mechanismUnits" table="jphes_agencyunitmechanismunits">
+      <cache usage="read-write" />
       <key column="agencyunitid" foreign-key="fk_agencyunitmechanismunits_agencyunitid" />
       <many-to-many class="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" column="mechanismunitid"
         foreign-key="fk_agencyunitmechanismunit_mechanismunitid" />
     </set>
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_agencyunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="agencyunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="agencyunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
   </class>
+
 
 </hibernate-mapping>

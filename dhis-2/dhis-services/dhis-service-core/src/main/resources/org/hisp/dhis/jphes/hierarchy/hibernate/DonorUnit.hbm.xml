@@ -8,6 +8,8 @@
 <hibernate-mapping>
   <class name="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit" table="jphes_donorunit">
 
+    <cache usage="read-write" />
+
     <id name="id" column="donorunitid">
       <generator class="native" />
     </id>
@@ -32,16 +34,33 @@
 
 
     <set name="agencyUnits" table="jphes_donorunitagencyunits">
+      <cache usage="read-write" />
       <key column="donorunitid" foreign-key="fk_donorunitagencyunits_donorunitid" />
       <many-to-many class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit" column="agencyunitid"
         foreign-key="fk_donorunitagencyunits_agencyunitid" />
     </set>
 
     <set name="programs" table="jphes_donorunitprograms">
+      <cache usage="read-write" />
       <key column="donorunitid" foreign-key="fk_donorunitprograms_donorunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_donorunitprograms_programid" />
     </set>
+
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_donorunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="donorunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="donorunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
+
   </class>
 
 </hibernate-mapping>
