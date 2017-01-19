@@ -2,17 +2,17 @@
     jQuery(function () {
 
         /* remote validation */
-        checkValueIsExist( "name", "validateProgram.action", {
-            id : getFieldValue( 'id' )
-        } );
-
-        checkValueIsExist( "displayName", "validateProgram.action", {
-            id : getFieldValue( 'id' )
-        } );
-
-        checkValueIsExist( "code", "validateProgram.action", {
-            id : getFieldValue( 'id' )
-        } );
+//        checkValueIsExist( "name", "validateProgram.action", {
+//            id : getFieldValue( 'id' )
+//        } );
+//
+//        checkValueIsExist( "displayName", "validateProgram.action", {
+//            id : getFieldValue( 'id' )
+//        } );
+//
+//        checkValueIsExist( "code", "validateProgram.action", {
+//            id : getFieldValue( 'id' )
+//        } );
 
         sortList( 'deAvailable', 'ASC' );
         sortList( 'iAvailable', 'ASC' );
@@ -20,7 +20,7 @@
         jQuery("#deAvailable").dhisAjaxSelect({
             source: "../api/dataElements.json?paging=false&fields=displayName,id,name",
             iterator: 'dataElements',
-            connectedTo: 'deSelected',
+            connectedTo: 'deSelectedList',
             handler: function( item ) {
                 var option = jQuery("<option />");
                 option.text(item.name);
@@ -33,7 +33,7 @@
         jQuery("#iAvailable").dhisAjaxSelect({
             source: "../api/indicators.json?paging=false&fields=displayName,id,name",
             iterator: 'indicators',
-            connectedTo: 'iSelected',
+            connectedTo: 'indSelectedList',
             handler: function( item ) {
                 var option = jQuery("<option />");
                 option.text(item.name);
@@ -46,7 +46,7 @@
 </script>
 <h3>Add Program</h3>
 
-<form id="addProgramForm" name="addProgramForm" action="addProgram.action" method="post" class="inputForm">
+<form id="updateProgramForm" name="updateProgramForm" action="updateProgram.action" method="post" class="inputForm">
     <table>
         <col style="width: 120px"/>
         <col style="width: 500px;"/>
@@ -77,7 +77,7 @@
             <td></td>
         </tr>
         <tr>
-            <td><label>$i18n.getString( "indicators" )</label></td>
+            <td><label>Dataelements</label></td>
             <td>
                 <select id="deAvailable" name="deAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
             </td>
@@ -90,12 +90,16 @@
             </td>
 
             <td>
-                <select id="deSelected" name="deSelected" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;"></select>
+                <select id="deSelectedList" name="deSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
+                    #foreach ( $deSelected in $dataElements )
+                        <option value="$deSelected.uid">$encoder.htmlEncode( $deSelected.name )</option>
+                    #end
+                </select>
             </td>
         </tr>
 
         <tr>
-            <td><label>$i18n.getString( "dataelements" )</label></td>
+            <td><label>$i18n.getString( "indicators" )</label></td>
             <td>
                 <select id="iAvailable" name="iAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
             </td>
@@ -108,16 +112,13 @@
             </td>
 
             <td>
-                <select id="iSelected" name="iSelected" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;"></select>
+                <select id="indSelectedList" name="indSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
+                #foreach ( $indSelected in $indicators )
+                    <option value="$indSelected.uid">$encoder.htmlEncode( $indSelected.name )</option>
+                #end
+                </select>
             </td>
         </tr>
-
-    ##      #jqSelected({
-    ##          "prefix": "i",
-    ##          "required": true,
-    ##          "i18n_available": "available_indicators",
-    ##          "i18n_selected": "selected_indicators"
-    ##      })
         <tr>
             <td></td>
             <td valign="top">

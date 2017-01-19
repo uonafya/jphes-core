@@ -1,6 +1,7 @@
 package org.hisp.dhis.jphes.program.action;
 
 import com.opensymphony.xwork2.Action;
+import org.apache.commons.logging.Log;
 import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementGroup;
 import org.hisp.dhis.dataelement.DataElementGroupService;
@@ -11,7 +12,6 @@ import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.jphes.program.ProgramService;
-import org.hisp.dhis.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -27,8 +27,6 @@ public class AddProgramAction implements Action
 
     private ProgramService programService;
 
-//    private DataElementGroup dataElementGroup;
-
     private DataElementGroupService dataElementGroupService;
 
     public void setDataElementGroupService(DataElementGroupService dataElementGroupService) {
@@ -39,11 +37,11 @@ public class AddProgramAction implements Action
 //        this.dataElementGroup = dataElementGroup;
 //    }
 
-    private IndicatorGroup indicatorGroup;
-
-    public void setIndicatorGroup(IndicatorGroup indicatorGroup) {
-        this.indicatorGroup = indicatorGroup;
-    }
+//    private IndicatorGroup indicatorGroup;
+//
+//    public void setIndicatorGroup(IndicatorGroup indicatorGroup) {
+//        this.indicatorGroup = indicatorGroup;
+//    }
 
     public void setProgramService(ProgramService programService) {
         this.programService = programService;
@@ -69,14 +67,14 @@ public class AddProgramAction implements Action
 
     private List<String> deSelected = new ArrayList<>();
 
-    private List<String> iSelected = new ArrayList<>();
+    private List<String> indSelected = new ArrayList<>();
 
     public void setDeSelected(List<String> deSelected) {
         this.deSelected = deSelected;
     }
 
-    public void setiSelected(List<String> iSelected) {
-        this.iSelected = iSelected;
+    public void setIndSelected(List<String> indSelected) {
+        this.indSelected = indSelected;
     }
 
     public void setName(String name) {
@@ -111,16 +109,22 @@ public class AddProgramAction implements Action
         Set<DataElement> dataElementGroupMembers = new HashSet<>();
         Set<Indicator> indicators = new HashSet<>();
 
-        for (String id:deSelected){
-            programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
-            dataElementGroupMembers.add(dataElementService.getDataElement(id));
-        }
-        program.setProgramElements(programElements);
+      if (deSelected.size() > 0){
+          for (String id:deSelected){
+              programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
+              dataElementGroupMembers.add(dataElementService.getDataElement(id));
+          }
+          program.setProgramElements(programElements);
+      }
 
-        for (String id:iSelected){
-            indicators.add(indicatorService.getIndicator(id));
-        }
-        program.setIndicators(indicators);
+      if (indSelected.size() > 0){
+          for (String id:indSelected){
+              indicators.add(indicatorService.getIndicator(id));
+          }
+          program.setIndicators(indicators);
+      }
+
+        System.out.println(indicators.size());
 
         dataElementGroup.setName(displayName);
         dataElementGroup.setCode(code);
@@ -132,7 +136,8 @@ public class AddProgramAction implements Action
         indicatorGroup.setMembers(indicators);
 
         programService.addProgram(program);
-        dataElementService.addDataElementGroup(dataElementGroup);
+        dataElementGroupService.addDataElementGroup(dataElementGroup);
+//        dataElementService.addDataElementGroup(dataElementGroup);
         indicatorService.addIndicatorGroup(indicatorGroup);
 
         return SUCCESS;

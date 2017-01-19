@@ -9,7 +9,7 @@
 
 //       $('#iAvailable').selected({
 //           url: '../api/indicators.json',
-//           target: $('#iSelected'),
+//           target: $('#indSelected'),
 //           search: $('#iAvailableSearch'),
 //           iterator: 'indicators'
 //       });
@@ -30,11 +30,11 @@
        jQuery("#iAvailable").dhisAjaxSelect({
            source: "../api/indicators.json?paging=false&fields=displayName,id,name",
            iterator: 'indicators',
-           connectedTo: 'iSelected',
-           handler: function( item ) {
+           connectedTo: 'indSelected',
+           handler: function( items ) {
                var option = jQuery("<option />");
-               option.text(item.name);
-               option.attr("value", item.id);
+               option.text(items.name);
+               option.attr("value", items.id);
 
                return option;
            }
@@ -98,13 +98,13 @@
 
           <td style="text-align:center">
               <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'iAvailable' );"/><br/>
-              <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'iSelected' );"/><br/>
+              <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'indSelected' );"/><br/>
               <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'iAvailable' );"/><br/>
-              <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'iSelected' );"/>
+              <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'indSelected' );"/>
           </td>
 
           <td>
-              <select id="iSelected" name="iSelected" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;"></select>
+              <select id="indSelected" name="indSelected" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;"></select>
           </td>
       </tr>
 

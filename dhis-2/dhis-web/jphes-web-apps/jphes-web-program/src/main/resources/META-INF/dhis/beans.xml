@@ -13,4 +13,10 @@
     <property name="dataElementGroupService" ref="org.hisp.dhis.dataelement.DataElementGroupService"/>
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.program.action.UpdateProgramAction" class="org.hisp.dhis.jphes.program.action.UpdateProgramAction" scope="prototype">
+    <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService"/>
+    <property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService"/>
+    <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService"/>
+  </bean>
+
 </beans>

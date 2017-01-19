@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
   });
 });
 
-function showUpdateRoleForm( context ) {
+function showUpdateProgramForm( context ) {
   location.href = 'showUpdateProgramForm.action?id=' + context.id;
 }
 

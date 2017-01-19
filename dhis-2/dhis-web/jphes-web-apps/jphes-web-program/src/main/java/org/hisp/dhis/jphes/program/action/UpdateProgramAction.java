@@ -61,16 +61,16 @@ public class UpdateProgramAction implements Action {
         this.displayName = displayName;
     }
 
-    private List<String> deSelected = new ArrayList<>();
+    private List<String> deSelectedList = new ArrayList<>();
 
-    public void setDeSelected(List<String> deSelected) {
-        this.deSelected = deSelected;
+    public void setDeSelectedList(List<String> deSelectedList) {
+        this.deSelectedList = deSelectedList;
     }
 
-    private List<String> iSelected = new ArrayList<>();
+    private List<String> indSelectedList = new ArrayList<>();
 
-    public void setiSelected(List<String> iSelected) {
-        this.iSelected = iSelected;
+    public void setIndSelectedList(List<String> indSelectedList) {
+        this.indSelectedList = indSelectedList;
     }
 
     /**
@@ -96,12 +96,12 @@ public class UpdateProgramAction implements Action {
         Set<ProgramElement> programElements = new HashSet<>();
         Set<Indicator> indicators = new HashSet<>();
 
-        for (String id:deSelected){
+        for (String id:deSelectedList){
             programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
         }
         program.setProgramElements(programElements);
 
-        for (String id:iSelected){
+        for (String id:indSelectedList){
             indicators.add(indicatorService.getIndicator(id));
         }
         program.setIndicators(indicators);

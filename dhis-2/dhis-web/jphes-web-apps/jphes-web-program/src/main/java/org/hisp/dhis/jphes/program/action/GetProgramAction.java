@@ -7,7 +7,9 @@ import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.jphes.program.ProgramService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ import java.util.List;
  */
 public class GetProgramAction implements Action {
 
+    @Autowired
     private ProgramService programService;
 
     public void setProgramService(ProgramService programService) {
@@ -27,6 +30,7 @@ public class GetProgramAction implements Action {
         this.dataElementService = dataElementService;
     }
 
+    @Autowired
     private IndicatorService indicatorService;
 
     public void setIndicatorService(IndicatorService indicatorService) {
@@ -51,16 +55,16 @@ public class GetProgramAction implements Action {
         return program;
     }
 
-    private List<DataElement> dataElements;
+    private List<DataElement> dataElementsList;
 
-    public List<DataElement> getDataElements() {
-        return dataElements;
+    public List<DataElement> getDataElementsList() {
+        return dataElementsList;
     }
 
-    private List<Indicator> indicators;
+    private List<Indicator> indicatorsList;
 
-    public List<Indicator> getIndicators() {
-        return indicators;
+    public List<Indicator> getIndicatorsList() {
+        return indicatorsList;
     }
 
     /**
@@ -75,8 +79,8 @@ public class GetProgramAction implements Action {
     @Override
     public String execute() throws Exception {
         program = programService.getProgram(id);
-        dataElements = (List<DataElement>) program.getDataElements();
-        indicators = (List<Indicator>) program.getIndicators();
+        dataElementsList = new ArrayList<>(program.getDataElements());
+        indicatorsList = new ArrayList<>(program.getIndicators());
 
         return SUCCESS;
     }
