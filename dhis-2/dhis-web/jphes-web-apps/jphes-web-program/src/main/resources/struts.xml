@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+  <include file="dhis-web-commons.xml" />
+
+  <package name="jphes-web-program" extends="dhis-web-commons" namespace="/jphes-web-program">
+
+    <!-- JPHES Web APP -->
+
+    <action name="index" class="NoAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/index.vm</param>
+      <param name="menu">/jphes-web-program/menu.vm</param>
+    </action>
+
+    <action name="allProgram" class="org.hisp.dhis.jphes.program.action.GetProgramListAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/allProgram.vm</param>
+      <param name="menu">/jphes-web-program/menu.vm</param>
+      <param name="javascripts">javascript/program.js,javascript/filterTable.js</param>
+    </action>
+
+    <action name="showAddProgramForm" class="NoAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/addProgramForm.vm</param>
+    </action>
+
+    <action name="addProgram" class="org.hisp.dhis.jphes.program.action.AddProgramAction">
+      <result name="success" type="redirect">allProgram.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
+      <result name="error" type="redirect">showAddProgramForm.action</result>
+    </action>
+    <action name="updateProgram" class="org.hisp.dhis.jphes.program.action.UpdateProgramAction">
+      <result name="success" type="redirect">allProgram.action</result>
+      <result name="error" type="redirect">showUpdateProgramForm.action</result>
+    </action>
+
+    <action name="showUpdateProgramForm" class="org.hisp.dhis.jphes.program.action.GetProgramAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/updateProgramForm.vm</param>
+    </action>
+
+  </package>
+</struts>

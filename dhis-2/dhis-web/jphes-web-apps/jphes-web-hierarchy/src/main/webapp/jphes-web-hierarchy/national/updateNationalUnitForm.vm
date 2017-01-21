@@ -78,9 +78,9 @@
 
       <td>
         <select id="selectedProgramList" name="selectedProgramList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-            #foreach ( $selectedProgram in $programList )
-              <option value="$selectedProgram.uid">$encoder.htmlEncode( $selectedProgram.name )</option>
-            #end
+          #foreach ( $selectedProgram in $programList )
+            <option value="$selectedProgram.uid">$encoder.htmlEncode( $selectedProgram.name )</option>
+          #end
         </select>
       </td>
     </tr>

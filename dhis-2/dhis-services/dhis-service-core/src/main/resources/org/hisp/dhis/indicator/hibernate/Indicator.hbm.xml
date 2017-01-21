@@ -22,7 +22,7 @@
     <property name="description" type="text" />
 
     <property name="annualized" column="annualized" not-null="true" />
-    
+
     <property name="decimals" />
 
     <many-to-one name="indicatorType" class="org.hisp.dhis.indicator.IndicatorType" column="indicatortypeid"
@@ -52,7 +52,7 @@
 
     <many-to-one name="legendSet" class="org.hisp.dhis.legend.LegendSet" column="legendsetid"
       foreign-key="fk_indicator_legendset" />
-      
+
     <property name="aggregateExportCategoryOptionCombo" column="aggregateexportcategoryoptioncombo" />
 
     <property name="aggregateExportAttributeOptionCombo" column="aggregateexportattributeoptioncombo" />

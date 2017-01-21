@@ -149,7 +149,7 @@ public class Indicator
     {
         return decimals != null && decimals >= 0;
     }
-    
+
     public boolean hasZeroDecimals()
     {
         return decimals != null && decimals == 0;

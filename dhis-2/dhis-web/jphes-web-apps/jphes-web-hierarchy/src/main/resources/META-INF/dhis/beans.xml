@@ -19,7 +19,7 @@
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
     <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
-   </bean>
+  </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />

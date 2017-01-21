@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+        [<!ENTITY identifiableProperties SYSTEM "classpath://org/hisp/dhis/common/identifiableProperties.hbm">]
+        >
+        <hibernate-mapping>
+    <class name="org.hisp.dhis.jphes.program.Program" lazy="false" table="jphesprogram">
+
+    <cache usage="read-write" />
+
+    <id name="id" column="programid">
+        <generator class="native" />
+    </id>
+        <property name="uid" column="uid" unique="true" length="11"/>
+        <property name="code" column="code" not-null="false" unique="false" length="230"/>
+        <property name="created" type="timestamp"/>
+        <property name="lastUpdated" type="timestamp"/>
+        <property name="name" column="name" not-null="true" length="230"/>
+        <property name="displayName" column="displayname" not-null="false" length="230"/>
+
+        <set name="programElements" table="jphesprogramelement" cascade="all-delete-orphan">
+            <key column="programid" foreign-key="fk_datasetmembers_programid" />
+            <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
+        </set>
+
+        <set name="indicators" table="jphesprogramindicators" cascade="all-delete-orphan">
+            <cache usage="read-write"/>
+            <key column="programid" foreign-key="fk_programmembers_programid" />
+            <many-to-many class="org.hisp.dhis.indicator.Indicator" />
+        </set>
+
+
+    </class>
+</hibernate-mapping>

@@ -222,6 +222,13 @@
     <property name="cacheable" value="true" />
   </bean>
 
+<!--Added by fegati02-->
+  <bean id="org.hisp.dhis.jphes.program.ProgramElementStore" class="org.hisp.dhis.common.hibernate.HibernateIdentifiableObjectStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.program.ProgramElement" />
+    <property name="sessionFactory" ref="sessionFactory" />
+    <property name="cacheable" value="true" />
+  </bean>
+
   <bean id="org.hisp.dhis.dataset.DataSetStore" class="org.hisp.dhis.dataset.hibernate.HibernateDataSetStore">
     <property name="clazz" value="org.hisp.dhis.dataset.DataSet" />
     <property name="sessionFactory" ref="sessionFactory" />
@@ -1912,6 +1919,21 @@
     class="org.hisp.dhis.sms.command.code.SMSCodesDeletionHandler">
     <property name="jdbcTemplate" ref="jdbcTemplate" />
   </bean>
+
+  <bean id="org.hisp.dhis.jphes.program.ProgramService" class="org.hisp.dhis.jphes.program.DefaultProgramService">
+      <property name="programStore" ref="org.hisp.dhis.jphes.program.ProgramStore"/>
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.program.ProgramStore" class="org.hisp.dhis.jphes.program.hibernate.HibernateProgramStore">
+    <property name="clazz" value="org.hisp.dhis.jphes.program.Program"/>
+    <property name="sessionFactory" ref="sessionFactory"/>
+    <property name="cacheable" value="true"/>
+  </bean>
+
+  <bean id="org.hisp.dhis.dataelement.DataElementGroupService" class="org.hisp.dhis.dataelement.DefaultDataElementGroupService">
+    <property name="dataElementGroupStore" ref="org.hisp.dhis.dataelement.DataElementGroupStore"/>
+  </bean>
+
 
   <!-- AOP definitions -->
 

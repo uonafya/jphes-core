@@ -15,6 +15,7 @@
 
   <modules>
     <module>jphes-web-hierarchy</module>
+    <module>jphes-web-program</module>
   </modules>
   <properties>
     <rootDir>../../</rootDir>

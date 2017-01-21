@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+  <bean id="org.hisp.dhis.jphes.program.action.NoAction" class="org.hisp.dhis.jphes.program.action.NoAction" scope="prototype" />
+
+  <bean id="org.hisp.dhis.jphes.program.action.GetProgramListAction" class="org.hisp.dhis.jphes.program.action.GetProgramListAction" scope="prototype" >
+    <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService" />
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.program.action.AddProgramAction" class="org.hisp.dhis.jphes.program.action.AddProgramAction" scope="prototype" >
+    <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService" />
+    <property name="dataElementGroupService" ref="org.hisp.dhis.dataelement.DataElementGroupService"/>
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.program.action.UpdateProgramAction" class="org.hisp.dhis.jphes.program.action.UpdateProgramAction" scope="prototype">
+    <property name="dataElementService" ref="org.hisp.dhis.dataelement.DataElementService"/>
+    <property name="indicatorService" ref="org.hisp.dhis.indicator.IndicatorService"/>
+    <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService"/>
+  </bean>
+
+</beans>
