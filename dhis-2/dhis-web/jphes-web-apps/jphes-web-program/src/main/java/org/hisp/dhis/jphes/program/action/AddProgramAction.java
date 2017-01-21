@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.Action;
 import org.apache.commons.logging.Log;
 import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementGroup;
-import org.hisp.dhis.dataelement.DataElementGroupService;
 import org.hisp.dhis.dataelement.DataElementService;
 import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorGroup;
@@ -27,22 +26,6 @@ public class AddProgramAction implements Action
 
     private ProgramService programService;
 
-    private DataElementGroupService dataElementGroupService;
-
-    public void setDataElementGroupService(DataElementGroupService dataElementGroupService) {
-        this.dataElementGroupService = dataElementGroupService;
-    }
-
-//    public void setDataElementGroup(DataElementGroup dataElementGroup) {
-//        this.dataElementGroup = dataElementGroup;
-//    }
-
-//    private IndicatorGroup indicatorGroup;
-//
-//    public void setIndicatorGroup(IndicatorGroup indicatorGroup) {
-//        this.indicatorGroup = indicatorGroup;
-//    }
-
     public void setProgramService(ProgramService programService) {
         this.programService = programService;
     }
@@ -59,35 +42,36 @@ public class AddProgramAction implements Action
 
     private String name;
 
-
-    private String code;
-
-
-    private String displayName;
-
-    private List<String> deSelected = new ArrayList<>();
-
-    private List<String> indSelected = new ArrayList<>();
-
-    public void setDeSelected(List<String> deSelected) {
-        this.deSelected = deSelected;
-    }
-
-    public void setIndSelected(List<String> indSelected) {
-        this.indSelected = indSelected;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
+
+    private String code;
 
     public void setCode(String code) {
         this.code = code;
     }
 
+    private String displayName;
+
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
+
+
+    private List<String> deSelected = new ArrayList<>();
+
+    public void setDeSelected(List<String> deSelected) {
+        this.deSelected = deSelected;
+    }
+
+    private List<String> indSelected = new ArrayList<>();
+
+    public void setIndSelected(List<String> indSelected) {
+        this.indSelected = indSelected;
+    }
+
+
     // -----------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -136,8 +120,7 @@ public class AddProgramAction implements Action
         indicatorGroup.setMembers(indicators);
 
         programService.addProgram(program);
-        dataElementGroupService.addDataElementGroup(dataElementGroup);
-//        dataElementService.addDataElementGroup(dataElementGroup);
+        dataElementService.addDataElementGroup(dataElementGroup);
         indicatorService.addIndicatorGroup(indicatorGroup);
 
         return SUCCESS;
