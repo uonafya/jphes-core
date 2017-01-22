@@ -45,7 +45,7 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
     /**
      * All DataElements associated with this DataSet.
      */
-    private Set<ProgramElement> programElements = new HashSet<>();
+    private Set<DataElement> programElements = new HashSet<>();
 
     /**
      * Indicators associated with this data set. Indicators are used for view
@@ -88,79 +88,6 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
 //---------------------------------------------------------------------------------------------------------
 //    -----------------------------------------------------------------------------------------------------
 
-    public boolean addProgramElement( ProgramElement element )
-    {
-        element.getDataElement().getProgramElements().add( element );
-        return programElements.add( element );
-    }
-
-    /**
-     * Adds a program element using this program, the given data element and
-     * no category combo.
-     *
-     * @param dataElement the data element.
-     */
-//    public boolean addProgramElement( DataElement dataElement )
-//    {
-//        ProgramElement element = new ProgramElement( this, dataElement, null );
-//        dataElement.getProgramElements().add( element );
-//        return programElements.add( element );
-//    }
-
-    public ProgramElement addProgramElement( DataElement dataElement )
-    {
-        ProgramElement element = new ProgramElement( this, dataElement, null );
-        return  element;
-    }
-
-
-    /**
-     * Adds a program element using this program, the given data element and
-     * the given category combo.
-     *
-     * @param dataElement the data element.
-     * @param categoryCombo the category combination.
-     */
-    public boolean addProgramElement( DataElement dataElement, DataElementCategoryCombo categoryCombo )
-    {
-        ProgramElement element = new ProgramElement( this, dataElement, categoryCombo );
-        dataElement.getProgramElements().add( element );
-        return programElements.add( element );
-    }
-
-    public boolean removeProgramElement( ProgramElement element )
-    {
-        programElements.remove( element );
-        return element.getDataElement().getProgramElements().remove( element );
-    }
-
-    public void removeProgramElement( DataElement dataElement )
-    {
-        Iterator<ProgramElement> elements = programElements.iterator();
-
-        while ( elements.hasNext() )
-        {
-            ProgramElement element = elements.next();
-
-            ProgramElement other = new ProgramElement( this, dataElement );
-
-            if ( element.objectEquals( other ) )
-            {
-                elements.remove();
-                element.getDataElement().getProgramElements().remove( element );
-            }
-        }
-    }
-
-    public void removeAllProgramElements()
-    {
-        for ( ProgramElement element : programElements )
-        {
-            element.getDataElement().getProgramElements().remove( element );
-        }
-
-        programElements.clear();
-    }
 
 //    public void addIndicator( Indicator indicator )
 //    {
@@ -174,21 +101,16 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
 //        return indicator.getPrograms().remove( this );
 //    }
 
-    public Set<DataElement> getDataElements()
-    {
-        return ImmutableSet.copyOf( programElements.stream().map(e -> e.getDataElement() ).collect( Collectors.toSet() ) );
-    }
-
     @JsonProperty
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
     @JacksonXmlElementWrapper( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
     @JacksonXmlProperty( localName = "programElement", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<ProgramElement> getProgramElements()
+    public Set<DataElement> getProgramElements()
     {
         return programElements;
     }
 
-    public void setProgramElements( Set<ProgramElement> programElements )
+    public void setProgramElements( Set<DataElement> programElements )
     {
         this.programElements = programElements;
     }

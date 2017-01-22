@@ -56,9 +56,10 @@
       <one-to-many class="org.hisp.dhis.dataset.DataSetElement" />
     </set>
 
-    <set name="programElements" table="jphesprogramelement" inverse="true">
+    <set name="programs" table="jphesprogramelement" inverse="true">
+      <cache usage="read-write"/>
       <key column="dataelementid" foreign-key="fk_programmembers_dataelementid" not-null="true" />
-      <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
+      <many-to-many class="org.hisp.dhis.jphes.program.Program" column="programid"/>
     </set>
 
     <list name="aggregationLevels" table="dataelementaggregationlevels">

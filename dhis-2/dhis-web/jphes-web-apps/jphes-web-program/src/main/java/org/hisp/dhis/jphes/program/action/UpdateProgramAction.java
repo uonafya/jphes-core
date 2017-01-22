@@ -2,11 +2,11 @@ package org.hisp.dhis.jphes.program.action;
 
 import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang3.StringUtils;
+import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementService;
 import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
-import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.jphes.program.ProgramService;
 
 import java.util.ArrayList;
@@ -93,11 +93,11 @@ public class UpdateProgramAction implements Action {
         program.getProgramElements().clear();
         program.getIndicators().clear();
 
-        Set<ProgramElement> programElements = new HashSet<>();
+        Set<DataElement> programElements = new HashSet<>();
         Set<Indicator> indicators = new HashSet<>();
 
         for (String id:deSelectedList){
-            programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
+            programElements.add(dataElementService.getDataElement(id));
         }
         program.setProgramElements(programElements);
 

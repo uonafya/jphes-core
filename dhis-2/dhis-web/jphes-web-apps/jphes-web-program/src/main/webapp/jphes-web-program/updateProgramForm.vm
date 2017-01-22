@@ -14,8 +14,8 @@
 //            id : getFieldValue( 'id' )
 //        } );
 
-        sortList( 'deAvailable', 'ASC' );
-        sortList( 'iAvailable', 'ASC' );
+//        sortList( 'deAvailable', 'ASC' );
+//        sortList( 'iAvailable', 'ASC' );
 
         jQuery("#deAvailable").dhisAjaxSelect({
             source: "../api/dataElements.json?paging=false&fields=displayName,id,name",

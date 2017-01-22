@@ -1,7 +1,6 @@
 package org.hisp.dhis.jphes.program.action;
 
 import com.opensymphony.xwork2.Action;
-import org.apache.commons.logging.Log;
 import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementGroup;
 import org.hisp.dhis.dataelement.DataElementGroupService;
@@ -10,7 +9,6 @@ import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorGroup;
 import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
-import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.jphes.program.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -105,13 +103,13 @@ public class AddProgramAction implements Action
         program.setStartDate(new Date());
         program.setEndDate(null);
 
-        Set<ProgramElement> programElements = new HashSet<>();
+        Set<DataElement> programElements = new HashSet<>();
         Set<DataElement> dataElementGroupMembers = new HashSet<>();
         Set<Indicator> indicators = new HashSet<>();
 
       if (deSelected.size() > 0){
           for (String id:deSelected){
-              programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
+              programElements.add(dataElementService.getDataElement(id));
               dataElementGroupMembers.add(dataElementService.getDataElement(id));
           }
           program.setProgramElements(programElements);
@@ -135,10 +133,9 @@ public class AddProgramAction implements Action
         indicatorGroup.setCode(code);
         indicatorGroup.setMembers(indicators);
 
-        programService.addProgram(program);
-        dataElementGroupService.addDataElementGroup(dataElementGroup);
-//        dataElementService.addDataElementGroup(dataElementGroup);
-        indicatorService.addIndicatorGroup(indicatorGroup);
+       programService.addProgram(program);
+       dataElementService.addDataElementGroup(dataElementGroup);
+       indicatorService.addIndicatorGroup(indicatorGroup);
 
         return SUCCESS;
     }

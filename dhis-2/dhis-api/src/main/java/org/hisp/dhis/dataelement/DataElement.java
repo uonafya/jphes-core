@@ -35,21 +35,13 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import com.lowagie.text.html.HtmlWriter;
-import org.hisp.dhis.common.BaseDimensionalItemObject;
-import org.hisp.dhis.common.BaseIdentifiableObject;
-import org.hisp.dhis.common.DimensionItemType;
-import org.hisp.dhis.common.DxfNamespaces;
-import org.hisp.dhis.common.IdentifiableObject;
-import org.hisp.dhis.common.MergeMode;
-import org.hisp.dhis.common.ValueType;
+import org.hisp.dhis.common.*;
 import org.hisp.dhis.dataset.DataSet;
 import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.dataset.comparator.DataSetApprovalFrequencyComparator;
 import org.hisp.dhis.dataset.comparator.DataSetFrequencyComparator;
 import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.jphes.program.Program;
-import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.option.OptionSet;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodType;
@@ -61,12 +53,7 @@ import org.hisp.dhis.translation.TranslationProperty;
 import org.hisp.dhis.util.ObjectUtils;
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hisp.dhis.dataset.DataSet.NO_EXPIRY;
@@ -143,7 +130,7 @@ public class DataElement
     /**
      * The programs which this data element is a member of.
      */
-    private Set<ProgramElement> programElements = new HashSet<>();
+    private Set<Program> programs = new HashSet<>();
 
     /**
      * The lower organisation unit levels for aggregation.
@@ -307,13 +294,6 @@ public class DataElement
         return !list.isEmpty() ? list.get( 0 ) : null;
     }
 
-    public Program getProgram()
-    {
-        List<Program> list = new ArrayList<>( getPrograms() );
-//        Collections.sort( list, ProgramFrequencyComparator.INSTANCE );
-        return !list.isEmpty() ? list.get( 0 ) : null;
-    }
-
     /**
      * Returns the data set of this data element. If this data element has
      * multiple data sets, the data set with approval enabled, then the highest
@@ -334,11 +314,6 @@ public class DataElement
     public Set<DataSet> getDataSets()
     {
         return ImmutableSet.copyOf( dataSetElements.stream().map( e -> e.getDataSet() ).collect( Collectors.toSet() ) );
-    }
-
-    public Set<Program> getPrograms()
-    {
-        return ImmutableSet.copyOf( programElements.stream().map( e -> e.getProgram() ).collect( Collectors.toSet() ) );
     }
 
     /**
@@ -785,13 +760,13 @@ public class DataElement
 
     @JsonProperty
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
-    @JacksonXmlElementWrapper( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
-    @JacksonXmlProperty( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<ProgramElement> getProgramElements() {
-        return programElements;
+    @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<Program> getPrograms() {
+        return programs;
     }
 
-    public void setProgramElements(Set<ProgramElement> programElements) {
-        this.programElements = programElements;
+    public void setPrograms(Set<Program> programs) {
+        this.programs = programs;
     }
 }

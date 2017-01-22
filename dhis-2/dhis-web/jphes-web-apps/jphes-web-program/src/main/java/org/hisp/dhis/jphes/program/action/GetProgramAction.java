@@ -79,7 +79,7 @@ public class GetProgramAction implements Action {
     @Override
     public String execute() throws Exception {
         program = programService.getProgram(id);
-        dataElementsList = new ArrayList<>(program.getDataElements());
+        dataElementsList = new ArrayList<>(program.getProgramElements());
         indicatorsList = new ArrayList<>(program.getIndicators());
 
         return SUCCESS;
