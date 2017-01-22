@@ -10,7 +10,7 @@
 
     <!-- JPHES Web APP -->
 
-    <action name="index" class="NoAction">
+    <action name="index" class="org.hisp.dhis.jphes.program.action.NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-program/index.vm</param>
       <param name="menu">/jphes-web-program/menu.vm</param>
