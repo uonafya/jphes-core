@@ -5,7 +5,7 @@
         [<!ENTITY identifiableProperties SYSTEM "classpath://org/hisp/dhis/common/identifiableProperties.hbm">]
         >
         <hibernate-mapping>
-    <class name="org.hisp.dhis.jphes.program.Program" lazy="false" table="jphesprogram">
+    <class name="org.hisp.dhis.jphes.program.Program" lazy="false" table="jphes_program">
         <cache usage="read-write" />
 
         <id name="id" column="programid">

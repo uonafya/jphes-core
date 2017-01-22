@@ -1637,6 +1637,7 @@
         <value>jphes_donorunit</value>
         <value>jphes_agencyunit</value>
         <value>jphes_mechanismunit</value>
+        <value>jphes_program</value>
       </list>
     </property>
   </bean>
