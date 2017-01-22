@@ -9,7 +9,6 @@ import org.hisp.dhis.indicator.Indicator;
 import org.hisp.dhis.indicator.IndicatorGroup;
 import org.hisp.dhis.indicator.IndicatorService;
 import org.hisp.dhis.jphes.program.Program;
-import org.hisp.dhis.jphes.program.ProgramElement;
 import org.hisp.dhis.jphes.program.ProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +25,8 @@ public class AddProgramAction implements Action
 
     private ProgramService programService;
 
-    public void setProgramService(ProgramService programService) {
+    public void setProgramService( ProgramService programService )
+    {
         this.programService = programService;
     }
 
@@ -42,32 +42,37 @@ public class AddProgramAction implements Action
 
     private String name;
 
-    public void setName(String name) {
+    public void setName( String name )
+    {
         this.name = name;
     }
 
     private String code;
 
-    public void setCode(String code) {
+    public void setCode( String code )
+    {
         this.code = code;
     }
 
     private String displayName;
 
-    public void setDisplayName(String displayName) {
+    public void setDisplayName( String displayName )
+    {
         this.displayName = displayName;
     }
 
 
     private List<String> deSelected = new ArrayList<>();
 
-    public void setDeSelected(List<String> deSelected) {
+    public void setDeSelected( List<String> deSelected )
+    {
         this.deSelected = deSelected;
     }
 
     private List<String> indSelected = new ArrayList<>();
 
-    public void setIndSelected(List<String> indSelected) {
+    public void setIndSelected( List<String> indSelected )
+    {
         this.indSelected = indSelected;
     }
 
@@ -83,45 +88,50 @@ public class AddProgramAction implements Action
         DataElementGroup dataElementGroup = new DataElementGroup();
         IndicatorGroup indicatorGroup = new IndicatorGroup();
 
-        program.setDisplayName(displayName);
-        program.setName(name);
-        program.setCode(code);
-        program.setStartDate(new Date());
-        program.setEndDate(null);
+        program.setDisplayName( displayName );
+        program.setName( name );
+        program.setCode( code );
+        program.setDescription( displayName );
+        program.setShortName( name );
 
-        Set<ProgramElement> programElements = new HashSet<>();
+
         Set<DataElement> dataElementGroupMembers = new HashSet<>();
-        Set<Indicator> indicators = new HashSet<>();
+        Set<Indicator> indicatorGroupMembers = new HashSet<>();
 
-      if (deSelected.size() > 0){
-          for (String id:deSelected){
-              programElements.add(program.addProgramElement(dataElementService.getDataElement(id)));
-              dataElementGroupMembers.add(dataElementService.getDataElement(id));
-          }
-          program.setProgramElements(programElements);
-      }
+        for ( String id : deSelected )
+        {
+            DataElement dataElement = dataElementService.getDataElement( id );
 
-      if (indSelected.size() > 0){
-          for (String id:indSelected){
-              indicators.add(indicatorService.getIndicator(id));
-          }
-          program.setIndicators(indicators);
-      }
+            dataElementGroupMembers.add( dataElement );
+            program.getDataElements().add( dataElement );
+        }
 
-        System.out.println(indicators.size());
+        for ( String id : indSelected )
+        {
 
-        dataElementGroup.setName(displayName);
-        dataElementGroup.setCode(code);
-        dataElementGroup.setShortName(name);
-        dataElementGroup.setMembers(dataElementGroupMembers);
+            Indicator indicator = indicatorService.getIndicator( id );
 
-        indicatorGroup.setName(name);
-        indicatorGroup.setCode(code);
-        indicatorGroup.setMembers(indicators);
+            indicatorGroupMembers.add( indicator );
+            program.getIndicators().add( indicator );
+        }
 
-        programService.addProgram(program);
-        dataElementService.addDataElementGroup(dataElementGroup);
-        indicatorService.addIndicatorGroup(indicatorGroup);
+
+        dataElementGroup.setName( displayName );
+        dataElementGroup.setCode( code );
+        dataElementGroup.setShortName( name );
+        dataElementGroup.setMembers( dataElementGroupMembers );
+
+        indicatorGroup.setName( name );
+        indicatorGroup.setCode( code );
+        indicatorGroup.setMembers( indicatorGroupMembers );
+
+        dataElementService.addDataElementGroup( dataElementGroup );
+        indicatorService.addIndicatorGroup( indicatorGroup );
+
+        program.setDataElementGroup( dataElementGroup );
+        program.setIndicatorGroup( indicatorGroup );
+
+        programService.addProgram( program );
 
         return SUCCESS;
     }
