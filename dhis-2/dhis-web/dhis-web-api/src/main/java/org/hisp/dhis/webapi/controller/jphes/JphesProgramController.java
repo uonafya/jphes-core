@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping( value = JphesProgramSchemaDescriptor.API_ENDPOINT )
-public class ProgramController extends AbstractCrudController<Program>
+public class JphesProgramController extends AbstractCrudController<Program>
 {
 }
