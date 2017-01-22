@@ -6,30 +6,40 @@
         >
         <hibernate-mapping>
     <class name="org.hisp.dhis.jphes.program.Program" lazy="false" table="jphesprogram">
+        <cache usage="read-write" />
 
-    <cache usage="read-write" />
+        <id name="id" column="programid">
+            <generator class="native" />
+        </id>
+        &identifiableProperties;
 
-    <id name="id" column="programid">
-        <generator class="native" />
-    </id>
-        <property name="uid" column="uid" unique="true" length="11"/>
-        <property name="code" column="code" not-null="false" unique="false" length="230"/>
-        <property name="created" type="timestamp"/>
-        <property name="lastUpdated" type="timestamp"/>
-        <property name="name" column="name" not-null="true" length="230"/>
+        <property name="name" column="name" not-null="true" unique="true" length="230" />
+
+        <property name="shortName" column="shortname" not-null="false" unique="true" length="50" />
+
+        <property name="enabled" column="enabled" type="boolean"  />
+
+        <property name="description" type="text" />
+
         <property name="displayName" column="displayname" not-null="false" length="230"/>
 
-        <set name="programElements" table="jphesprogramelement" cascade="all-delete-orphan">
-            <key column="programid" foreign-key="fk_datasetmembers_programid" />
-            <one-to-many class="org.hisp.dhis.jphes.program.ProgramElement" />
+        <many-to-one name="dataElementGroup" column="dataelementgroupid" class="org.hisp.dhis.dataelement.DataElementGroup"
+          foreign-key="fk_jphesprogramdataelementgroup" not-null="true" />
+
+        <many-to-one name="indicatorGroup" column="indicatorgroupid" class="org.hisp.dhis.indicator.IndicatorGroup"
+          foreign-key="fk_jphesprogramindicatorgroupid" not-null="true" />
+
+        <set name="dataElements" table="jphesprogramdataelements">
+            <cache usage="read-write" />
+            <key column="programid" />
+            <many-to-many class="org.hisp.dhis.dataelement.DataElement" column="dataelementid"/>
         </set>
 
-        <set name="indicators" table="jphesprogramindicators" cascade="all-delete-orphan">
-            <cache usage="read-write"/>
-            <key column="programid" foreign-key="fk_programmembers_programid" />
-            <many-to-many class="org.hisp.dhis.indicator.Indicator" />
+        <set name="indicators" table="jphesprogramindicators">
+            <cache usage="read-write" />
+            <key column="programid" />
+            <many-to-many class="org.hisp.dhis.indicator.Indicator" column="indicatorid"/>
         </set>
-
 
     </class>
 </hibernate-mapping>

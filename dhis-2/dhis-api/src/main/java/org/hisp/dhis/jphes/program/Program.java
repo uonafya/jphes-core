@@ -5,192 +5,125 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.google.common.collect.ImmutableSet;
-import org.hisp.dhis.common.BaseDimensionalItemObject;
 import org.hisp.dhis.common.BaseIdentifiableObject;
 import org.hisp.dhis.common.DxfNamespaces;
-import org.hisp.dhis.common.VersionedObject;
 import org.hisp.dhis.dataelement.DataElement;
-import org.hisp.dhis.dataelement.DataElementCategoryCombo;
+import org.hisp.dhis.dataelement.DataElementGroup;
 import org.hisp.dhis.indicator.Indicator;
-import org.hisp.dhis.schema.PropertyType;
-import org.hisp.dhis.schema.annotation.Property;
+import org.hisp.dhis.indicator.IndicatorGroup;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by xenial on 1/4/17.
  */
-@JacksonXmlRootElement( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
-public class Program extends BaseDimensionalItemObject implements VersionedObject {
+@JacksonXmlRootElement( localName = "jphesprogram", namespace = DxfNamespaces.DXF_2_0 )
+public class Program extends BaseIdentifiableObject {
 
-    /**
-     * formName is what will be displayed to the user
-     * useful where name is too long
-     */
-    private String displayName;
+    private String shortName;
 
-    public String getDisplayName() {
-        return displayName;
-    }
+    private String description;
 
-    public void setDisplayName(String formName) {
-        this.displayName = displayName;
-    }
+    private Set<DataElement> dataElements = new HashSet<>();
 
-    /**
-     * All DataElements associated with this DataSet.
-     */
-    private Set<ProgramElement> programElements = new HashSet<>();
+    private DataElementGroup dataElementGroup;
 
-    /**
-     * Indicators associated with this data set. Indicators are used for view
-     * and output purposes, such as calculated fields in forms and reports.
-     */
-    private Set<Indicator> indicators = new HashSet<>();
+    private Set<Indicator> indicators =new HashSet<>(  );
 
-    /**
-     * The start date.
-     */
+    private IndicatorGroup indicatorGroup;
+
     private Date startDate;
 
-    /**
-     * The end date.
-     */
     private Date endDate;
 
+    private Boolean enabled;
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
+    //Logic DataElement
 
-    public  Program(){
-
-    }
-
-    public Program(String name){
-        this.name = name;
-    }
-
-    public Program(String name, String displayName){
-        this(name);
-    }
-
-    public Program(String name, String displayName, String code){
-        this(name, displayName);
-        this.code = code;
-    }
-
-//---------------------------------------------------------------------------------------------------------
-//    -----------------------------------------------------------------------------------------------------
-
-    public boolean addProgramElement( ProgramElement element )
+    public void addDataElement( DataElement dataElement )
     {
-        element.getDataElement().getProgramElements().add( element );
-        return programElements.add( element );
+        dataElements.add( dataElement );
     }
 
-    /**
-     * Adds a program element using this program, the given data element and
-     * no category combo.
-     *
-     * @param dataElement the data element.
-     */
-//    public boolean addProgramElement( DataElement dataElement )
-//    {
-//        ProgramElement element = new ProgramElement( this, dataElement, null );
-//        dataElement.getProgramElements().add( element );
-//        return programElements.add( element );
-//    }
-
-    public ProgramElement addProgramElement( DataElement dataElement )
+    public boolean removeDataElement( DataElement dataElement )
     {
-        ProgramElement element = new ProgramElement( this, dataElement, null );
-        return  element;
+        return dataElements.remove( dataElement );
     }
 
-
-    /**
-     * Adds a program element using this program, the given data element and
-     * the given category combo.
-     *
-     * @param dataElement the data element.
-     * @param categoryCombo the category combination.
-     */
-    public boolean addProgramElement( DataElement dataElement, DataElementCategoryCombo categoryCombo )
+    public void removeAllDataElements()
     {
-        ProgramElement element = new ProgramElement( this, dataElement, categoryCombo );
-        dataElement.getProgramElements().add( element );
-        return programElements.add( element );
+        dataElements.clear();
     }
 
-    public boolean removeProgramElement( ProgramElement element )
+    //Logic Indicator
+
+    public void addIndicator( Indicator indicator )
     {
-        programElements.remove( element );
-        return element.getDataElement().getProgramElements().remove( element );
+        indicators.add( indicator );
     }
 
-    public void removeProgramElement( DataElement dataElement )
+    public boolean removeIndicator(Indicator indicator )
     {
-        Iterator<ProgramElement> elements = programElements.iterator();
-
-        while ( elements.hasNext() )
-        {
-            ProgramElement element = elements.next();
-
-            ProgramElement other = new ProgramElement( this, dataElement );
-
-            if ( element.objectEquals( other ) )
-            {
-                elements.remove();
-                element.getDataElement().getProgramElements().remove( element );
-            }
-        }
+        return indicators.remove( indicator );
+    }
+    public void removeAllIndicators()
+    {
+        indicators.clear();
     }
 
-    public void removeAllProgramElements()
-    {
-        for ( ProgramElement element : programElements )
-        {
-            element.getDataElement().getProgramElements().remove( element );
-        }
+    // Getters and Setters
 
-        programElements.clear();
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public String getShortName()
+    {
+        return shortName;
     }
 
-//    public void addIndicator( Indicator indicator )
-//    {
-//        indicators.add( indicator );
-//        indicator.getPrograms().add( this );
-//    }
-//
-//    public boolean removeIndicator( Indicator indicator )
-//    {
-//        indicators.remove( indicator );
-//        return indicator.getPrograms().remove( this );
-//    }
-
-    public Set<DataElement> getDataElements()
+    public void setShortName( String shortName )
     {
-        return ImmutableSet.copyOf( programElements.stream().map(e -> e.getDataElement() ).collect( Collectors.toSet() ) );
+        this.shortName = shortName;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription( String description )
+    {
+        this.description = description;
     }
 
     @JsonProperty
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
-    @JacksonXmlElementWrapper( localName = "programElements", namespace = DxfNamespaces.DXF_2_0 )
-    @JacksonXmlProperty( localName = "programElement", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<ProgramElement> getProgramElements()
+    @JacksonXmlElementWrapper( localName = "dataElements", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "dataElement", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<DataElement> getDataElements()
     {
-        return programElements;
+        return dataElements;
     }
 
-    public void setProgramElements( Set<ProgramElement> programElements )
+    public void setDataElements( Set<DataElement> dataElements )
     {
-        this.programElements = programElements;
+        this.dataElements = dataElements;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public DataElementGroup getDataElementGroup()
+    {
+        return dataElementGroup;
+    }
+
+    public void setDataElementGroup( DataElementGroup dataElementGroup )
+    {
+        this.dataElementGroup = dataElementGroup;
     }
 
     @JsonProperty
@@ -207,9 +140,19 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
         this.indicators = indicators;
     }
 
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public IndicatorGroup getIndicatorGroup()
+    {
+        return indicatorGroup;
+    }
+
+    public void setIndicatorGroup( IndicatorGroup indicatorGroup )
+    {
+        this.indicatorGroup = indicatorGroup;
+    }
 
     @JsonProperty
-    @Property( value = PropertyType.DATE, required = Property.Value.FALSE )
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
     public Date getStartDate()
     {
@@ -222,7 +165,6 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
     }
 
     @JsonProperty
-    @Property( value = PropertyType.DATE, required = Property.Value.FALSE )
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
     public Date getEndDate()
     {
@@ -234,29 +176,15 @@ public class Program extends BaseDimensionalItemObject implements VersionedObjec
         this.endDate = endDate;
     }
 
-    /**
-     * Returns the current version.
-     */
-    @Override
-    public int getVersion() {
-        return 0;
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public Boolean getEnabled()
+    {
+        return enabled;
     }
 
-    /**
-     * Sets the version.
-     *
-     * @param version
-     */
-    @Override
-    public void setVersion(int version) {
-
-    }
-
-    /**
-     * Increases the version and returns its new version.
-     */
-    @Override
-    public int increaseVersion() {
-        return 0;
+    public void setEnabled( Boolean enabled )
+    {
+        this.enabled = enabled;
     }
 }
