@@ -4,7 +4,6 @@
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
 
-
   <!--National Unit Actions beans -->
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
@@ -118,9 +117,5 @@
   <bean id="org.hisp.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" scope="prototype">
 
   </bean>
-
-
-
-
 
 </beans>
