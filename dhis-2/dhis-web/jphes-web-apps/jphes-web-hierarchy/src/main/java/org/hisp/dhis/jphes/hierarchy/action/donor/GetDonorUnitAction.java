@@ -6,7 +6,7 @@ import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
-import org.hisp.dhis.program.Program;
+import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 

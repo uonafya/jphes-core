@@ -2,24 +2,24 @@ package org.hisp.dhis.jphes.hierarchy.action.national;
 
 import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
-import org.hisp.dhis.common.DataDimensionType;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
-import org.hisp.dhis.program.Program;
-import org.hisp.dhis.program.ProgramService;
+import org.hisp.dhis.jphes.program.Program;
+import org.hisp.dhis.jphes.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by afya on 05/01/17.
+ * Created by bangadennis on 05/01/17.
  */
 public class UpdateNationalUnitAction implements Action
 {
@@ -54,11 +54,8 @@ public class UpdateNationalUnitAction implements Action
         this.categoryService = categoryService;
     }
 
+    @Autowired
     private ProgramService programService;
-
-    public void setProgramService(ProgramService programService){
-        this.programService = programService;
-    }
 
     // -------------------------------------------------------------------------
     // Input

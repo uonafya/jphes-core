@@ -10,17 +10,10 @@
 
     <!-- JPHES Web APP -->
 
-    <action name="index" class="NoAction">
+    <action name="index" class="org.hisp.dhis.jphes.hierarchy.action.NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-hierarchy/index.vm</param>
       <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-    </action>
-
-    <action name="allPartner" class="GetProgramListAction">
-      <result name="success" type="velocity">/main.vm</result>
-      <param name="page">/jphes-web-hierarchy/allPartner.vm</param>
-      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
-      <param name="javascripts">javascript/partner.js,javascript/filterTable.js</param>
     </action>
 
     <!--National Unit Actions-->
