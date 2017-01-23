@@ -2,7 +2,7 @@
 
 <ul class="introList">
     #introListImgItem( "allNationalUnit.action" "jphes_national" "jphes_level" )
-    #introListImgItem( "allPartner.action" "jphes_donor" "jphes_level" )
-    #introListImgItem( "allPartner.action" "jphes_agency" "jphes_level" )
-    #introListImgItem( "allPartner.action" "jphes_mechanism" "jphes_level" )
+    #introListImgItem( "allDonorUnit.action" "jphes_donor" "jphes_level" )
+    #introListImgItem( "allAgencyUnit.action" "jphes_agency" "jphes_level" )
+    #introListImgItem( "allMechanismUnit.action" "jphes_mechanism" "jphes_level" )
 </ul>

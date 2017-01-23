@@ -1,0 +1,16 @@
+{ "nationalUnit":
+{
+"id": "$!{nationalUnit.id}",
+"name": "$!encoder.jsonEncode( ${nationalUnit.name} )",
+"code": "$!encoder.jsonEncode( ${nationalUnit.code} )",
+"uid": "$!{nationalUnit.uid}",
+"programs": "$!{nationalUnit.programs.size()}",
+"donors": "$!{nationalUnit.donorUnits.size()}",
+"usergroup": "$!{nationalUnit.userGroup.name}",
+"donorgroupset": "$!{nationalUnit.categoryOptionGroupSet.name}",
+"agencygroupset": "$!{nationalUnit.categoryOptionGroupSetAgency.name}",
+"mechanismcombo": "$!{nationalUnit.mechanismCombo.name}",
+"mechanismcategory": "$!{nationalUnit.mechanismCategory.name}",
+"created": "$!format.formatDate( ${nationalUnit.created} )"
+}
+}

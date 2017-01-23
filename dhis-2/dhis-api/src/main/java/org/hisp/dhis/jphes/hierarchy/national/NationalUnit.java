@@ -10,7 +10,10 @@ import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.common.IdentifiableObject;
 import org.hisp.dhis.common.MergeMode;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
+import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryOption;
+import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.user.UserGroup;
 
@@ -30,9 +33,20 @@ public class NationalUnit extends BaseIdentifiableObject
 
     private UserGroup userGroup;
 
+    private DataElementCategory mechanismCategory;
+
+    //Mechanism CategoryCombo -Holds the mechanismCategory
+    private DataElementCategoryCombo mechanismCombo;
+
+    //Donor CategoryOptionGroupSet
+    private CategoryOptionGroupSet categoryOptionGroupSetAgency;
+
+    //Donor CategoryOptionGroupSet
     private CategoryOptionGroupSet categoryOptionGroupSet;
 
     private Set<Program> programs = new HashSet<>();
+
+    private Set<DonorUnit> donorUnits = new HashSet<>();
 
     private Boolean enabled;
 
@@ -98,6 +112,42 @@ public class NationalUnit extends BaseIdentifiableObject
 
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public DataElementCategory getMechanismCategory()
+    {
+        return mechanismCategory;
+    }
+
+    public void setMechanismCategory( DataElementCategory mechanismCategory )
+    {
+        this.mechanismCategory = mechanismCategory;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public DataElementCategoryCombo getMechanismCombo()
+    {
+        return mechanismCombo;
+    }
+
+    public void setMechanismCombo( DataElementCategoryCombo mechanismCombo )
+    {
+        this.mechanismCombo = mechanismCombo;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
+    public CategoryOptionGroupSet getCategoryOptionGroupSetAgency()
+    {
+        return categoryOptionGroupSetAgency;
+    }
+
+    public void setCategoryOptionGroupSetAgency( CategoryOptionGroupSet categoryOptionGroupSetAgency )
+    {
+        this.categoryOptionGroupSetAgency = categoryOptionGroupSetAgency;
+    }
+
+    @JsonProperty
+    @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
     public CategoryOptionGroupSet getCategoryOptionGroupSet()
     {
         return categoryOptionGroupSet;
@@ -120,6 +170,20 @@ public class NationalUnit extends BaseIdentifiableObject
     public void setPrograms( Set<Program> programs )
     {
         this.programs = programs;
+    }
+
+    @JsonProperty
+    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
+    @JacksonXmlElementWrapper( localName = "donorUnits", namespace = DxfNamespaces.DXF_2_0 )
+    @JacksonXmlProperty( localName = "donorUnit", namespace = DxfNamespaces.DXF_2_0 )
+    public Set<DonorUnit> getDonorUnits()
+    {
+        return donorUnits;
+    }
+
+    public void setDonorUnits( Set<DonorUnit> donorUnits )
+    {
+        this.donorUnits = donorUnits;
     }
 
 

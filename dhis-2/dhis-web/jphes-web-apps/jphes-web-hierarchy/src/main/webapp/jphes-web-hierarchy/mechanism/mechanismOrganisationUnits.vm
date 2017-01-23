@@ -1,0 +1,50 @@
+
+<script type="text/javascript" src="res/javascript/mechanism/allMechanismUnit.js"></script>
+
+<h3>$i18n.getString( 'jphes_mechanism_orgunits' ) ${mechanismUnit.name} #openHelp( "jphes_hierarchy" )</h3>
+
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+        <tr>
+          <td>#filterDiv( "allMechanismUnit" )</td>
+          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="window.location.href='allMechanismUnit.action'"/></td>
+        </tr>
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_shortname")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_hierarchy_level")</th>
+          <th>$i18n.getString( "jphes_created")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $orgUnit in $organisationUnits )
+            <tr id="tr${orgUnit.id}" data-id="$!orgUnit.id" data-uid="$!orgUnit.uid" data-type="OrganisationUnit" data-name="$encoder.htmlEncode( $!orgUnit.name )"
+                data-can-manage="$security.canManage( $orgUnit )"
+                data-can-update="$security.canUpdate( $orgUnit )"
+                data-can-delete="$security.canDelete( $orgUnit )">
+              <td>$!encoder.htmlEncode( $orgUnit.name )</td>
+              <td>$!encoder.htmlEncode( $orgUnit.shortName )</td>
+              <td>$!encoder.htmlEncode( $orgUnit.code )</td>
+              <td>$!encoder.htmlEncode( $orgUnit.hierarchyLevel )</td>
+              <td>$!format.formatDate( $orgUnit.created )</td>
+              <td>$!format.formatDate( $orgUnit.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+  </tr>
+</table>

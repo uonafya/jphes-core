@@ -13,7 +13,7 @@ import org.hisp.dhis.jphes.hierarchy.national.NationalUnitStore;
 import java.util.List;
 
 /**
- * Created by afya on 05/01/17.
+ * @author bangadennis on 05/01/17.
  */
 public class HibernateNationalUnitStore extends HibernateIdentifiableObjectStore<NationalUnit>
     implements NationalUnitStore

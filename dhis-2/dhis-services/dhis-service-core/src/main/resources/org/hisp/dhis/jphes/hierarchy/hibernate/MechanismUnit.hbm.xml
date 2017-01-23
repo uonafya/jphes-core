@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+  [<!ENTITY identifiableProperties SYSTEM "classpath://org/hisp/dhis/common/identifiableProperties.hbm">]
+  >
+
+<hibernate-mapping>
+  <class name="org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit" table="jphes_mechanismunit">
+
+    <cache usage="read-write" />
+
+    <id name="id" column="mechanismunitid">
+      <generator class="native" />
+    </id>
+    &identifiableProperties;
+
+    <property name="name" column="name" not-null="true" unique="true" length="230" />
+
+    <property name="shortName" column="shortname" not-null="false" unique="true" length="50" />
+
+    <property name="partner" column="partner" not-null="true" length="230" />
+
+    <property name="enabled" column="enabled" type="boolean"  />
+
+    <property name="description" type="text" />
+
+    <many-to-one name="agencyUnit" column="agencyunitid" class="org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit"
+      foreign-key="fk_mechanismunitagencyid" not-null="true" />
+
+    <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"
+      foreign-key="fk_mechanismunitusergroupid" not-null="true" />
+
+    <many-to-one name="categoryOption" column="categoryoptionid" class="org.hisp.dhis.dataelement.DataElementCategoryOption"
+      foreign-key="fk_mechanismunitcategoryoptionid" not-null="true" />
+
+    <set name="programs" table="jphes_mechanismunitprograms">
+      <cache usage="read-write" />
+      <key column="mechanismunitid" foreign-key="fk_mechanismunitprograms_mechanismunitid" />
+      <many-to-many class="org.hisp.dhis.program.Program" column="programid"
+        foreign-key="fk_mechanismunitprograms_programid" />
+    </set>
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_mechanismunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="mechanismunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="mechanismunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
+  </class>
+
+</hibernate-mapping>

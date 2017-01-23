@@ -145,6 +145,9 @@ public class DefaultSchemaService
         add( new OptionGroupSchemaDescriptor() ).
         add( new OptionGroupSetSchemaDescriptor()).
         add( new NationalUnitSchemaDescriptor()).
+        add( new DonorUnitSchemaDescriptor()).
+        add( new AgencyUnitSchemaDescriptor()).
+        add( new MechanismUnitSchemaDescriptor()).
         build();
 
     private Map<Class<?>, Schema> classSchemaMap = new HashMap<>();

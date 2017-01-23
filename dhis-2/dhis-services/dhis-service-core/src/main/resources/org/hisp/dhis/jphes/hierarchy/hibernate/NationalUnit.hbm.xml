@@ -6,7 +6,9 @@
   >
 
 <hibernate-mapping>
-  <class name="org.hisp.dhis.jphes.hierarchy.national.NationalUnit" table="nationalunit">
+  <class name="org.hisp.dhis.jphes.hierarchy.national.NationalUnit" table="jphes_nationalunit">
+
+    <cache usage="read-write" />
 
     <id name="id" column="nationalunitid">
       <generator class="native" />
@@ -21,17 +23,48 @@
 
     <property name="description" type="text" />
 
+    <many-to-one name="mechanismCategory" column="categoryid" class="org.hisp.dhis.dataelement.DataElementCategory"
+      foreign-key="fk_nationalunitcategoryid" not-null="true" />
+
+    <many-to-one name="mechanismCombo" column="categorycomboid" class="org.hisp.dhis.dataelement.DataElementCategoryCombo"
+      foreign-key="fk_nationalunitcategorycomboid" not-null="true" />
+
     <many-to-one name="userGroup" column="usergroupid" class="org.hisp.dhis.user.UserGroup"
       foreign-key="fk_nationalunitusergroupid" not-null="true" />
 
-    <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
-      foreign-key="fk_nationalunitcategoryoptiongroupsetid" not-null="true" />
+    <many-to-one name="categoryOptionGroupSetAgency" column="categoryoptiongroupsetagencyid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
+      foreign-key="fk_donorunitcategoryoptiongroupsetagencyid" not-null="true" />
 
-    <set name="programs" table="nationalunitprograms">
+    <many-to-one name="categoryOptionGroupSet" column="categoryoptiongroupsetdonorid" class="org.hisp.dhis.dataelement.CategoryOptionGroupSet"
+      foreign-key="fk_nationalunitcategoryoptiongroupsetdonorid" not-null="true" />
+
+    <set name="donorUnits" table="jphes_nationalunitdonorunits">
+      <cache usage="read-write" />
+      <key column="nationalunitid" foreign-key="fk_nationalunitdonorunits_nationalunitid" />
+      <many-to-many class="org.hisp.dhis.jphes.hierarchy.donor.DonorUnit" column="donorunitid"
+        foreign-key="fk_nationalunitdonorunits_donorunitid" />
+    </set>
+
+    <set name="programs" table="jphes_nationalunitprograms">
+      <cache usage="read-write" />
       <key column="nationalunitid" foreign-key="fk_nationalunitprograms_nationalunitid" />
       <many-to-many class="org.hisp.dhis.program.Program" column="programid"
         foreign-key="fk_nationalunitprograms_programid" />
     </set>
+    <!-- Access properties -->
+
+    <many-to-one name="user" class="org.hisp.dhis.user.User"
+      column="userid" foreign-key="fk_nationalunit_userid" />
+
+    <property name="publicAccess" length="8" />
+
+    <set name="userGroupAccesses" table="nationalunitusergroupaccesses">
+      <cache usage="read-write" />
+      <key column="nationalunitid" />
+      <many-to-many class="org.hisp.dhis.user.UserGroupAccess"
+        column="usergroupaccessid" unique="true" />
+    </set>
+
   </class>
 
 </hibernate-mapping>

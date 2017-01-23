@@ -4,19 +4,25 @@ import com.opensymphony.xwork2.Action;
 import org.apache.commons.lang.StringUtils;
 import org.hisp.dhis.common.DataDimensionType;
 import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
+import org.hisp.dhis.dataelement.DataElementCategory;
+import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.program.Program;
 import org.hisp.dhis.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
+import org.hisp.dhis.user.UserGroupAccess;
+import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by afya on 05/01/17.
@@ -32,13 +38,6 @@ public class AddNationalUnitAction implements Action
     public void setNationalUnitService(NationalUnitService nationalUnitService)
     {
         this.nationalUnitService =nationalUnitService;
-    }
-
-    private UserService userService;
-
-    public void setUserService( UserService userService )
-    {
-        this.userService = userService;
     }
 
     private UserGroupService userGroupService;
@@ -61,6 +60,9 @@ public class AddNationalUnitAction implements Action
 
         this.programService = programService;
     }
+
+    @Autowired
+    private UserGroupAccessService userGroupAccessService;
 
 
     // -------------------------------------------------------------------------
@@ -94,7 +96,8 @@ public class AddNationalUnitAction implements Action
         this.selectedProgramList = selectedProgramList;
     }
 
-
+    private static final String NOPUBLICACCESS = "--------";
+    private static final String READWRITEACCESS = "rw------";
     // -------------------------------------------------------------------------
     // Implementation
     // -------------------------------------------------------------------------
@@ -104,7 +107,7 @@ public class AddNationalUnitAction implements Action
     {
 
 
-        if(userGroupService.getUserGroupByName( name ).size() == 0 )
+        if(userGroupService.getUserGroupByName( name ).size() == 0 && selectedProgramList.size()>0 )
         {
             NationalUnit nationalUnit = new NationalUnit();
 
@@ -114,15 +117,6 @@ public class AddNationalUnitAction implements Action
             nationalUnit.setEnabled( true );
             nationalUnit.setShortName( StringUtils.trimToNull( shortName ) );
 
-            // Add programList
-
-            for ( String id : selectedProgramList )
-            {
-                Program program = programService.getProgram( id );
-                nationalUnit.getPrograms().add( program );
-
-            }
-
             // User group
             UserGroup userGroup = new UserGroup();
 
@@ -131,22 +125,85 @@ public class AddNationalUnitAction implements Action
             //Save UserGroup
             userGroupService.addUserGroup( userGroup );
 
-            //CategoryOptionGroupSet
+            //CategoryOptionGroupSet Donor
 
-            CategoryOptionGroupSet categoryOptionGroupSet = new CategoryOptionGroupSet( );
-            categoryOptionGroupSet.setName( StringUtils.trimToNull( name ) );
-            categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
-            categoryOptionGroupSet.setDataDimensionType( DataDimensionType.ATTRIBUTE );
-            categoryOptionGroupSet.setDataDimension( true );
+            CategoryOptionGroupSet categoryOptionGroupSetDonor = new CategoryOptionGroupSet( );
+            categoryOptionGroupSetDonor.setName(  "A. Donor Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
+            categoryOptionGroupSetDonor.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSetDonor.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryOptionGroupSetDonor.setDataDimension( true );
 
-            //save categoryOptionGroupSet
-            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSet );
+            //save categoryOptionGroupSetDonor
+            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSetDonor );
 
+            //CategoryOptionGroupSet Agency
+
+            CategoryOptionGroupSet categoryOptionGroupSetAgency = new CategoryOptionGroupSet( );
+            categoryOptionGroupSetAgency.setName(  "B. Agency Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
+            categoryOptionGroupSetAgency.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSetAgency.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryOptionGroupSetAgency.setDataDimension( true );
+
+            //save categoryOptionGroupSetAgency
+            categoryService.saveCategoryOptionGroupSet( categoryOptionGroupSetAgency );
+
+
+            //Mechanism Category
+            DataElementCategory category = new DataElementCategory(  );
+            category.setName( "C. Mechanism Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            category.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            category.setDataDimension( true );
+
+            // Save Category
+            categoryService.addDataElementCategory( category );
+
+            //Mechanism CategoryCombo
+            DataElementCategoryCombo categoryCombo = new DataElementCategoryCombo(  );
+            categoryCombo.setName( "MechanismUnit Combo-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
+            categoryCombo.setDataDimensionType( DataDimensionType.ATTRIBUTE );
+            categoryCombo.setSkipTotal( true );
+            //add Mechanism Category to Mechanism CategoryCombo
+            categoryCombo.getCategories().add( categoryService.getDataElementCategory( category.getUid() )  );
+            //Save CategoryCombo
+            categoryService.addDataElementCategoryCombo( categoryCombo );
+
+            //Setting attributes
 
             nationalUnit.setUserGroup( userGroupService.getUserGroup( userGroup.getUid() ));
-            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSet.getUid() ) );
+            nationalUnit.setCategoryOptionGroupSet( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSetDonor.getUid() ) );
+            nationalUnit.setCategoryOptionGroupSetAgency( categoryService.getCategoryOptionGroupSet( categoryOptionGroupSetAgency.getUid() ) );
+            nationalUnit.setMechanismCategory( categoryService.getDataElementCategory( category.getUid() ) );
+            nationalUnit.setMechanismCombo( categoryService.getDataElementCategoryCombo( categoryCombo.getUid() ) );
 
+            // Saving NationalUnit
             nationalUnitService.addNationalUnit( nationalUnit );
+
+            // Add programList
+            for ( String id : selectedProgramList )
+            {
+                Program program = programService.getProgram( id );
+                nationalUnit.getPrograms().add( program );
+
+            }
+
+            //update with programs
+            nationalUnitService.updateNationalUnit( nationalUnit );
+
+            // -------------------------------------------------------------------------
+            // UserGroupAccess Sharing
+            // -------------------------------------------------------------------------
+            UserGroupAccess accessNational = new UserGroupAccess();
+            accessNational.setUserGroup( nationalUnit.getUserGroup() );
+            accessNational.setUid( nationalUnit.getUserGroup().getUid() );
+            accessNational.setAccess( READWRITEACCESS );
+            userGroupAccessService.addUserGroupAccess( accessNational );
+
+            // UserGroup & National Unit sharing
+            userGroup.setPublicAccess( NOPUBLICACCESS);
+            userGroup.getUserGroupAccesses().add( accessNational );
+
+            //updating with UserGroupAccess sharing
+            userGroupService.updateUserGroup( userGroup );
         }
         else
         {

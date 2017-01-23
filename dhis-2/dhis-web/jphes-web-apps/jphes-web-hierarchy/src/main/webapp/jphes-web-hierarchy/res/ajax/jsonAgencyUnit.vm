@@ -1,0 +1,14 @@
+{ "agencyUnit":
+{
+"id": "$!{agencyUnit.id}",
+"name": "$!encoder.jsonEncode( ${agencyUnit.name} )",
+"code": "$!encoder.jsonEncode( ${agencyUnit.code} )",
+"uid": "$!{agencyUnit.uid}",
+"programs": "$!{agencyUnit.programs.size()}",
+"mechanisms": "$!{agencyUnit.mechanismUnits.size()}",
+"usergroup": "$!{agencyUnit.userGroup.name}",
+"categoryoptiongroup": "$!{agencyUnit.categoryOptionGroup.name}",
+"donor": "$!{agencyUnit.donorUnit.name}",
+"created": "$!format.formatDate( ${agencyUnit.created} )"
+}
+}

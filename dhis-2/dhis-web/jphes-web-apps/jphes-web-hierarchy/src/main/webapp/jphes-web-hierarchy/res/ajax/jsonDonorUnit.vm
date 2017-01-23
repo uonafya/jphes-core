@@ -1,0 +1,14 @@
+{ "donorUnit":
+{
+"id": "$!{donorUnit.id}",
+"name": "$!encoder.jsonEncode( ${donorUnit.name} )",
+"code": "$!encoder.jsonEncode( ${donorUnit.code} )",
+"uid": "$!{donorUnit.uid}",
+"programs": "$!{donorUnit.programs.size()}",
+"agencies": "$!{donorUnit.agencyUnits.size()}",
+"usergroup": "$!{donorUnit.userGroup.name}",
+"categoryoptiongroup": "$!{donorUnit.categoryOptionGroup.name}",
+"national": "$!{donorUnit.nationalUnit.name}",
+"created": "$!format.formatDate( ${donorUnit.created} )"
+}
+}
