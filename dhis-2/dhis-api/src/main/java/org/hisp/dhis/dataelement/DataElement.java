@@ -35,13 +35,17 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import org.hisp.dhis.common.*;
+import org.hisp.dhis.common.BaseDimensionalItemObject;
+import org.hisp.dhis.common.BaseIdentifiableObject;
+import org.hisp.dhis.common.DimensionItemType;
+import org.hisp.dhis.common.DxfNamespaces;
+import org.hisp.dhis.common.IdentifiableObject;
+import org.hisp.dhis.common.MergeMode;
+import org.hisp.dhis.common.ValueType;
 import org.hisp.dhis.dataset.DataSet;
 import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.dataset.comparator.DataSetApprovalFrequencyComparator;
 import org.hisp.dhis.dataset.comparator.DataSetFrequencyComparator;
-import org.hisp.dhis.indicator.Indicator;
-import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.option.OptionSet;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodType;
@@ -53,7 +57,12 @@ import org.hisp.dhis.translation.TranslationProperty;
 import org.hisp.dhis.util.ObjectUtils;
 import org.joda.time.DateTime;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hisp.dhis.dataset.DataSet.NO_EXPIRY;
@@ -113,11 +122,6 @@ public class DataElement
     private String url;
 
     /**
-     * JPHES indicators
-     */
-    private Set<Indicator> jphesIndicators = new HashSet<>();
-
-    /**
      * The data element groups which this
      */
     private Set<DataElementGroup> groups = new HashSet<>();
@@ -126,11 +130,6 @@ public class DataElement
      * The data sets which this data element is a member of.
      */
     private Set<DataSetElement> dataSetElements = new HashSet<>();
-
-    /**
-     * The programs which this data element is a member of.
-     */
-    private Set<Program> programs = new HashSet<>();
 
     /**
      * The lower organisation unit levels for aggregation.
@@ -151,7 +150,7 @@ public class DataElement
      * The option set for comments linked to this data element, can be null.
      */
     private OptionSet commentOptionSet;
-    
+
     // -------------------------------------------------------------------------
     // Constructors
     // -------------------------------------------------------------------------
@@ -175,7 +174,7 @@ public class DataElement
         groups.add( group );
         group.getMembers().add( this );
     }
-    
+
     public void removeDataElementGroup( DataElementGroup group )
     {
         groups.remove( group );
@@ -201,16 +200,8 @@ public class DataElement
         return element.getDataSet().getDataSetElements().remove( element );
     }
 
-    public Set<Indicator> getJphesIndicators() {
-        return jphesIndicators;
-    }
-
-    public void setJphesIndicators(Set<Indicator> jphesIndicators) {
-        this.jphesIndicators = jphesIndicators;
-    }
-
     /**
-     * Returns the resolved category combinations by joining the category 
+     * Returns the resolved category combinations by joining the category
      * combinations of the data set elements of which this data element is part
      * of and the category combination linked directly with this data element.
      * The returned set is immutable, will never be null and will contain at
@@ -225,9 +216,9 @@ public class DataElement
                 .collect( Collectors.toSet() ) )
             .add( dataElementCategoryCombo ).build();
     }
-    
+
     /**
-     * Returns the category combination of the data set element matching the 
+     * Returns the category combination of the data set element matching the
      * given data set for this data element. If not present, returns the
      * category combination for this data element.
      */
@@ -240,13 +231,13 @@ public class DataElement
                 return element.getCategoryCombo();
             }
         }
-        
+
         return dataElementCategoryCombo;
     }
-    
+
     /**
      * Returns the category option combinations of the resolved category
-     * combinations of this data element. The returned set is immutable, will 
+     * combinations of this data element. The returned set is immutable, will
      * never be null and will contain at least one item.
      */
     public Set<DataElementCategoryOptionCombo> getCategoryOptionCombos()
@@ -256,7 +247,7 @@ public class DataElement
 
     /**
      * Returns the sorted category option combinations of the resolved category
-     * combinations of this data element. The returned list is immutable, will 
+     * combinations of this data element. The returned list is immutable, will
      * never be null and will contain at least one item.
      */
     public List<DataElementCategoryOptionCombo> getSortedCategoryOptionCombos()
@@ -265,7 +256,7 @@ public class DataElement
         getCategoryCombos().stream().forEach( cc -> optionCombos.addAll( cc.getSortedOptionCombos() ) );
         return optionCombos;
     }
-    
+
     /**
      * Indicates whether the value type of this data element is numeric.
      */
@@ -308,7 +299,7 @@ public class DataElement
 
     /**
      * Note that this method returns an immutable set and can not be used to
-     * modify the model. Returns an immutable set of data sets associated with 
+     * modify the model. Returns an immutable set of data sets associated with
      * this data element.
      */
     public Set<DataSet> getDataSets()
@@ -317,7 +308,7 @@ public class DataElement
     }
 
     /**
-     * Returns the attribute category combinations associated with the data sets 
+     * Returns the attribute category combinations associated with the data sets
      * of this data element.
      */
     public Set<DataElementCategoryCombo> getDataSetCategoryCombos()
@@ -333,7 +324,7 @@ public class DataElement
     }
 
     /**
-     * Returns the attribute category options combinations associated with the 
+     * Returns the attribute category options combinations associated with the
      * data sets of this data element.
      */
     public Set<DataElementCategoryOptionCombo> getDataSetCategoryOptionCombos()
@@ -495,7 +486,7 @@ public class DataElement
 
     /**
      * Returns the maximum number of expiry days from the data sets of this data
-     * element. Returns  if any data set has no expiry.
+     * element. Returns {@link DataSet.NO_EXPIRY} if any data set has no expiry.
      */
     public int getExpiryDays()
     {
@@ -563,7 +554,7 @@ public class DataElement
     // -------------------------------------------------------------------------
     // Helper getters
     // -------------------------------------------------------------------------
-        
+
     @JsonProperty
     @JacksonXmlProperty( namespace = DxfNamespaces.DXF_2_0 )
     public boolean isOptionSetValue()
@@ -756,17 +747,5 @@ public class DataElement
             aggregationLevels.clear();
             aggregationLevels.addAll( dataElement.getAggregationLevels() );
         }
-    }
-
-    @JsonProperty
-    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
-    @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
-    @JacksonXmlProperty( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<Program> getPrograms() {
-        return programs;
-    }
-
-    public void setPrograms(Set<Program> programs) {
-        this.programs = programs;
     }
 }

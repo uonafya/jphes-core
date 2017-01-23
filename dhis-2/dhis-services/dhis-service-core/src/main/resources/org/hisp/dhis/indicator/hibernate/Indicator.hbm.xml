@@ -22,7 +22,7 @@
     <property name="description" type="text" />
 
     <property name="annualized" column="annualized" not-null="true" />
-    
+
     <property name="decimals" />
 
     <many-to-one name="indicatorType" class="org.hisp.dhis.indicator.IndicatorType" column="indicatortypeid"
@@ -52,7 +52,7 @@
 
     <many-to-one name="legendSet" class="org.hisp.dhis.legend.LegendSet" column="legendsetid"
       foreign-key="fk_indicator_legendset" />
-      
+
     <property name="aggregateExportCategoryOptionCombo" column="aggregateexportcategoryoptioncombo" />
 
     <property name="aggregateExportAttributeOptionCombo" column="aggregateexportattributeoptioncombo" />
@@ -82,13 +82,6 @@
       <key column="indicatorid" foreign-key="fk_objecttranslation_indicatorid" />
       <many-to-many class="org.hisp.dhis.translation.ObjectTranslation" column="objecttranslationid" unique="true" />
     </set>
-
-    <set name="jphesprograms" table="jphesprogramindicators" cascade="all-delete-orphan">
-      <cache usage="read-write"/>
-      <key column="indicatorid" foreign-key="fk_programmembers_indicatorid" />
-      <many-to-many class="org.hisp.dhis.jphes.program.Program" column="programid"/>
-    </set>
-
 
   </class>
 

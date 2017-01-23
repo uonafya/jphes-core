@@ -148,6 +148,7 @@ public class DefaultSchemaService
         add( new DonorUnitSchemaDescriptor()).
         add( new AgencyUnitSchemaDescriptor()).
         add( new MechanismUnitSchemaDescriptor()).
+        add( new JphesProgramSchemaDescriptor()).
         build();
 
     private Map<Class<?>, Schema> classSchemaMap = new HashMap<>();

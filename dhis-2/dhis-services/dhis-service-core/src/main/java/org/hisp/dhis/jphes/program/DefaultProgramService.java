@@ -1,12 +1,9 @@
 package org.hisp.dhis.jphes.program;
 
-import com.google.api.client.util.Lists;
-import org.hisp.dhis.dataelement.DataElement;
-import org.hisp.dhis.dataelement.DataElementService;
-import org.hisp.dhis.indicator.Indicator;
-import org.hisp.dhis.program.ProgramDataElement;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,21 +11,10 @@ import java.util.List;
  */
 public class DefaultProgramService implements ProgramService {
 
-    public ProgramStore getProgramStore() {
-        return programStore;
-    }
+    public static final Log log = LogFactory.getLog( DefaultProgramService.class );
 
-    public void setProgramStore(ProgramStore programStore) {
-        this.programStore = programStore;
-    }
-
+    @Autowired
     private ProgramStore programStore;
-
-    private DataElementService dataElementService;
-
-    public void setDataElementService(DataElementService dataElementService) {
-        this.dataElementService = dataElementService;
-    }
 
     /**
      * adds a new program
@@ -100,7 +86,7 @@ public class DefaultProgramService implements ProgramService {
      */
     @Override
     public List<Program> getProgramByName(String name) {
-        return programStore.searchProgramByName(name);
+        return programStore.getAllLikeName( name );
     }
 
     /**
@@ -115,7 +101,7 @@ public class DefaultProgramService implements ProgramService {
 
     @Override
     public List<Program> getProgramsBetween(int start, int end) {
-        return programStore.getAllOrderedName(start,end);
+        return programStore.getAll( start, end );
     }
 
     @Override
@@ -125,12 +111,12 @@ public class DefaultProgramService implements ProgramService {
 
     @Override
     public int getProgramCount() {
-        return programStore.getProgramCount();
+        return programStore.getCount();
     }
 
     @Override
     public int getProgramCountByName(String name) {
-        return programStore.getCountLikeName(name);
-    }
 
+        return programStore.getCountLikeName( name );
+    }
 }

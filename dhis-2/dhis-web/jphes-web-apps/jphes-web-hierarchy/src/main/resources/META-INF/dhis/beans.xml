@@ -2,22 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-  <bean id="NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
 
-<<<<<<< HEAD
-  <bean id="GetPartnerListAction" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
 
-  <bean id="AddPartnerAction" class="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
-
-=======
   <!--National Unit Actions beans -->
->>>>>>> 24d6a77cddc5ffb27d9a89ab63089bc77718d80f
+
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
   </bean>
@@ -31,15 +20,13 @@
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
-   </bean>
+  </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.national.UpdateNationalUnitAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
     <property name="userService" ref="org.hisp.dhis.user.UserService" />
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService"/>
   </bean>
 
 
@@ -51,7 +38,6 @@
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction"
     scope="prototype">
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
 
   <!--Donor Unit Actions beans -->
@@ -64,7 +50,6 @@
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitAction" scope="prototype" >
@@ -76,7 +61,6 @@
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
     <property name="userGroupService" ref="org.hisp.dhis.user.UserGroupService" />
     <property name="categoryService" ref="org.hisp.dhis.dataelement.DataElementCategoryService"/>
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.ValidateDonorUnitAction"

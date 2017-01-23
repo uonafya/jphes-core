@@ -1,8 +1,9 @@
 package org.hisp.dhis.jphes.hierarchy.action.national;
 
 import org.hisp.dhis.paging.ActionPagingSupport;
-import org.hisp.dhis.program.Program;
-import org.hisp.dhis.program.ProgramService;
+import org.hisp.dhis.jphes.program.Program;
+import org.hisp.dhis.jphes.program.ProgramService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,11 +19,8 @@ public class GetProgramListAction extends ActionPagingSupport<Program>
     // Dependencies
     // -------------------------------------------------------------------------
 
+    @Autowired
     private ProgramService programService;
-
-    public void setProgramService(ProgramService programService){
-        this.programService = programService;
-    }
 
     // -------------------------------------------------------------------------
     // Input & Output

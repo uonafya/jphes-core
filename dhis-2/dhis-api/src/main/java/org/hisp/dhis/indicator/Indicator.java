@@ -42,7 +42,6 @@ import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.common.IdentifiableObject;
 import org.hisp.dhis.common.MergeMode;
 import org.hisp.dhis.dataset.DataSet;
-import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.schema.PropertyType;
 import org.hisp.dhis.schema.annotation.Property;
 
@@ -82,8 +81,6 @@ public class Indicator
     private Set<IndicatorGroup> groups = new HashSet<>();
 
     private Set<DataSet> dataSets = new HashSet<>();
-
-    private Set<Program> jphesprograms = new HashSet<>();
 
     public Indicator()
     {
@@ -152,7 +149,7 @@ public class Indicator
     {
         return decimals != null && decimals >= 0;
     }
-    
+
     public boolean hasZeroDecimals()
     {
         return decimals != null && decimals == 0;
@@ -314,20 +311,6 @@ public class Indicator
 
     @JsonProperty
     @JsonSerialize( contentAs = BaseIdentifiableObject.class )
-    @JacksonXmlElementWrapper( localName = "programs", namespace = DxfNamespaces.DXF_2_0 )
-    @JacksonXmlProperty( localName = "program", namespace = DxfNamespaces.DXF_2_0 )
-    public Set<Program> getJphesprograms()
-    {
-        return jphesprograms;
-    }
-
-    public void setJphesprograms( Set<Program> programs )
-    {
-        this.jphesprograms=programs;
-    }
-
-    @JsonProperty
-    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
     @JacksonXmlElementWrapper( localName = "dataSets", namespace = DxfNamespaces.DXF_2_0 )
     @JacksonXmlProperty( localName = "dataSet", namespace = DxfNamespaces.DXF_2_0 )
     public Set<DataSet> getDataSets()
@@ -339,7 +322,6 @@ public class Indicator
     {
         this.dataSets = dataSets;
     }
-
 
     @Override
     public void mergeWith( IdentifiableObject other, MergeMode mergeMode )
