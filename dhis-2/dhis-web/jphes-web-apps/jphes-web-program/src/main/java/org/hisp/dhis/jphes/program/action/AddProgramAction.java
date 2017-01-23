@@ -1,6 +1,7 @@
 package org.hisp.dhis.jphes.program.action;
 
 import com.opensymphony.xwork2.Action;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.hisp.dhis.dataelement.DataElement;
 import org.hisp.dhis.dataelement.DataElementGroup;
@@ -87,51 +88,53 @@ public class AddProgramAction implements Action
         Program program = new Program();
         DataElementGroup dataElementGroup = new DataElementGroup();
         IndicatorGroup indicatorGroup = new IndicatorGroup();
-
-        program.setDisplayName( displayName );
-        program.setName( name );
-        program.setCode( code );
-        program.setDescription( displayName );
-        program.setShortName( name );
-
-
-        Set<DataElement> dataElementGroupMembers = new HashSet<>();
-        Set<Indicator> indicatorGroupMembers = new HashSet<>();
-
-        for ( String id : deSelected )
+        if( deSelected.size() >0 || indSelected.size()>0)
         {
-            DataElement dataElement = dataElementService.getDataElement( id );
+            program.setDisplayName( StringUtils.trimToNull( name ) );
+            program.setName( StringUtils.trimToNull( name ) );
+            program.setCode( StringUtils.trimToNull( code ) );
+            program.setDescription( StringUtils.trimToNull( displayName ) );
+            program.setShortName( StringUtils.trimToNull( name ) );
 
-            dataElementGroupMembers.add( dataElement );
-            program.getDataElements().add( dataElement );
+
+            Set<DataElement> dataElementGroupMembers = new HashSet<>();
+            Set<Indicator> indicatorGroupMembers = new HashSet<>();
+
+            for ( String id : deSelected )
+            {
+                DataElement dataElement = dataElementService.getDataElement( id );
+
+                dataElementGroupMembers.add( dataElement );
+                program.getDataElements().add( dataElement );
+            }
+
+            for ( String id : indSelected )
+            {
+
+                Indicator indicator = indicatorService.getIndicator( id );
+
+                indicatorGroupMembers.add( indicator );
+                program.getIndicators().add( indicator );
+            }
+
+
+            dataElementGroup.setName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setCode( StringUtils.trimToNull( code ) );
+            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setMembers( dataElementGroupMembers );
+
+            indicatorGroup.setName( StringUtils.trimToNull( name ) );
+            indicatorGroup.setCode( StringUtils.trimToNull( code ) );
+            indicatorGroup.setMembers( indicatorGroupMembers );
+
+            dataElementService.addDataElementGroup( dataElementGroup );
+            indicatorService.addIndicatorGroup( indicatorGroup );
+
+            program.setDataElementGroup( dataElementGroup );
+            program.setIndicatorGroup( indicatorGroup );
+
+            programService.addProgram( program );
         }
-
-        for ( String id : indSelected )
-        {
-
-            Indicator indicator = indicatorService.getIndicator( id );
-
-            indicatorGroupMembers.add( indicator );
-            program.getIndicators().add( indicator );
-        }
-
-
-        dataElementGroup.setName( displayName );
-        dataElementGroup.setCode( code );
-        dataElementGroup.setShortName( name );
-        dataElementGroup.setMembers( dataElementGroupMembers );
-
-        indicatorGroup.setName( name );
-        indicatorGroup.setCode( code );
-        indicatorGroup.setMembers( indicatorGroupMembers );
-
-        dataElementService.addDataElementGroup( dataElementGroup );
-        indicatorService.addIndicatorGroup( indicatorGroup );
-
-        program.setDataElementGroup( dataElementGroup );
-        program.setIndicatorGroup( indicatorGroup );
-
-        programService.addProgram( program );
 
         return SUCCESS;
     }

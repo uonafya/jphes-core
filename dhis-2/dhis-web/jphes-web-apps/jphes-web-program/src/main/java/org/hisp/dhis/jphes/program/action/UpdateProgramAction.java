@@ -90,38 +90,51 @@ public class UpdateProgramAction implements Action {
         DataElementGroup dataElementGroup = program.getDataElementGroup();
         IndicatorGroup indicatorGroup = program.getIndicatorGroup();
 
-        program.setName(StringUtils.trimToNull(name));
-        program.setCode(StringUtils.trimToNull(code));
-        program.setDisplayName(StringUtils.trimToNull(displayName));
+        if( deSelectedList.size() >0 || indSelectedList.size()>0)
+        {
+            program.setName( StringUtils.trimToNull( name ) );
+            program.setCode( StringUtils.trimToNull( code ) );
+            program.setDisplayName( StringUtils.trimToNull( displayName ) );
 
-        program.getDataElements().clear();
-        program.getIndicators().clear();
+            program.getDataElements().clear();
+            program.getIndicators().clear();
 
-        dataElementGroup.getMembers().clear();
-        indicatorGroup.getMembers().clear();
+            dataElementGroup.getMembers().clear();
+            indicatorGroup.getMembers().clear();
 
 
-        for (String id:deSelectedList){
-            DataElement dataElement =dataElementService.getDataElement(id);
+            for ( String id : deSelectedList )
+            {
+                DataElement dataElement = dataElementService.getDataElement( id );
 
-            dataElementGroup.getMembers().add( dataElement );
-            program.getDataElements().add( dataElement );
+                dataElementGroup.getMembers().add( dataElement );
+                program.getDataElements().add( dataElement );
+            }
+
+            for ( String id : indSelectedList )
+            {
+
+                Indicator indicator = indicatorService.getIndicator( id );
+
+                indicatorGroup.getMembers().add( indicator );
+                program.getIndicators().add( indicator );
+
+            }
+
+            //updating DataElementGroup and IndicatorGroup
+            dataElementGroup.setName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setCode( StringUtils.trimToNull( code ) );
+            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+
+            indicatorGroup.setName( StringUtils.trimToNull( name ) );
+            indicatorGroup.setCode( StringUtils.trimToNull( code ) );
+
+            programService.updateProgram( program );
+
+            dataElementService.updateDataElementGroup( dataElementGroup );
+
+            indicatorService.updateIndicatorGroup( indicatorGroup );
         }
-
-        for (String id:indSelectedList){
-
-            Indicator indicator = indicatorService.getIndicator(id);
-
-            indicatorGroup.getMembers().add( indicator );
-            program.getIndicators().add( indicator );
-
-        }
-
-        programService.updateProgram(program);
-
-        dataElementService.updateDataElementGroup( dataElementGroup );
-
-        indicatorService.updateIndicatorGroup( indicatorGroup );
 
         return SUCCESS;
     }
