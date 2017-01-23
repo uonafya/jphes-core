@@ -36,7 +36,6 @@
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction"
     scope="prototype">
-    <property name="programService" ref="org.hisp.dhis.program.ProgramService" />
   </bean>
 
   <!--Donor Unit Actions beans -->

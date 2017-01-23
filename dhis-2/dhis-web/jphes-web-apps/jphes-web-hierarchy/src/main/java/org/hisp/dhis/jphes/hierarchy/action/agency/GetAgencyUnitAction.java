@@ -6,7 +6,7 @@ import org.hisp.dhis.dataelement.CategoryOptionGroupSet;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
-import org.hisp.dhis.program.Program;
+import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.user.UserGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 
