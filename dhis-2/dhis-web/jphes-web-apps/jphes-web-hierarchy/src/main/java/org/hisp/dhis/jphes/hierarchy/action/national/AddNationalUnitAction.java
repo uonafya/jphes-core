@@ -9,20 +9,17 @@ import org.hisp.dhis.dataelement.DataElementCategoryCombo;
 import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
-import org.hisp.dhis.program.Program;
-import org.hisp.dhis.program.ProgramService;
+import org.hisp.dhis.jphes.program.Program;
+import org.hisp.dhis.jphes.program.ProgramService;
 import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupAccess;
 import org.hisp.dhis.user.UserGroupAccessService;
 import org.hisp.dhis.user.UserGroupService;
-import org.hisp.dhis.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 
 /**
  * Created by afya on 05/01/17.
@@ -53,13 +50,8 @@ public class AddNationalUnitAction implements Action
         this.categoryService = categoryService;
     }
 
-
+    @Autowired
     private ProgramService programService;
-
-    public void setProgramService(ProgramService programService){
-
-        this.programService = programService;
-    }
 
     @Autowired
     private UserGroupAccessService userGroupAccessService;

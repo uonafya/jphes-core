@@ -8,10 +8,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.hisp.dhis.common.BaseIdentifiableObject;
 import org.hisp.dhis.common.DxfNamespaces;
 import org.hisp.dhis.dataelement.CategoryOptionGroup;
-import org.hisp.dhis.dataelement.DataElementCategory;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
-import org.hisp.dhis.program.Program;
+import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.user.UserGroup;
 
 import java.util.HashSet;
