@@ -4,20 +4,6 @@
 
   <bean id="NoAction" class="org.hisp.dhis.jphes.hierarchy.action.NoAction" scope="prototype" />
 
-<<<<<<< HEAD
-  <bean id="GetPartnerListAction" class="org.hisp.dhis.jphes.hierarchy.action.GetPartnerListAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
-
-  <bean id="AddPartnerAction" class="org.hisp.dhis.jphes.hierarchy.action.AddPartnerAction" scope="prototype" >
-    <property name="partnerService" ref="org.hisp.dhis.jphes.hierarchy.HierarchyService" />
-    <property name="userService" ref="org.hisp.dhis.user.UserService" />
-  </bean>
-
-=======
-  <!--National Unit Actions beans -->
->>>>>>> 24d6a77cddc5ffb27d9a89ab63089bc77718d80f
   <bean id="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.national.GetNationalUnitListAction" scope="prototype" >
     <property name="nationalUnitService" ref="org.hisp.dhis.jphes.hierarchy.national.NationalUnitService" />
   </bean>
@@ -134,9 +120,6 @@
   <bean id="org.hisp.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" scope="prototype">
 
   </bean>
-
-
-
 
 
 </beans>
