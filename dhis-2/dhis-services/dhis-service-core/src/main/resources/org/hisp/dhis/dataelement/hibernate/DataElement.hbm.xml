@@ -56,12 +56,6 @@
       <one-to-many class="org.hisp.dhis.dataset.DataSetElement" />
     </set>
 
-    <set name="programs" table="jphesprogramelement" inverse="true">
-      <cache usage="read-write"/>
-      <key column="dataelementid" foreign-key="fk_programmembers_dataelementid" not-null="true" />
-      <many-to-many class="org.hisp.dhis.jphes.program.Program" column="programid"/>
-    </set>
-
     <list name="aggregationLevels" table="dataelementaggregationlevels">
       <key column="dataelementid" foreign-key="fk_dataelementaggregationlevels_dataelementid" />
       <list-index column="sort_order" base="0" />
@@ -78,7 +72,7 @@
 
     <many-to-one name="legendSet" class="org.hisp.dhis.legend.LegendSet" column="legendsetid"
       foreign-key="fk_dataelement_legendset" />
-    
+
     <!-- Dynamic attribute values -->
     <set name="attributeValues" table="dataelementattributevalues" cascade="delete-orphan">
       <cache usage="read-write" />

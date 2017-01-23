@@ -3,7 +3,7 @@ package org.hisp.dhis.jphes.hierarchy.action.donor;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnit;
 import org.hisp.dhis.jphes.hierarchy.national.NationalUnitService;
 import org.hisp.dhis.paging.ActionPagingSupport;
-import org.hisp.dhis.program.Program;
+import org.hisp.dhis.jphes.program.Program;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

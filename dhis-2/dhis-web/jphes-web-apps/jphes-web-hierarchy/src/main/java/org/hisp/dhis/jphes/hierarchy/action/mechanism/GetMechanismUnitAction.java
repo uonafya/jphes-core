@@ -5,7 +5,7 @@ import org.hisp.dhis.dataelement.DataElementCategoryOption;
 import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitService;
-import org.hisp.dhis.program.Program;
+import org.hisp.dhis.jphes.program.Program;
 import org.hisp.dhis.user.UserGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 

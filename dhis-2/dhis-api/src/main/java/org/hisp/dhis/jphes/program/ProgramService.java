@@ -1,8 +1,5 @@
 package org.hisp.dhis.jphes.program;
 
-import org.hisp.dhis.dataelement.DataElement;
-import org.hisp.dhis.indicator.Indicator;
-
 import java.util.List;
 
 /**
@@ -71,9 +68,5 @@ public interface ProgramService {
     int getProgramCount();
 
     int getProgramCountByName(String name);
-
-//    List<DataElement>getProgramElements();
-//
-//    List<Indicator> getProgramIndicators();
 
 }
