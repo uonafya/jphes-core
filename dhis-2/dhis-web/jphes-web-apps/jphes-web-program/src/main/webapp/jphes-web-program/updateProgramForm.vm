@@ -76,7 +76,7 @@
 
             <td>
                 <select id="deSelectedList" name="deSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-                    #foreach ( $deSelected in $dataElements )
+                    #foreach ( $deSelected in $dataElementsList )
                         <option value="$deSelected.uid">$encoder.htmlEncode( $deSelected.name )</option>
                     #end
                 </select>
@@ -98,7 +98,7 @@
 
             <td>
                 <select id="indSelectedList" name="indSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-                #foreach ( $indSelected in $indicators )
+                #foreach ( $indSelected in $indicatorsList )
                     <option value="$indSelected.uid">$encoder.htmlEncode( $indSelected.name )</option>
                 #end
                 </select>

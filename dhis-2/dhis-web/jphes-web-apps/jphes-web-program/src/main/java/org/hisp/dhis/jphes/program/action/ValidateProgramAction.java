@@ -86,7 +86,7 @@ public class ValidateProgramAction implements Action {
             DataElementGroup dataElementGroup = dataElementService.getDataElementGroupByName(name);
 
             if ( (match != null && (id == null || match.getId() != id)) ||
-                    (dataElementGroup != null && (id == null || dataElementGroup.getId() != id)) )
+                    (dataElementGroup != null && (id == null)) )
             {
                 message = i18n.getString( "name_in_use" );
 
