@@ -4,8 +4,8 @@ jQuery( document ).ready( function()
 
     validation2( 'updateProgramForm', function( form )
     {
-        selectAllById( 'indSelected' );
-        selectAllById( 'deSelected' );
+        selectAllById( 'deSelectedList' );
+        selectAllById( 'indSelectedList' );
         form.submit();
     }, {
         'rules' : getValidationRules("jphesProgram")

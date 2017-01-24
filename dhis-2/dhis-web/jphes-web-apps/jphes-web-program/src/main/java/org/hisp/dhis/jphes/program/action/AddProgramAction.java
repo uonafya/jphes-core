@@ -93,8 +93,8 @@ public class AddProgramAction implements Action
             program.setDisplayName( StringUtils.trimToNull( name ) );
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
-            program.setDescription( StringUtils.trimToNull( displayName ) );
-            program.setShortName( StringUtils.trimToNull( name ) );
+            program.setDisplayName( StringUtils.trimToNull( displayName ) );
+            program.setShortName( StringUtils.abbreviate(name, 40) );
 
 
             Set<DataElement> dataElementGroupMembers = new HashSet<>();
@@ -118,7 +118,7 @@ public class AddProgramAction implements Action
 
             dataElementGroup.setName( StringUtils.trimToNull( name ) );
             dataElementGroup.setCode( StringUtils.trimToNull( code ) );
-            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setShortName( StringUtils.abbreviate( name, 40 ) );
             dataElementGroup.setMembers( dataElementGroupMembers );
 
             indicatorGroup.setName( StringUtils.trimToNull( name ) );
