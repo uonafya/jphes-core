@@ -40,6 +40,12 @@ public class Program extends BaseIdentifiableObject {
 
     private Boolean enabled;
 
+    //Constructor
+
+    public Program(){
+
+    }
+
     //Logic DataElement
 
     public void addDataElement( DataElement dataElement )
