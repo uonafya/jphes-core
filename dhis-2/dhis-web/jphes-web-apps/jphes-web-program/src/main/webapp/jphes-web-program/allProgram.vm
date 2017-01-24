@@ -43,8 +43,8 @@
               data-can-delete="$security.canDelete( $program )">
             <td>$!encoder.htmlEncode( $program.name )</td>
             <td>$!encoder.htmlEncode( $program.code )</td>
-            <td>$!encoder.htmlEncode( $program.created )</td>
-            <td>$!encoder.htmlEncode( $program.lastUpdated )</td>
+            <td>$!format.formatDate( $program.created )</td>
+            <td>$!format.formatDate( $program.lastUpdated )</td>
           </tr>
           #end
         </tbody>

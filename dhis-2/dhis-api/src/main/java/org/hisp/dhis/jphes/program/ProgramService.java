@@ -53,7 +53,7 @@ public interface ProgramService {
      * @param name
      * @return
      */
-    List<Program> getProgramByName(String name);
+    Program getProgramByName(String name);
 
     /**
      * retrieves all programs

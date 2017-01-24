@@ -105,7 +105,6 @@ public class AddProgramAction implements Action
                 DataElement dataElement = dataElementService.getDataElement( id );
 
                 dataElementGroupMembers.add( dataElement );
-                program.getDataElements().add( dataElement );
             }
 
             for ( String id : indSelected )
@@ -114,7 +113,6 @@ public class AddProgramAction implements Action
                 Indicator indicator = indicatorService.getIndicator( id );
 
                 indicatorGroupMembers.add( indicator );
-                program.getIndicators().add( indicator );
             }
 
 
@@ -127,13 +125,38 @@ public class AddProgramAction implements Action
             indicatorGroup.setCode( StringUtils.trimToNull( code ) );
             indicatorGroup.setMembers( indicatorGroupMembers );
 
+            //Save DataElementGroup and IndicatorGroup
             dataElementService.addDataElementGroup( dataElementGroup );
             indicatorService.addIndicatorGroup( indicatorGroup );
 
+            //Set DataElementGroup and Indicator Group to Program
             program.setDataElementGroup( dataElementGroup );
             program.setIndicatorGroup( indicatorGroup );
 
+            //Save Program
             programService.addProgram( program );
+
+
+            //Add Indicators and DataElements
+
+            for ( String id : deSelected )
+            {
+                DataElement dataElement = dataElementService.getDataElement( id );
+
+                program.getDataElements().add( dataElement );
+            }
+
+            for ( String id : indSelected )
+            {
+
+                Indicator indicator = indicatorService.getIndicator( id );
+
+                program.getIndicators().add( indicator );
+            }
+
+            //update the program
+
+            programService.updateProgram(program);
         }
 
         return SUCCESS;

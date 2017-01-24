@@ -1,18 +1,6 @@
+<script type="text/javascript" src="javascript/addProgramFrom.js"></script>
 <script type="text/javascript">
    jQuery(function () {
-//       $('#deAvailable').selected({
-//           url: '../api/dataElements.json',
-//           target: $('#deSelected'),
-//           search: $('#deAvailableSearch'),
-//           iterator: 'dataElements'
-//       });
-
-//       $('#iAvailable').selected({
-//           url: '../api/indicators.json',
-//           target: $('#indSelected'),
-//           search: $('#iAvailableSearch'),
-//           iterator: 'indicators'
-//       });
 
        jQuery("#deAvailable").dhisAjaxSelect({
            source: "../api/dataElements.json?paging=false&fields=displayName,id,name",
@@ -62,13 +50,13 @@
       </tr>
 
       <tr>
-      <td style="width:200px"><label for="code">$i18n.getString( "code" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+      <td style="width:200px"><label for="code">$i18n.getString( "code" ) </label></td>
       <td><input type="text" id="code" name="code"></td>
           <td></td>
     </tr>
 
     <tr>
-      <td style="width:200px"><label for="displayName">Display Name</label></td>
+      <td style="width:200px"><label for="displayName">Display Name <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
       <td ><input type="text" id="displayName" name="displayName"></td>
         <td></td>
     </tr>
@@ -108,12 +96,6 @@
           </td>
       </tr>
 
-##      #jqSelected({
-##          "prefix": "i",
-##          "required": true,
-##          "i18n_available": "available_indicators",
-##          "i18n_selected": "selected_indicators"
-##      })
     <tr>
       <td></td>
       <td valign="top">
