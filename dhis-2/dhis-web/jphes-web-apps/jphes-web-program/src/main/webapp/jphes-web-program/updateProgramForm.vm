@@ -29,7 +29,7 @@
         });
     });
 </script>
-<h3>Update Program</h3>
+<h3>Edit Program</h3>
 
 <form id="updateProgramForm" name="updateProgramForm" action="updateProgram.action" method="post" class="inputForm">
     <table>
@@ -62,7 +62,7 @@
             <td></td>
         </tr>
         <tr>
-            <td><label>Dataelements</label></td>
+            <td><label>$i18n.getString( "jphes_dataelements" )</label></td>
             <td>
                 <select id="deAvailable" name="deAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
             </td>
@@ -84,7 +84,7 @@
         </tr>
 
         <tr>
-            <td><label>$i18n.getString( "indicators" )</label></td>
+            <td><label>$i18n.getString( "jphes_indicators" )</label></td>
             <td>
                 <select id="iAvailable" name="iAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
             </td>

@@ -1,0 +1,41 @@
+
+<h3>$i18n.getString( 'jphes_indicators' ) &nbsp;for&nbsp;-&nbsp;${program.name}  #openHelp( "jphes_programs" )</h3>
+
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+        <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="window.location.href='allProgram.action'"/></td>
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_created")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $indicator in $indicators )
+            <tr id="tr${indicator.id}" data-id="$!indicator.id" data-uid="$!indicator.uid" data-type="Indicator" data-name="$encoder.htmlEncode( $!indicator.name )"
+                data-can-manage="$security.canManage( $indicator )"
+                data-can-update="$security.canUpdate( $indicator )"
+                data-can-delete="$security.canDelete( $indicator )">
+              <td>$!encoder.htmlEncode( $indicator.name )</td>
+              <td>$!encoder.htmlEncode( $indicator.code )</td>
+              <td>$!format.formatDate( $indicator.created )</td>
+              <td>$!format.formatDate( $indicator.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+  </tr>
+</table>

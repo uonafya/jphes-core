@@ -53,5 +53,19 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
+    <action name="viewProgramDataElements" class="org.hisp.dhis.jphes.program.action.ViewProgramDataElementList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/viewDataElements.vm</param>
+      <param name="menu">/jphes-web-program/menu.vm</param>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_LIST</param>
+    </action>
+
+    <action name="viewProgramIndicators" class="org.hisp.dhis.jphes.program.action.ViewProgramIndicatorList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-program/viewIndicators.vm</param>
+      <param name="menu">/jphes-web-program/menu.vm</param>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_LIST</param>
+    </action>
+
   </package>
 </struts>

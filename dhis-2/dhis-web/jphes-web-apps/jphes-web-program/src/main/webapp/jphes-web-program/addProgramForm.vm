@@ -61,7 +61,7 @@
         <td></td>
     </tr>
       <tr>
-          <td><label>$i18n.getString( "dataelements" )</label></td>
+          <td><label>$i18n.getString( "jphes_dataelements" )</label></td>
           <td>
               <select id="deAvailable" name="deAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
           </td>
@@ -79,7 +79,7 @@
       </tr>
 
       <tr>
-          <td><label>$i18n.getString( "indicators" )</label></td>
+          <td><label>$i18n.getString( "jphes_indicators" )</label></td>
           <td>
               <select id="iAvailable" name="iAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
           </td>
