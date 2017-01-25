@@ -8,6 +8,7 @@ import org.hisp.dhis.user.UserGroup;
 import org.hisp.dhis.user.UserGroupService;
 import org.hisp.dhis.user.UserService;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -58,12 +59,16 @@ public class GetNationalUnitListAction extends ActionPagingSupport<NationalUnit>
             this.paging = createPaging(nationalUnitService.getNationalUnitCountByName(key));
 
             nationalUnits = nationalUnitService.getNationalUnitsBetweenByName(key, paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort(nationalUnits);
         }
         else
         {
             this.paging = createPaging( nationalUnitService.getNationalUnitCount() );
 
             nationalUnits = nationalUnitService.getNationalUnitsBetween( paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort(nationalUnits);
         }
 
         return SUCCESS;

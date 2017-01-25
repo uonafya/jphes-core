@@ -53,9 +53,11 @@ public class ViewMechanismOrgUnitAction extends ActionPagingSupport<Organisation
 
             mechanismUnit = mechanismUnitService.getMechanismUnit( uid );
 
-            this.paging = createPaging(mechanismUnit.getCategoryOption().getOrganisationUnits().size());
-
             organisationUnits = new ArrayList<>(mechanismUnit.getCategoryOption().getOrganisationUnits());
+
+            this.paging = createPaging(organisationUnits.size() );
+
+            organisationUnits = organisationUnits.subList( paging.getStartPos(), paging.getEndPos() );
 
             Collections.sort(organisationUnits);
         }
