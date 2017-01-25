@@ -5,10 +5,12 @@
 function showProgramDetails( context ) {
   jQuery.post('getProgram.action', { id: context.id }, function( json ) {
     setInnerHTML('nameField', json.program.name);
-    setInnerHTML('shortnameField', json.program.shortName);
+    setInnerHTML('shortNameField', json.program.shortname);
     setInnerHTML('descriptionField', json.program.description);
     setInnerHTML('dataElementsField', json.program.dataelements);
     setInnerHTML('indicatorsField', json.program.indicators);
+    setInnerHTML('dataElementGroupField', json.program.dataelementgroup);
+    setInnerHTML('indicatorGroupField', json.program.indicatorgroup);
     setInnerHTML('codeField', json.program.code);
     setInnerHTML('uidField', json.program.uid);
 

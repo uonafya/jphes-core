@@ -2,9 +2,8 @@
 {
 "id": "$!{program.programid}",
 "name": "$!encoder.jsonEncode( ${program.name} )",
-"shortname": "$!encoder.jsonEncode( ${program.shortname} )",
+"shortname": "$!encoder.jsonEncode( ${program.shortName} )",
 "description": "$!encoder.jsonEncode( ${program.description} )",
-"shortname": "$!encoder.jsonEncode( ${program.shortname} )",
 "code": "$!encoder.jsonEncode( ${program.code} )",
 "uid": "$!{program.uid}",
 "dataelements": "$!{program.dataElements.size()}",

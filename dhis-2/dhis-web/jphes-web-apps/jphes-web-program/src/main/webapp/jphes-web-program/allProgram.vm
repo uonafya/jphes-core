@@ -62,13 +62,14 @@
           <a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
         </div>
         <p><label>$i18n.getString( "name" ):</label><br/><span id="nameField"></span></p>
-        <p><label>$i18n.getString( "shortname" ):</label><br/><span id="shortnameField"></span></p>
+        <p><label>$i18n.getString( "shortname" ):</label><br/><span id="shortNameField"></span></p>
         <p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
         <p><label>$i18n.getString( "description" ):</label><br/><span id="descriptionField"></span></p>
         <p><label>$i18n.getString( "uid" ):</label><br/><span id="uidField"></span></p>
         <p><label>$i18n.getString( "jphes_number_dataelements" )</label><br/><span id="dataElementsField"></span></p>
         <p><label>$i18n.getString( "jphes_number_indicators" )</label><br/><span id="indicatorsField"></span></p>
-##        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
+        <p><label>$i18n.getString( "jphes_dataelementgroup" )</label><br/><span id="dataElementGroupField"></span></p>
+        <p><label>$i18n.getString( "jphes_indicatorgroup" )</label><br/><span id="indicatorGroupField"></span></p>
       </div>
 
       <div id="warningArea">
