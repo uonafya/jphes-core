@@ -1,7 +1,6 @@
 
-###sharingDialog()
-
 <script type="text/javascript" src="javascript/allProgram.js"></script>
+<script type="text/javascript" src="javascript/program.js"></script>
 <script type="text/javascript">
   var i18n_confirm_delete = '$encoder.jsEscape( $i18n.getString( "confirm_delete_program" ) , "'")';
   var i18n_none = '$encoder.jsEscape( $i18n.getString( "none" ) , "'")';
@@ -12,8 +11,8 @@
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateProgramForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
-    <li data-enabled="canDelete"><a data-target-fn=""><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
-    <li><a data-target-fn=""><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+    <li data-enabled="canDelete"><a data-target-fn="removeProgram"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li><a data-target-fn="showProgramDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
   </ul>
 </div>
 
@@ -61,10 +60,13 @@
           <a href="javascript:hideDetails()" title="$i18n.getString( 'hide_details' )"><img src="../images/hide.png" alt="$i18n.getString( 'hide_details' )"/></a>
         </div>
         <p><label>$i18n.getString( "name" ):</label><br/><span id="nameField"></span></p>
+        <p><label>$i18n.getString( "shortname" ):</label><br/><span id="shortnameField"></span></p>
         <p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
-        <p><label>Created:</label><br/><span id="createdField"></span></p>
-        <p><label>LastUpdated:</label><br/><span id="lastUpdatedField"></span></p>
-        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
+        <p><label>$i18n.getString( "description" ):</label><br/><span id="descriptionField"></span></p>
+        <p><label>$i18n.getString( "uid" ):</label><br/><span id="uidField"></span></p>
+##        <p><label>Created:</label><br/><span id="createdField"></span></p>
+##        <p><label>Last Updated:</label><br/><span id="lastUpdatedField"></span></p>
+##        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
       </div>
 
       <div id="warningArea">

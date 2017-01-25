@@ -53,5 +53,11 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
+    <action name="getProgram" class="org.hisp.dhis.jphes.program.action.GetProgramAction">
+      <result name="success" type="velocity-json">/jphes-web-program/ajax/jsonProgram.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
+      <param name="anyAuthorities">F_JPHES_PROGRAM_LIST</param>
+    </action>
+
   </package>
 </struts>

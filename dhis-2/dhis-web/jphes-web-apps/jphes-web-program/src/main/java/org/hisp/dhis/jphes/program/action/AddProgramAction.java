@@ -55,13 +55,17 @@ public class AddProgramAction implements Action
         this.code = code;
     }
 
-    private String displayName;
+    private String shortName;
 
-    public void setDisplayName( String displayName )
-    {
-        this.displayName = displayName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
+    private String description;
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     private List<String> deSelected = new ArrayList<>();
 
@@ -90,11 +94,11 @@ public class AddProgramAction implements Action
         IndicatorGroup indicatorGroup = new IndicatorGroup();
         if( deSelected.size() >0 || indSelected.size()>0)
         {
-            program.setDisplayName( StringUtils.trimToNull( name ) );
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
-            program.setDisplayName( StringUtils.trimToNull( displayName ) );
             program.setShortName( StringUtils.abbreviate(name, 40) );
+            program.setDescription( StringUtils.trimToNull( description ) );
+
 
 
             Set<DataElement> dataElementGroupMembers = new HashSet<>();

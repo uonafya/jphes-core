@@ -1,0 +1,15 @@
+{ "program":
+{
+"id": "$!{program.programid}",
+"name": "$!encoder.jsonEncode( ${program.name} )",
+"shortname": "$!encoder.jsonEncode( ${program.shortname} )",
+"description": "$!encoder.jsonEncode( ${program.description} )",
+"shortname": "$!encoder.jsonEncode( ${program.shortname} )",
+"code": "$!encoder.jsonEncode( ${program.code} )",
+"uid": "$!{program.uid}",
+"dataelementgroup": "$!{program.dataElementGroup.name}",
+"indicatorgroup": "$!{program.indicatorGroup.name}",
+"created": "$!format.formatDate( ${program.created} )",
+"lastupdated": "$!format.formatDate( ${program.lastupdated} )"
+}
+}
