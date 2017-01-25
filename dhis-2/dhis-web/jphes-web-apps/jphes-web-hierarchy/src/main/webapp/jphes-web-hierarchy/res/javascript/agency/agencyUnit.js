@@ -27,3 +27,12 @@ function removeAgencyUnit( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeAgencyUnit.action');
 }
 
+// -----------------------------------------------------------------------------
+// View Programs
+// -----------------------------------------------------------------------------
+
+function viewAgencyPrograms( context ) {
+
+  location.href = 'viewAgencyPrograms.action?id=' + context.id;
+
+}

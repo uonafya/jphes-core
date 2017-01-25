@@ -22,3 +22,23 @@ function removeProgram( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeProgram.action');
 }
 
+// -----------------------------------------------------------------------------
+// View Indicators
+// -----------------------------------------------------------------------------
+
+function viewProgramIndicators( context ) {
+
+  location.href = 'viewProgramIndicators.action?id=' + context.id;
+
+}
+
+// -----------------------------------------------------------------------------
+// View DataElements
+// -----------------------------------------------------------------------------
+
+function viewProgramDataElements( context ) {
+
+  location.href = 'viewProgramDataElements.action?id=' + context.id;
+
+}
+

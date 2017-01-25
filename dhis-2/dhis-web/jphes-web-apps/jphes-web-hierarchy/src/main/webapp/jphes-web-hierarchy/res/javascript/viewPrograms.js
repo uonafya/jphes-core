@@ -8,5 +8,5 @@ jQuery(document).ready(function() {
 });
 
 function showProgramDetails( context ) {
-  location.href = 'showProgramDetails.action?id=' + context.id;
+  location.href = '';
 }

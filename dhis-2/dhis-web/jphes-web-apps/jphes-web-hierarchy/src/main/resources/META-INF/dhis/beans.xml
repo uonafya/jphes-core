@@ -39,6 +39,10 @@
     scope="prototype">
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.national.viewNationalProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.viewNationalProgramList"
+    scope="prototype">
+  </bean>
+
   <!--Donor Unit Actions beans -->
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetDonorUnitListAction" scope="prototype" >
@@ -72,7 +76,11 @@
     scope="prototype">
   </bean>
 
-  <!--Donor Unit Actions beans -->
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.donor.viewDonorProgramList" class="org.hisp.dhis.jphes.hierarchy.action.donor.viewDonorProgramList"
+    scope="prototype">
+  </bean>
+
+  <!--Agency Unit Actions beans -->
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetAgencyUnitListAction" scope="prototype" >
   </bean>
@@ -90,6 +98,10 @@
   </bean>
 
   <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction" class="org.hisp.dhis.jphes.hierarchy.action.agency.GetDonorProgramListAction"
+    scope="prototype">
+  </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.agency.viewAgencyProgramList" class="org.hisp.dhis.jphes.hierarchy.action.agency.viewAgencyProgramList"
     scope="prototype">
   </bean>
 
@@ -117,5 +129,10 @@
   <bean id="org.hisp.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.ViewMechanismOrgUnitAction" scope="prototype">
 
   </bean>
+
+  <bean id="org.hisp.dhis.jphes.hierarchy.action.mechanism.viewMechanismProgramList" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.viewMechanismProgramList" scope="prototype">
+
+  </bean>
+
 
 </beans>

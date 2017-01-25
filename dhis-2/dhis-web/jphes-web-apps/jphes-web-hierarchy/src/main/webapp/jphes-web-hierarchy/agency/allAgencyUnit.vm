@@ -12,6 +12,7 @@
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
     <li data-enabled="canManage"><a data-target-fn="showSharingDialogWithContext"><i class="fa fa-share"></i>&nbsp;&nbsp;$i18n.getString( "sharing_settings" )</a></li>
+    <li><a data-target-fn="viewAgencyPrograms"><i class="fa fa-eye"></i>&nbsp;&nbsp;$i18n.getString( "view_programs" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showAddMechanismUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_mechanism" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateAgencyUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
     <li data-enabled="canDelete"><a data-target-fn="removeAgencyUnit"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
