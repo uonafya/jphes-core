@@ -49,6 +49,7 @@ public class RemoveProgramAction implements Action {
     @Override
     public String execute() throws Exception {
         try {
+
             Program program = programService.getProgram(id);
             programService.deleteProgram(program);
 
