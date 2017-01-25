@@ -15,7 +15,7 @@
             }
         });
 
-        jQuery("#iAvailable").dhisAjaxSelect({
+        jQuery("#indAvailable").dhisAjaxSelect({
             source: "../api/indicators.json?paging=false&fields=displayName,id,name",
             iterator: 'indicators',
             connectedTo: 'indSelectedList',
@@ -69,9 +69,9 @@
 
             <td style="text-align:center">
                 <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'deAvailable' );"/><br/>
-                <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'deSelected' );"/><br/>
+                <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'deSelectedList' );"/><br/>
                 <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'deAvailable' );"/><br/>
-                <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'deSelected' );"/>
+                <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'deSelectedList' );"/>
             </td>
 
             <td>
@@ -86,14 +86,14 @@
         <tr>
             <td><label>$i18n.getString( "indicators" )</label></td>
             <td>
-                <select id="iAvailable" name="iAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
+                <select id="indAvailable" name="indAvailable" multiple="multiple" style="height: 200px; width: 100%;"></select>
             </td>
 
             <td style="text-align:center">
-                <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'iAvailable' );"/><br/>
-                <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'iSelected' );"/><br/>
-                <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'iAvailable' );"/><br/>
-                <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'iSelected' );"/>
+                <input type="button" value="&gt;" title="$i18n.getString( 'move_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'indAvailable' );"/><br/>
+                <input type="button" value="&lt;" title="$i18n.getString( 'remove_selected' )" style="width:50px" onclick="dhisAjaxSelect_moveAllSelected( 'indSelectedList' );"/><br/>
+                <input type="button" value="&gt;&gt;" title="$i18n.getString('move_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'indAvailable' );"/><br/>
+                <input type="button" value="&lt;&lt;" title="$i18n.getString('remove_all')" style="width:50px" onclick="dhisAjaxSelect_moveAll( 'indSelectedList' );"/>
             </td>
 
             <td>
@@ -107,7 +107,7 @@
         <tr>
             <td></td>
             <td valign="top">
-                <input type="submit" value="$i18n.getString( 'add' )" style="width:10em"/>
+                <input type="submit" value="$i18n.getString( 'save' )" style="width:10em"/>
                 <input type="button" value="$i18n.getString( 'cancel' )" onclick="dhis2.commons.redirectCurrentPage( 'allProgram.action' )" style="width:10em"/>
             </td>
         </tr>
