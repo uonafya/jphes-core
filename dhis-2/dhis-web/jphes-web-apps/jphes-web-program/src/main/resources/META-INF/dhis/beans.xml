@@ -18,4 +18,9 @@
     <property name="programService" ref="org.hisp.dhis.jphes.program.ProgramService"/>
   </bean>
 
+  <bean id="org.hisp.dhis.jphes.program.action.ValidateProgramAction" class="org.hisp.dhis.jphes.program.action.ValidateProgramAction" scope="prototype" />
+
+  <bean id="org.hisp.dhis.jphes.program.action.ViewProgramDataElementList" class="org.hisp.dhis.jphes.program.action.ViewProgramDataElementList" scope="prototype" />
+
+  <bean id="org.hisp.dhis.jphes.program.action.ViewProgramIndicatorList" class="org.hisp.dhis.jphes.program.action.ViewProgramIndicatorList" scope="prototype" />
 </beans>

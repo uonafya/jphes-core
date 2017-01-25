@@ -1,0 +1,46 @@
+<script type="text/javascript" src="res/javascript/viewPrograms.js"></script>
+
+<h3>$i18n.getString( 'jphes_programs' ) &nbsp;for&nbsp;-&nbsp;${unit.name}  #openHelp( "jphes_hierarchy" )</h3>
+
+<div id="contextMenu" class="contextMenu">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    <li><a data-target-fn="showProgramDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+  </ul>
+</div>
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_created")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $program in $programs )
+            <tr id="tr${program.id}" data-id="$!program.id" data-uid="$!program.uid" data-type="jphesProgram" data-name="$encoder.htmlEncode( $!program.name )"
+                data-can-manage="$security.canManage( $program )"
+                data-can-update="$security.canUpdate( $program )"
+                data-can-delete="$security.canDelete( $program )">
+              <td>$!encoder.htmlEncode( $program.name )</td>
+              <td>$!encoder.htmlEncode( $program.code )</td>
+              <td>$!format.formatDate( $program.created )</td>
+              <td>$!format.formatDate( $program.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+  </tr>
+</table>

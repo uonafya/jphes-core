@@ -8,6 +8,8 @@ import org.hisp.dhis.paging.ActionPagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -75,6 +77,8 @@ public class GetMechanismUnitListAction extends ActionPagingSupport<MechanismUni
             this.paging = createPaging(mechanismUnitService.getMechanismUnitCountByName(key));
 
             mechanismUnits = mechanismUnitService.getMechanismUnitsBetweenByName(key, paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort(mechanismUnits);
         }
 
         if ( (! isNotBlank( key )) && (! isNotBlank( agencyUnit )))
@@ -82,15 +86,21 @@ public class GetMechanismUnitListAction extends ActionPagingSupport<MechanismUni
             this.paging = createPaging( mechanismUnitService.getMechanismUnitCount() );
 
             mechanismUnits = mechanismUnitService.getMechanismUnitsBetween( paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort(mechanismUnits);
         }
 
         if ( isNotBlank( agencyUnit ) )
         {
             AgencyUnit agency = agencyUnitService.getAgencyUnit( agencyUnit );
 
-            this.paging = createPaging(agency.getMechanismUnits().size());
-
             mechanismUnits = new ArrayList<>( agency.getMechanismUnits() );
+
+            this.paging = createPaging(mechanismUnits.size());
+
+            mechanismUnits = mechanismUnits.subList(paging.getStartPos(), paging.getEndPos() );
+
+            Collections.sort(mechanismUnits);
         }
 
         return SUCCESS;

@@ -1,0 +1,41 @@
+
+<h3>$i18n.getString( 'jphes_dataelements' ) &nbsp;for&nbsp;-&nbsp;${program.name}  #openHelp( "jphes_programs" )</h3>
+
+
+<table style="width:100%">
+  <tr>
+    <td style="vertical-align:top">
+      <table width="100%">
+        <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="window.location.href='allProgram.action'"/></td>
+      </table>
+      <table class="listTable" id="listTable">
+        <thead>
+        <tr>
+          <th>$i18n.getString( "jphes_name")</th>
+          <th>$i18n.getString( "jphes_code")</th>
+          <th>$i18n.getString( "jphes_created")</th>
+          <th>$i18n.getString( "jphes_lastupdated")</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            #foreach( $dataElement in $dataElements )
+            <tr id="tr${dataElement.id}" data-id="$!dataElement.id" data-uid="$!dataElement.uid" data-type="DataElement" data-name="$encoder.htmlEncode( $!dataElement.name )"
+                data-can-manage="$security.canManage( $dataElement )"
+                data-can-update="$security.canUpdate( $dataElement )"
+                data-can-delete="$security.canDelete( $dataElement )">
+              <td>$!encoder.htmlEncode( $dataElement.name )</td>
+              <td>$!encoder.htmlEncode( $dataElement.code )</td>
+              <td>$!format.formatDate( $dataElement.created )</td>
+              <td>$!format.formatDate( $dataElement.lastUpdated )</td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+      <p></p>
+      <div class="paging-container">
+          #parse( "/dhis-web-commons/paging/paging.vm" )
+      </div>
+
+    </td>
+  </tr>
+</table>

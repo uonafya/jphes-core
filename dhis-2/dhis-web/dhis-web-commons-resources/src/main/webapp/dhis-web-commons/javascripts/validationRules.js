@@ -644,6 +644,22 @@ var validationRules = {
             "required" : true,
             "rangelength" : [ 2, 230]
         }
+    },
+
+    "jphesProgram" : {
+        "name" : {
+            "required" : true,
+            "rangelength" : [ 2, 230 ]
+        },
+        "shortName" : {
+            "required" : true,
+            "rangelength" : [ 2, 50 ]
+        },
+        "code" : {
+            "rangelength" : [ 0, 50 ],
+            "alphanumericwithbasicpuncspaces" : true,
+            "notOnlyDigits" : false
+        }
     }
 
 

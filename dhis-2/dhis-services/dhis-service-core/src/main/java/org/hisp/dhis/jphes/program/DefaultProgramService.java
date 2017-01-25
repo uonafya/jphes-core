@@ -85,8 +85,8 @@ public class DefaultProgramService implements ProgramService {
      * @return
      */
     @Override
-    public List<Program> getProgramByName(String name) {
-        return programStore.getAllLikeName( name );
+    public Program getProgramByName(String name) {
+        return programStore.getByName(name);
     }
 
     /**

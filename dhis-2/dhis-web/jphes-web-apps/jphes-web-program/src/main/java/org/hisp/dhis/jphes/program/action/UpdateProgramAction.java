@@ -57,10 +57,16 @@ public class UpdateProgramAction implements Action {
         this.code = code;
     }
 
-    private String displayName;
+    private String shortName;
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    private String description;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     private List<String> deSelectedList = new ArrayList<>();
@@ -94,7 +100,8 @@ public class UpdateProgramAction implements Action {
         {
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
-            program.setDisplayName( StringUtils.trimToNull( displayName ) );
+            program.setShortName( StringUtils.trimToNull( shortName ) );
+            program.setDescription( StringUtils.trimToNull( description ) );
 
             program.getDataElements().clear();
             program.getIndicators().clear();
@@ -123,7 +130,7 @@ public class UpdateProgramAction implements Action {
             //updating DataElementGroup and IndicatorGroup
             dataElementGroup.setName( StringUtils.trimToNull( name ) );
             dataElementGroup.setCode( StringUtils.trimToNull( code ) );
-            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setShortName( StringUtils.trimToNull( shortName ));
 
             indicatorGroup.setName( StringUtils.trimToNull( name ) );
             indicatorGroup.setCode( StringUtils.trimToNull( code ) );

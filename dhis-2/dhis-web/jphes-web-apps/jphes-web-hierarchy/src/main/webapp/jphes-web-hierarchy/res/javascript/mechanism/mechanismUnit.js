@@ -40,6 +40,16 @@ function viewOrganistionUnits( context ) {
 }
 
 // -----------------------------------------------------------------------------
+// View Programs
+// -----------------------------------------------------------------------------
+
+function viewMechanismPrograms( context ) {
+
+  location.href = 'viewMechanismPrograms.action?id=' + context.id;
+
+}
+
+// -----------------------------------------------------------------------------
 // filter MechanismUnits by AgencyUnit
 // -----------------------------------------------------------------------------
 

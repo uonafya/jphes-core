@@ -69,6 +69,13 @@
       <param name="requiredAuthorities">F_NATIONAL_UNIT_DELETE</param>
     </action>
 
+    <action name="viewNationalPrograms" class="org.hisp.dhis.jphes.hierarchy.action.national.viewNationalProgramList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/viewPrograms.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_LIST</param>
+    </action>
+
     <!-- NationalUnit Json Actions -->
 
     <action name="getProgramList" class="org.hisp.dhis.jphes.hierarchy.action.national.GetProgramListAction">
@@ -128,6 +135,13 @@
       <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+    <action name="viewDonorPrograms" class="org.hisp.dhis.jphes.hierarchy.action.donor.viewDonorProgramList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/viewPrograms.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="requiredAuthorities">F_DONOR_UNIT_LIST</param>
     </action>
 
 
@@ -191,6 +205,13 @@
       <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
       <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
       <param name="onExceptionReturn">plainTextError</param>
+    </action>
+
+    <action name="viewAgencyPrograms" class="org.hisp.dhis.jphes.hierarchy.action.agency.viewAgencyProgramList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/viewPrograms.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="requiredAuthorities">F_AGENCY_UNIT_LIST</param>
     </action>
 
 
@@ -262,6 +283,14 @@
       <param name="javascripts">res/javascript/mechanism/mechanismUnit.js,res/javascript/filterTable.js</param>
       <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
     </action>
+
+    <action name="viewMechanismPrograms" class="org.hisp.dhis.jphes.hierarchy.action.mechanism.viewMechanismProgramList">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/viewPrograms.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="requiredAuthorities">F_MECHANISM_UNIT_LIST</param>
+    </action>
+
 
 
     <!-- Json Actions -->

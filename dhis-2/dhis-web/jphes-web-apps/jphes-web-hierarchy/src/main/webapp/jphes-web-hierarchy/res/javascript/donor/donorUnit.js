@@ -27,3 +27,12 @@ function removeDonorUnit( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeDonorUnit.action');
 }
 
+// -----------------------------------------------------------------------------
+// View Programs
+// -----------------------------------------------------------------------------
+
+function viewDonorPrograms( context ) {
+
+  location.href = 'viewDonorPrograms.action?id=' + context.id;
+
+}
