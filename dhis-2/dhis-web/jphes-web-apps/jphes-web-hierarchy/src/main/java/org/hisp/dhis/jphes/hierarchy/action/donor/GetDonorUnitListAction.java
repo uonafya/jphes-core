@@ -4,6 +4,7 @@ import org.hisp.dhis.jphes.hierarchy.donor.DonorUnit;
 import org.hisp.dhis.jphes.hierarchy.donor.DonorUnitService;
 import org.hisp.dhis.paging.ActionPagingSupport;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -54,12 +55,16 @@ public class GetDonorUnitListAction extends ActionPagingSupport<DonorUnit>
             this.paging = createPaging(donorUnitService.getDonorUnitCountByName(key));
 
             donorUnits = donorUnitService.getDonorUnitsBetweenByName(key, paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort( donorUnits );
         }
         else
         {
             this.paging = createPaging( donorUnitService.getDonorUnitCount() );
 
             donorUnits = donorUnitService.getDonorUnitsBetween( paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort( donorUnits );
         }
 
         return SUCCESS;

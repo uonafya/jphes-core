@@ -5,7 +5,7 @@
         [<!ENTITY identifiableProperties SYSTEM "classpath://org/hisp/dhis/common/identifiableProperties.hbm">]
         >
         <hibernate-mapping>
-    <class name="org.hisp.dhis.jphes.program.Program" lazy="false" table="jphes_program">
+    <class name="org.hisp.dhis.jphes.program.Program"  table="jphes_program">
         <cache usage="read-write" />
 
         <id name="id" column="programid">
@@ -31,14 +31,16 @@
 
         <set name="dataElements" table="jphes_programdataelements">
             <cache usage="read-write" />
-            <key column="programid" />
-            <many-to-many class="org.hisp.dhis.dataelement.DataElement" column="dataelementid"/>
+            <key column="programid" foreign-key="fk_programdataelements_programid" />
+            <many-to-many class="org.hisp.dhis.dataelement.DataElement" column="dataelementid"
+                          foreign-key="fk_programdataelements_dataelementid"/>
         </set>
 
         <set name="indicators" table="jphes_programindicators">
             <cache usage="read-write" />
-            <key column="programid" />
-            <many-to-many class="org.hisp.dhis.indicator.Indicator" column="indicatorid"/>
+            <key column="programid" foreign-key="fk_programindicators_programid" />
+            <many-to-many class="org.hisp.dhis.indicator.Indicator" column="indicatorid"
+                          foreign-key="fk_programindicators_indicatorid"/>
         </set>
 
     </class>

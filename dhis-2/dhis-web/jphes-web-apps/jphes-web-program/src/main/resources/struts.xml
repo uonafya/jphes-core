@@ -21,25 +21,36 @@
       <param name="page">/jphes-web-program/allProgram.vm</param>
       <param name="menu">/jphes-web-program/menu.vm</param>
       <param name="javascripts">javascript/program.js,javascript/filterTable.js</param>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_LIST</param>
     </action>
 
     <action name="showAddProgramForm" class="org.hisp.dhis.jphes.program.action.NoAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-program/addProgramForm.vm</param>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_ADD</param>
     </action>
 
     <action name="addProgram" class="org.hisp.dhis.jphes.program.action.AddProgramAction">
       <result name="success" type="redirect">allProgram.action?currentPage=${keyCurrentPage}&amp;key=${keyCurrentKey}</result>
       <result name="error" type="redirect">showAddProgramForm.action</result>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_ADD</param>
     </action>
     <action name="updateProgram" class="org.hisp.dhis.jphes.program.action.UpdateProgramAction">
       <result name="success" type="redirect">allProgram.action</result>
       <result name="error" type="redirect">showUpdateProgramForm.action</result>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_ADD</param>
     </action>
 
     <action name="showUpdateProgramForm" class="org.hisp.dhis.jphes.program.action.GetProgramAction">
       <result name="success" type="velocity">/main.vm</result>
       <param name="page">/jphes-web-program/updateProgramForm.vm</param>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_ADD</param>
+    </action>
+
+    <action name="validateProgram" class="org.hisp.dhis.jphes.program.action.ValidateProgramAction">
+      <result name="success" type="velocity-json">/dhis-web-commons/ajax/jsonResponseSuccess.vm</result>
+      <result name="error" type="velocity-json">/dhis-web-commons/ajax/jsonResponseError.vm</result>
+      <param name="onExceptionReturn">plainTextError</param>
     </action>
 
   </package>

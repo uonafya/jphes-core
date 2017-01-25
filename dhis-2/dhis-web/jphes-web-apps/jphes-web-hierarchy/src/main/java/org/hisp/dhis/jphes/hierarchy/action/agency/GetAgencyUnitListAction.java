@@ -5,6 +5,7 @@ import org.hisp.dhis.jphes.hierarchy.agency.AgencyUnitService;
 import org.hisp.dhis.paging.ActionPagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.apache.commons.lang.StringUtils.isNotBlank;
@@ -52,12 +53,16 @@ public class GetAgencyUnitListAction extends ActionPagingSupport<AgencyUnit>
             this.paging = createPaging(agencyUnitService.getAgencyUnitCountByName(key));
 
             agencyUnits = agencyUnitService.getAgencyUnitsBetweenByName(key, paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort( agencyUnits );
         }
         else
         {
             this.paging = createPaging( agencyUnitService.getAgencyUnitCount() );
 
             agencyUnits = agencyUnitService.getAgencyUnitsBetween( paging.getStartPos(), paging.getPageSize() );
+
+            Collections.sort( agencyUnits );
         }
 
         return SUCCESS;

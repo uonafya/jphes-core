@@ -95,6 +95,7 @@ public class UpdateProgramAction implements Action {
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
             program.setDisplayName( StringUtils.trimToNull( displayName ) );
+            program.setShortName( StringUtils.abbreviate(name,40));
 
             program.getDataElements().clear();
             program.getIndicators().clear();
@@ -123,7 +124,7 @@ public class UpdateProgramAction implements Action {
             //updating DataElementGroup and IndicatorGroup
             dataElementGroup.setName( StringUtils.trimToNull( name ) );
             dataElementGroup.setCode( StringUtils.trimToNull( code ) );
-            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setShortName( StringUtils.abbreviate(name, 40) );
 
             indicatorGroup.setName( StringUtils.trimToNull( name ) );
             indicatorGroup.setCode( StringUtils.trimToNull( code ) );

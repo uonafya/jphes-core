@@ -1,21 +1,6 @@
+<script type="text/javascript" src="javascript/updateProgramForm.js"></script>
 <script type="text/javascript">
     jQuery(function () {
-
-        /* remote validation */
-//        checkValueIsExist( "name", "validateProgram.action", {
-//            id : getFieldValue( 'id' )
-//        } );
-//
-//        checkValueIsExist( "displayName", "validateProgram.action", {
-//            id : getFieldValue( 'id' )
-//        } );
-//
-//        checkValueIsExist( "code", "validateProgram.action", {
-//            id : getFieldValue( 'id' )
-//        } );
-
-//        sortList( 'deAvailable', 'ASC' );
-//        sortList( 'iAvailable', 'ASC' );
 
         jQuery("#deAvailable").dhisAjaxSelect({
             source: "../api/dataElements.json?paging=false&fields=displayName,id,name",
@@ -44,7 +29,7 @@
         });
     });
 </script>
-<h3>Add Program</h3>
+<h3>Update Program</h3>
 
 <form id="updateProgramForm" name="updateProgramForm" action="updateProgram.action" method="post" class="inputForm">
     <table>
@@ -66,13 +51,13 @@
         </tr>
 
         <tr>
-            <td style="width:200px"><label for="code">$i18n.getString( "code" ) <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+            <td style="width:200px"><label for="code">$i18n.getString( "code" ) </label></td>
             <td><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $program.code )"></td>
             <td></td>
         </tr>
 
         <tr>
-            <td style="width:200px"><label for="displayName">Display Name</label></td>
+            <td style="width:200px"><label for="displayName">Display Name <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
             <td ><input type="text" id="displayName" name="displayName" value="$!encoder.htmlEncode( $program.displayName )"></td>
             <td></td>
         </tr>
@@ -91,7 +76,7 @@
 
             <td>
                 <select id="deSelectedList" name="deSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-                    #foreach ( $deSelected in $dataElements )
+                    #foreach ( $deSelected in $dataElementsList )
                         <option value="$deSelected.uid">$encoder.htmlEncode( $deSelected.name )</option>
                     #end
                 </select>
@@ -113,7 +98,7 @@
 
             <td>
                 <select id="indSelectedList" name="indSelectedList" multiple="multiple" style="height: 200px; width: 100%; margin-top: 22px;">
-                #foreach ( $indSelected in $indicators )
+                #foreach ( $indSelected in $indicatorsList )
                     <option value="$indSelected.uid">$encoder.htmlEncode( $indSelected.name )</option>
                 #end
                 </select>

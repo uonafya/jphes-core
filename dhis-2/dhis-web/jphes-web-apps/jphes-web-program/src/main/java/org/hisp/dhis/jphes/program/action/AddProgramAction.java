@@ -93,8 +93,8 @@ public class AddProgramAction implements Action
             program.setDisplayName( StringUtils.trimToNull( name ) );
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
-            program.setDescription( StringUtils.trimToNull( displayName ) );
-            program.setShortName( StringUtils.trimToNull( name ) );
+            program.setDisplayName( StringUtils.trimToNull( displayName ) );
+            program.setShortName( StringUtils.abbreviate(name, 40) );
 
 
             Set<DataElement> dataElementGroupMembers = new HashSet<>();
@@ -105,7 +105,6 @@ public class AddProgramAction implements Action
                 DataElement dataElement = dataElementService.getDataElement( id );
 
                 dataElementGroupMembers.add( dataElement );
-                program.getDataElements().add( dataElement );
             }
 
             for ( String id : indSelected )
@@ -114,26 +113,50 @@ public class AddProgramAction implements Action
                 Indicator indicator = indicatorService.getIndicator( id );
 
                 indicatorGroupMembers.add( indicator );
-                program.getIndicators().add( indicator );
             }
 
 
             dataElementGroup.setName( StringUtils.trimToNull( name ) );
             dataElementGroup.setCode( StringUtils.trimToNull( code ) );
-            dataElementGroup.setShortName( StringUtils.trimToNull( name ) );
+            dataElementGroup.setShortName( StringUtils.abbreviate( name, 40 ) );
             dataElementGroup.setMembers( dataElementGroupMembers );
 
             indicatorGroup.setName( StringUtils.trimToNull( name ) );
             indicatorGroup.setCode( StringUtils.trimToNull( code ) );
             indicatorGroup.setMembers( indicatorGroupMembers );
 
+            //Save DataElementGroup and IndicatorGroup
             dataElementService.addDataElementGroup( dataElementGroup );
             indicatorService.addIndicatorGroup( indicatorGroup );
 
+            //Set DataElementGroup and Indicator Group to Program
             program.setDataElementGroup( dataElementGroup );
             program.setIndicatorGroup( indicatorGroup );
 
+            //Save Program
             programService.addProgram( program );
+
+
+            //Add Indicators and DataElements
+
+            for ( String id : deSelected )
+            {
+                DataElement dataElement = dataElementService.getDataElement( id );
+
+                program.getDataElements().add( dataElement );
+            }
+
+            for ( String id : indSelected )
+            {
+
+                Indicator indicator = indicatorService.getIndicator( id );
+
+                program.getIndicators().add( indicator );
+            }
+
+            //update the program
+
+            programService.updateProgram(program);
         }
 
         return SUCCESS;
