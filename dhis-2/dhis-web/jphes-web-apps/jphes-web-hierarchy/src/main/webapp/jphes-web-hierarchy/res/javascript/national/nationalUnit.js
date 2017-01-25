@@ -29,3 +29,12 @@ function removeNationalUnit( context ) {
   removeItem(context.id, context.name, i18n_confirm_delete, 'removeNationalUnit.action');
 }
 
+// -----------------------------------------------------------------------------
+// View Programs
+// -----------------------------------------------------------------------------
+
+function viewNationalPrograms( context ) {
+
+  location.href = 'viewNationalPrograms.action?id=' + context.id;
+
+}

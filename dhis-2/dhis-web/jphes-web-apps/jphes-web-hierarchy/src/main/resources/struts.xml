@@ -130,6 +130,13 @@
       <param name="onExceptionReturn">plainTextError</param>
     </action>
 
+    <action name="viewNationalPrograms" class="org.hisp.dhis.jphes.hierarchy.action.donor.GetNationalProgramListAction">
+      <result name="success" type="velocity">/main.vm</result>
+      <param name="page">/jphes-web-hierarchy/viewPrograms.vm</param>
+      <param name="menu">/jphes-web-hierarchy/menu.vm</param>
+      <param name="requiredAuthorities">F_NATIONAL_UNIT_LIST</param>
+    </action>
+
 
     <!-- Json Actions -->
 
