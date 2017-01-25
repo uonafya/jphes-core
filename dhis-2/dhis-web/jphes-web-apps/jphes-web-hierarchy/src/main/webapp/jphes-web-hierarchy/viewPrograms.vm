@@ -1,15 +1,17 @@
 <script type="text/javascript" src="res/javascript/viewPrograms.js"></script>
 
-<h3>$i18n.getString( 'jphes_programs' )  #openHelp( "jphes_hierarchy" )</h3>
+<h3>$i18n.getString( 'jphes_programs' ) &nbsp;for&nbsp;-&nbsp;${unit.name}  #openHelp( "jphes_hierarchy" )</h3>
 
+<div id="contextMenu" class="contextMenu">
+  <ul id="contextMenuItems" class="contextMenuItems">
+    <li><a data-target-fn="showProgramDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
+  </ul>
+</div>
 
 <table style="width:100%">
   <tr>
     <td style="vertical-align:top">
       <table width="100%">
-##        <tr>
-##          <td colspan="4" style="text-align:right"><input type="button" value="$i18n.getString( 'jphes_back' )" onclick="window.location.href=''"/></td>
-##        </tr>
       </table>
       <table class="listTable" id="listTable">
         <thead>
