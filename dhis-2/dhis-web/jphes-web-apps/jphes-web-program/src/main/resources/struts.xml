@@ -59,5 +59,15 @@
       <param name="anyAuthorities">F_JPHES_PROGRAM_LIST</param>
     </action>
 
+    <action name="removeProgram" class="org.hisp.dhis.jphes.program.action.RemoveProgramAction">
+      <result name="success" type="velocity-json">
+        /dhis-web-commons/ajax/jsonResponseSuccess.vm
+      </result>
+      <result name="error" type="velocity-json">
+        /dhis-web-commons/ajax/jsonResponseError.vm
+      </result>
+      <param name="requiredAuthorities">F_JPHES_PROGRAM_ADD</param>
+    </action>
+
   </package>
 </struts>
