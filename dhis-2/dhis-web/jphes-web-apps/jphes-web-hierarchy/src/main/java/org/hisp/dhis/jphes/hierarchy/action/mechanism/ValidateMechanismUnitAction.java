@@ -1,6 +1,8 @@
 package org.hisp.dhis.jphes.hierarchy.action.mechanism;
 
 import com.opensymphony.xwork2.Action;
+import org.hisp.dhis.dataelement.DataElementCategoryOption;
+import org.hisp.dhis.dataelement.DataElementCategoryService;
 import org.hisp.dhis.i18n.I18n;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnit;
 import org.hisp.dhis.jphes.hierarchy.mechanism.MechanismUnitService;
@@ -17,6 +19,9 @@ public class ValidateMechanismUnitAction implements Action
     // -------------------------------------------------------------------------
     @Autowired
     private MechanismUnitService mechanismUnitService;
+
+    @Autowired
+    private DataElementCategoryService categoryService;
 
     @Autowired
     private UserGroupService userGroupService;
@@ -89,7 +94,10 @@ public class ValidateMechanismUnitAction implements Action
 
             int userGroupCount = userGroupService.getUserGroupCountByName( name );
 
-            if ( (match != null && (id == null || match.getId() != id)) || (userGroupCount>0 && id==null) )
+            DataElementCategoryOption categoryOptionName = categoryService.getDataElementCategoryOptionByName( name );
+
+            if ( (match != null && (id == null || match.getId() != id)) || (userGroupCount>0 && id==null)
+                || (categoryOptionName != null && (id == null)))
             {
                 message = i18n.getString( "name_in_use" );
 
@@ -101,7 +109,10 @@ public class ValidateMechanismUnitAction implements Action
         {
             MechanismUnit match2 = mechanismUnitService.getMechanismUnitByShortName( shortName );
 
-            if ( match2 != null && (id == null || match2.getId() != id) )
+            DataElementCategoryOption categoryOptionShortName = categoryService.getDataElementCategoryOptionByShortName( shortName );
+
+            if ( (match2 != null && (id == null || match2.getId() != id)) ||
+                (categoryOptionShortName != null && (id == null)) )
             {
                 message = i18n.getString( "name_in_use" );
 
@@ -113,7 +124,10 @@ public class ValidateMechanismUnitAction implements Action
         {
             MechanismUnit match3 = mechanismUnitService.getMechanismUnitByCode( code );
 
-            if ( match3 != null && (id == null || match3.getId() != id) )
+            DataElementCategoryOption categoryOptionCode = categoryService.getDataElementCategoryOptionByCode( code );
+
+            if ( (match3 != null && (id == null || match3.getId() != id))
+                || (categoryOptionCode != null && (id == null)) )
             {
                 message = i18n.getString( "code_in_use" );
 
