@@ -43,6 +43,10 @@ public class viewAgencyProgramList extends ActionPagingSupport<Program>
         return programs;
     }
 
+    private AgencyUnit unit;
+
+    public AgencyUnit getUnit(){ return unit; }
+
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -51,7 +55,7 @@ public class viewAgencyProgramList extends ActionPagingSupport<Program>
     public String execute()
         throws Exception
     {
-        AgencyUnit unit = agencyUnitService.getAgencyUnit( id );
+        unit = agencyUnitService.getAgencyUnit( id );
 
         programs = new ArrayList<>( unit.getPrograms() );
 

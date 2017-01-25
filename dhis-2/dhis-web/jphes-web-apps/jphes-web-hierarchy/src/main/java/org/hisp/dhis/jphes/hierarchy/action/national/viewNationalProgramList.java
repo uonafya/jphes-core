@@ -43,6 +43,10 @@ public class viewNationalProgramList extends ActionPagingSupport<Program>
         return programs;
     }
 
+    private NationalUnit unit;
+
+    public NationalUnit getUnit(){ return unit; }
+
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -51,9 +55,9 @@ public class viewNationalProgramList extends ActionPagingSupport<Program>
     public String execute()
         throws Exception
     {
-        NationalUnit nationalUnit = nationalUnitService.getNationalUnit( id );
+        unit = nationalUnitService.getNationalUnit( id );
 
-        programs = new ArrayList<>( nationalUnit.getPrograms() );
+        programs = new ArrayList<>( unit.getPrograms() );
 
         Collections.sort( programs );
 

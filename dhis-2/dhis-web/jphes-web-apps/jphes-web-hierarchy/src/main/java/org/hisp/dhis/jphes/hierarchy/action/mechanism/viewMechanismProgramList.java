@@ -43,6 +43,10 @@ public class viewMechanismProgramList extends ActionPagingSupport<Program>
         return programs;
     }
 
+    private MechanismUnit unit;
+
+    public MechanismUnit getUnit(){ return unit; }
+
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -51,7 +55,7 @@ public class viewMechanismProgramList extends ActionPagingSupport<Program>
     public String execute()
         throws Exception
     {
-        MechanismUnit unit = mechanismUnitService.getMechanismUnit( id );
+        unit = mechanismUnitService.getMechanismUnit( id );
 
         programs = new ArrayList<>( unit.getPrograms() );
 

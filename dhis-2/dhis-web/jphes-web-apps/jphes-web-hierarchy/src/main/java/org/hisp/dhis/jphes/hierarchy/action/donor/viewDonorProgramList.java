@@ -43,6 +43,10 @@ public class viewDonorProgramList extends ActionPagingSupport<Program>
         return programs;
     }
 
+    private DonorUnit unit;
+
+    public DonorUnit getUnit(){ return unit; }
+
     // -------------------------------------------------------------------------
     // Action implementation
     // -------------------------------------------------------------------------
@@ -51,7 +55,7 @@ public class viewDonorProgramList extends ActionPagingSupport<Program>
     public String execute()
         throws Exception
     {
-        DonorUnit unit = donorUnitService.getDonorUnit( id );
+        unit = donorUnitService.getDonorUnit( id );
 
         programs = new ArrayList<>( unit.getPrograms() );
 
