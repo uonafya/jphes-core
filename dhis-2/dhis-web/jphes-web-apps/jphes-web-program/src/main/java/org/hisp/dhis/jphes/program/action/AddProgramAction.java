@@ -96,7 +96,7 @@ public class AddProgramAction implements Action
         {
             program.setName( StringUtils.trimToNull( name ) );
             program.setCode( StringUtils.trimToNull( code ) );
-            program.setShortName( StringUtils.abbreviate(name, 40) );
+            program.setShortName( StringUtils.trimToNull( shortName ) );
             program.setDescription( StringUtils.trimToNull( description ) );
 
 
@@ -122,7 +122,7 @@ public class AddProgramAction implements Action
 
             dataElementGroup.setName( StringUtils.trimToNull( name ) );
             dataElementGroup.setCode( StringUtils.trimToNull( code ) );
-            dataElementGroup.setShortName( StringUtils.abbreviate( name, 40 ) );
+            dataElementGroup.setShortName( StringUtils.trimToNull( shortName ) );
             dataElementGroup.setMembers( dataElementGroupMembers );
 
             indicatorGroup.setName( StringUtils.trimToNull( name ) );

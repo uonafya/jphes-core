@@ -7,6 +7,8 @@ function showProgramDetails( context ) {
     setInnerHTML('nameField', json.program.name);
     setInnerHTML('shortnameField', json.program.shortName);
     setInnerHTML('descriptionField', json.program.description);
+    setInnerHTML('dataElementsField', json.program.dataelements);
+    setInnerHTML('indicatorsField', json.program.indicators);
     setInnerHTML('codeField', json.program.code);
     setInnerHTML('uidField', json.program.uid);
 

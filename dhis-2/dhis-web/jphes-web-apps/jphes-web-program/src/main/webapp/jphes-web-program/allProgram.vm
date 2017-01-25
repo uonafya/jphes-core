@@ -13,7 +13,7 @@
     <li><a data-target-fn="viewProgramDataElements"><i class="fa fa-list"></i>&nbsp;&nbsp;$i18n.getString( "view_dataelements" )</a></li>
     <li><a data-target-fn="viewProgramIndicators"><i class="fa fa-list-ol"></i>&nbsp;&nbsp;$i18n.getString( "view_indicators" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateProgramForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
-    <li data-enabled="canDelete"><a data-target-fn="removeProgram"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
+    <li data-enabled="canDelete"><a data-target-fn=""><i class="fa fa-trash-o"></i>&nbsp;&nbsp;$i18n.getString( "remove" )</a></li>
     <li><a data-target-fn="showProgramDetails"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;$i18n.getString( "show_details" )</a></li>
   </ul>
 </div>
@@ -66,8 +66,8 @@
         <p><label>$i18n.getString( "code" ):</label><br/><span id="codeField"></span></p>
         <p><label>$i18n.getString( "description" ):</label><br/><span id="descriptionField"></span></p>
         <p><label>$i18n.getString( "uid" ):</label><br/><span id="uidField"></span></p>
-##        <p><label>Created:</label><br/><span id="createdField"></span></p>
-##        <p><label>Last Updated:</label><br/><span id="lastUpdatedField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_dataelements" )</label><br/><span id="dataElementsField"></span></p>
+        <p><label>$i18n.getString( "jphes_number_indicators" )</label><br/><span id="indicatorsField"></span></p>
 ##        <p><label>$i18n.getString( "id" ):</label><br/><span id="idField"></span></p>
       </div>
 

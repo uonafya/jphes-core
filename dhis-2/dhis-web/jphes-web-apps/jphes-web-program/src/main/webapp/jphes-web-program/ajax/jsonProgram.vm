@@ -7,6 +7,8 @@
 "shortname": "$!encoder.jsonEncode( ${program.shortname} )",
 "code": "$!encoder.jsonEncode( ${program.code} )",
 "uid": "$!{program.uid}",
+"dataelements": "$!{program.dataElements.size()}",
+"indicators": "$!{program.indicators.size()}",
 "dataelementgroup": "$!{program.dataElementGroup.name}",
 "indicatorgroup": "$!{program.indicatorGroup.name}",
 "created": "$!format.formatDate( ${program.created} )",

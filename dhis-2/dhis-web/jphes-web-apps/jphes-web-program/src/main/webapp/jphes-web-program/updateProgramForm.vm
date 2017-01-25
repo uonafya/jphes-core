@@ -50,17 +50,25 @@
             <td></td>
         </tr>
 
+       <tr>
+        <td style="width:200px"><label for="shortName">Short Name <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
+        <td ><input type="text" id="shortName" name="shortName" value="$!encoder.htmlEncode( $program.shortName )"></td>
+        <td></td>
+      </tr>
+
         <tr>
             <td style="width:200px"><label for="code">$i18n.getString( "code" ) </label></td>
             <td><input type="text" id="code" name="code" value="$!encoder.htmlEncode( $program.code )"></td>
             <td></td>
         </tr>
 
-        <tr>
-            <td style="width:200px"><label for="displayName">Display Name <em title="$i18n.getString( 'required' )" class="required">*</em></label></td>
-            <td ><input type="text" id="displayName" name="displayName" value="$!encoder.htmlEncode( $program.displayName )"></td>
-            <td></td>
-        </tr>
+      <tr>
+        <td style="width:200px"><label for="description">Description </label></td>
+        <td ><textarea id="description" name="description">$!encoder.htmlEncode( $program.description )
+        </textarea></td>
+        <td></td>
+      </tr>
+
         <tr>
             <td><label>$i18n.getString( "jphes_dataelements" )</label></td>
             <td>
