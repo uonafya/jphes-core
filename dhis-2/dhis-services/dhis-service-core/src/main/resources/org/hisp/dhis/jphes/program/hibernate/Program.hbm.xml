@@ -6,6 +6,7 @@
         >
         <hibernate-mapping>
     <class name="org.hisp.dhis.jphes.program.Program"  table="jphes_program">
+
         <cache usage="read-write" />
 
         <id name="id" column="programid">
@@ -17,11 +18,9 @@
 
         <property name="shortName" column="shortname" not-null="false" unique="true" length="50" />
 
-        <property name="enabled" column="enabled" type="boolean"  />
+        <property name="enabled" column="enabled" type="boolean" />
 
         <property name="description" type="text" />
-
-        <property name="displayName" column="displayname" not-null="false" length="230"/>
 
         <many-to-one name="dataElementGroup" column="dataelementgroupid" class="org.hisp.dhis.dataelement.DataElementGroup"
           foreign-key="fk_jphesprogramdataelementgroup" not-null="true" />
