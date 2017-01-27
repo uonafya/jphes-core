@@ -105,7 +105,7 @@ public class DefaultAclService implements AclService
 
         if ( haveOverrideAuthority( user )
             || (object.getUser() == null && canCreatePublic( user, object.getClass() ) && !schema.getAuthorityByType( AuthorityType.CREATE_PRIVATE ).isEmpty())
-            || (user != null && user.equals( object.getUser() ))
+            || (user != null && object.getUser() != null && user.getUid().equals( object.getUser().getUid() ))
             || ((object instanceof User) && canCreatePrivate( user, object.getClass() ))
             || AccessStringHelper.canWrite( object.getPublicAccess() ) )
         {
@@ -345,26 +345,28 @@ public class DefaultAclService implements AclService
     }
 
     @Override
-    public <T extends BaseIdentifiableObject> void resetSharing( T object, User user )
+    public <T extends IdentifiableObject> void resetSharing( T object, User user )
     {
-        if ( object == null )
+        if ( object == null || !isShareable( object.getClass() ) || user == null )
         {
             return;
         }
 
-        object.setPublicAccess( AccessStringHelper.DEFAULT );
-        object.setExternalAccess( false );
+        BaseIdentifiableObject baseIdentifiableObject = (BaseIdentifiableObject) object;
+
+        baseIdentifiableObject.setPublicAccess( AccessStringHelper.DEFAULT );
+        baseIdentifiableObject.setExternalAccess( false );
 
         if ( object.getUser() == null )
         {
-            object.setUser( user );
+            baseIdentifiableObject.setUser( user );
         }
 
         if ( canCreatePublic( user, object.getClass() ) )
         {
             if ( defaultPublic( object.getClass() ) )
             {
-                object.setPublicAccess( AccessStringHelper.READ_WRITE );
+                baseIdentifiableObject.setPublicAccess( AccessStringHelper.READ_WRITE );
             }
         }
 
@@ -376,7 +378,7 @@ public class DefaultAclService implements AclService
     {
         List<ErrorReport> errorReports = new ArrayList<>();
 
-        if ( object == null || !isShareable( object.getClass() ) )
+        if ( object == null || !isShareable( object.getClass() ) || user == null )
         {
             return errorReports;
         }
