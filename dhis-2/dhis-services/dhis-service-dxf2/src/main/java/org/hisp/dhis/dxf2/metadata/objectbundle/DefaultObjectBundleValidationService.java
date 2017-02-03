@@ -38,6 +38,7 @@ import org.hisp.dhis.common.IdentifiableObjectUtils;
 import org.hisp.dhis.commons.timer.SystemTimer;
 import org.hisp.dhis.commons.timer.Timer;
 import org.hisp.dhis.dataelement.DataElementOperand;
+import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.dxf2.metadata.AtomicMode;
 import org.hisp.dhis.dxf2.metadata.objectbundle.feedback.ObjectBundleValidationReport;
 import org.hisp.dhis.feedback.ErrorCode;
@@ -143,6 +144,9 @@ public class DefaultObjectBundleValidationService implements ObjectBundleValidat
                     typeReport.getStats().incIgnored();
                 }
 
+                typeReport.getStats().incCreated( nonPersistedObjects.size() );
+                typeReport.getStats().incUpdated( persistedObjects.size() );
+
                 typeReport.merge( checkReferences );
             }
             else if ( bundle.getImportMode().isCreate() )
@@ -160,6 +164,8 @@ public class DefaultObjectBundleValidationService implements ObjectBundleValidat
                 {
                     typeReport.getStats().incIgnored();
                 }
+
+                typeReport.getStats().incCreated( nonPersistedObjects.size() );
 
                 typeReport.merge( checkReferences );
             }
@@ -179,12 +185,16 @@ public class DefaultObjectBundleValidationService implements ObjectBundleValidat
                     typeReport.getStats().incIgnored();
                 }
 
+                typeReport.getStats().incUpdated( persistedObjects.size() );
+
                 typeReport.merge( checkReferences );
             }
             else if ( bundle.getImportMode().isDelete() )
             {
                 typeReport.merge( validateSecurity( klass, persistedObjects, bundle, ImportStrategy.DELETE ) );
                 typeReport.merge( validateForDelete( klass, nonPersistedObjects, bundle ) );
+
+                typeReport.getStats().incDeleted( persistedObjects.size() );
             }
 
             validation.addTypeReport( typeReport );
@@ -323,6 +333,21 @@ public class DefaultObjectBundleValidationService implements ObjectBundleValidat
                     iterator.remove();
                     continue;
                 }
+            }
+
+            List<ErrorReport> sharingErrorReports = aclService.verifySharing( object, bundle.getUser() );
+
+            if ( !sharingErrorReports.isEmpty() )
+            {
+                ObjectReport objectReport = new ObjectReport( klass, idx, object.getUid() );
+                objectReport.setDisplayName( IdentifiableObjectUtils.getDisplayName( object ) );
+                objectReport.addErrorReports( sharingErrorReports );
+
+                typeReport.addObjectReport( objectReport );
+                typeReport.getStats().incIgnored();
+
+                iterator.remove();
+                continue;
             }
 
             idx++;
@@ -914,8 +939,8 @@ public class DefaultObjectBundleValidationService implements ObjectBundleValidat
 
     private boolean skipCheck( Class<?> klass )
     {
-        return klass != null && (
-            UserCredentials.class.isAssignableFrom( klass ) || DataElementOperand.class.isAssignableFrom( klass )
-                || Period.class.isAssignableFrom( klass ) || PeriodType.class.isAssignableFrom( klass ));
+        return klass != null && (UserCredentials.class.isAssignableFrom( klass ) || DataElementOperand.class.isAssignableFrom( klass ) ||
+            Period.class.isAssignableFrom( klass ) || PeriodType.class.isAssignableFrom( klass ) ||
+            DataSetElement.class.isAssignableFrom( klass ));
     }
 }

@@ -152,9 +152,7 @@ public class JdbcEventAnalyticsTableManager
             sqlCreate += col.getName() + " " + col.getDataType() + ",";
         }
 
-        sqlCreate = removeLast( sqlCreate, 1 ) + ") ";
-
-        sqlCreate += statementBuilder.getTableOptions( false );
+        sqlCreate = removeLast( sqlCreate, 1 ) + ")";
 
         log.info( "Creating table: " + tableName + ", columns: " + columns.size() );
         
@@ -240,7 +238,10 @@ public class JdbcEventAnalyticsTableManager
             
             for ( DataElementCategory category : categories )
             {
-                columns.add( new AnalyticsTableColumn( quote( category.getUid() ), "character(11)", "acs." + quote( category.getUid() ) ) );
+                if ( category.isDataDimension() )
+                {
+                    columns.add( new AnalyticsTableColumn( quote( category.getUid() ), "character(11)", "acs." + quote( category.getUid() ) ) );
+                }
             }
         }
 
