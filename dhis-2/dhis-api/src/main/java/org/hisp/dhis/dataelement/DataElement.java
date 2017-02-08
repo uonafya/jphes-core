@@ -646,7 +646,6 @@ public class DataElement
     }
 
     @JsonProperty
-    @JsonSerialize( contentAs = BaseIdentifiableObject.class )
     @JacksonXmlElementWrapper( localName = "dataSetElements", namespace = DxfNamespaces.DXF_2_0 )
     @JacksonXmlProperty( localName = "dataSetElements", namespace = DxfNamespaces.DXF_2_0 )
     public Set<DataSetElement> getDataSetElements()
