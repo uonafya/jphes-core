@@ -11,7 +11,7 @@
 
 <div id="contextMenu" class="contextMenu">
   <ul id="contextMenuItems" class="contextMenuItems">
-    <li data-enabled="canUpdate"><a data-target-fn="showSharingDialogWithContext"><i class="fa fa-share"></i>&nbsp;&nbsp;$i18n.getString( "sharing_settings" )</a></li>
+##    <li data-enabled="canUpdate"><a data-target-fn="showSharingDialogWithContext"><i class="fa fa-share"></i>&nbsp;&nbsp;$i18n.getString( "sharing_settings" )</a></li>
     <li><a data-target-fn="viewDonorPrograms"><i class="fa fa-eye"></i>&nbsp;&nbsp;$i18n.getString( "view_programs" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showAddAgencyUnitForm"><i class="fa fa-plus"></i>&nbsp;&nbsp;$i18n.getString( "add_agency" )</a></li>
     <li data-enabled="canUpdate"><a data-target-fn="showUpdateDonorUnitForm"><i class="fa fa-edit"></i>&nbsp;&nbsp;$i18n.getString( "edit" )</a></li>
