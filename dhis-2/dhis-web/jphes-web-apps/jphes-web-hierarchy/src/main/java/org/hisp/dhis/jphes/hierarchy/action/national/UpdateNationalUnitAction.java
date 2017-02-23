@@ -120,15 +120,23 @@ public class UpdateNationalUnitAction implements Action
             //Save UserGroup
             userGroupService.updateUserGroup( userGroup );
 
-            //CategoryOptionGroupSet
+            //CategoryOptionGroupSet Donor
 
             CategoryOptionGroupSet categoryOptionGroupSet = nationalUnit.getCategoryOptionGroupSet();
             categoryOptionGroupSet.setName( "A. Donors-" + StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 ) );
             categoryOptionGroupSet.setDescription( StringUtils.trimToNull( description ) );
             categoryOptionGroupSet.setDataDimension( true );
 
-            //save categoryOptionGroupSet
+            //CategoryOptionGroupSet Agency
+
+            CategoryOptionGroupSet categoryOptionGroupSetAgency = nationalUnit.getCategoryOptionGroupSetAgency();
+            categoryOptionGroupSetAgency.setName(  "B. Agency Units-"+ StringUtils.abbreviate( StringUtils.trimToNull( shortName ), 30 )  );
+            categoryOptionGroupSetAgency.setDescription( StringUtils.trimToNull( description ) );
+            categoryOptionGroupSetAgency.setDataDimension( true );
+
+            //update categoryOptionGroupSetDonor and Agency
             categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSet );
+            categoryService.updateCategoryOptionGroupSet( categoryOptionGroupSetAgency );
 
             //Mechanism Category
             DataElementCategory category = nationalUnit.getMechanismCategory();
