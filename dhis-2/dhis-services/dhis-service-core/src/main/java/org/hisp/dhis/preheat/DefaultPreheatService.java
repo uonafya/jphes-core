@@ -42,10 +42,13 @@ import org.hisp.dhis.common.DataDimensionItem;
 import org.hisp.dhis.common.IdentifiableObject;
 import org.hisp.dhis.common.IdentifiableObjectManager;
 import org.hisp.dhis.common.MergeMode;
+import org.hisp.dhis.common.ReportingRate;
+import org.hisp.dhis.commons.collection.CollectionUtils;
 import org.hisp.dhis.commons.timer.SystemTimer;
 import org.hisp.dhis.commons.timer.Timer;
 import org.hisp.dhis.dataelement.DataElementCategoryDimension;
 import org.hisp.dhis.dataelement.DataElementOperand;
+import org.hisp.dhis.dataset.DataSetElement;
 import org.hisp.dhis.period.Period;
 import org.hisp.dhis.period.PeriodService;
 import org.hisp.dhis.period.PeriodStore;
@@ -120,6 +123,9 @@ public class DefaultPreheatService implements PreheatService
         {
             preheat.setUser( currentUserService.getCurrentUser() );
         }
+
+        preheat.put( PreheatIdentifier.UID, preheat.getUser() );
+        preheat.put( PreheatIdentifier.CODE, preheat.getUser() );
 
         for ( Class<? extends IdentifiableObject> klass : params.getObjects().keySet() )
         {
@@ -466,11 +472,22 @@ public class DefaultPreheatService implements PreheatService
 
                         if ( DataElementOperand.class.isAssignableFrom( p.getItemKlass() ) )
                         {
-                            reference.forEach( identifiableObject ->
+                            CollectionUtils.nullSafeForEach( reference, identifiableObject ->
                             {
                                 DataElementOperand dataElementOperand = (DataElementOperand) identifiableObject;
                                 addIdentifiers( map, dataElementOperand.getDataElement() );
                                 addIdentifiers( map, dataElementOperand.getCategoryOptionCombo() );
+                            } );
+                        }
+
+                        if ( DataSetElement.class.isAssignableFrom( p.getItemKlass() ) )
+                        {
+                            CollectionUtils.nullSafeForEach( reference, identifiableObject ->
+                            {
+                                DataSetElement dataSetElement = (DataSetElement) identifiableObject;
+                                addIdentifiers( map, dataSetElement.getDataSet() );
+                                addIdentifiers( map, dataSetElement.getCategoryCombo() );
+                                addIdentifiers( map, dataSetElement.getDataElement() );
                             } );
                         }
                     }
@@ -481,11 +498,11 @@ public class DefaultPreheatService implements PreheatService
                     BaseAnalyticalObject analyticalObject = (BaseAnalyticalObject) object;
                     List<DataDimensionItem> dataDimensionItems = analyticalObject.getDataDimensionItems();
                     List<DataElementCategoryDimension> categoryDimensions = analyticalObject.getCategoryDimensions();
-                    List<TrackedEntityDataElementDimension> dataElementDimensions = analyticalObject.getDataElementDimensions();
+                    List<TrackedEntityDataElementDimension> trackedEntityDataElementDimensions = analyticalObject.getDataElementDimensions();
                     List<TrackedEntityAttributeDimension> attributeDimensions = analyticalObject.getAttributeDimensions();
                     List<TrackedEntityProgramIndicatorDimension> programIndicatorDimensions = analyticalObject.getProgramIndicatorDimensions();
 
-                    dataDimensionItems.forEach( dataDimensionItem ->
+                    CollectionUtils.nullSafeForEach( dataDimensionItems, dataDimensionItem ->
                     {
                         addIdentifiers( map, dataDimensionItem.getDimensionalItemObject() );
 
@@ -494,27 +511,32 @@ public class DefaultPreheatService implements PreheatService
                             addIdentifiers( map, dataDimensionItem.getDataElementOperand().getDataElement() );
                             addIdentifiers( map, dataDimensionItem.getDataElementOperand().getCategoryOptionCombo() );
                         }
+
+                        if ( dataDimensionItem.getReportingRate() != null )
+                        {
+                            addIdentifiers( map, dataDimensionItem.getReportingRate().getDataSet() );
+                        }
                     } );
 
-                    categoryDimensions.forEach( categoryDimension ->
+                    CollectionUtils.nullSafeForEach( categoryDimensions, categoryDimension ->
                     {
                         addIdentifiers( map, categoryDimension.getDimension() );
                         categoryDimension.getItems().forEach( item -> addIdentifiers( map, item ) );
                     } );
 
-                    dataElementDimensions.forEach( trackedEntityDataElementDimension ->
+                    CollectionUtils.nullSafeForEach( trackedEntityDataElementDimensions, trackedEntityDataElementDimension ->
                     {
                         addIdentifiers( map, trackedEntityDataElementDimension.getDataElement() );
                         addIdentifiers( map, trackedEntityDataElementDimension.getLegendSet() );
                     } );
 
-                    attributeDimensions.forEach( trackedEntityAttributeDimension ->
+                    CollectionUtils.nullSafeForEach( attributeDimensions, trackedEntityAttributeDimension ->
                     {
                         addIdentifiers( map, trackedEntityAttributeDimension.getAttribute() );
                         addIdentifiers( map, trackedEntityAttributeDimension.getLegendSet() );
                     } );
 
-                    programIndicatorDimensions.forEach( programIndicatorDimension ->
+                    CollectionUtils.nullSafeForEach( programIndicatorDimensions, programIndicatorDimension ->
                     {
                         addIdentifiers( map, programIndicatorDimension.getProgramIndicator() );
                         addIdentifiers( map, programIndicatorDimension.getLegendSet() );
@@ -826,6 +848,7 @@ public class DefaultPreheatService implements PreheatService
 
     private boolean skipConnect( Class<?> klass )
     {
-        return klass != null && (UserCredentials.class.isAssignableFrom( klass ) || DataElementOperand.class.isAssignableFrom( klass ));
+        return klass != null && (DataElementOperand.class.isAssignableFrom( klass ) || UserCredentials.class.isAssignableFrom( klass ) ||
+            ReportingRate.class.isAssignableFrom( klass ) || DataSetElement.class.isAssignableFrom( klass ));
     }
 }

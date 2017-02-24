@@ -1,8 +1,8 @@
-package org.hisp.dhis.node.transformers;
+package org.hisp.dhis.user;
 
 /*
  * Copyright (c) 2004-2016, University of Oslo
- *  All rights reserved.
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -28,50 +28,70 @@ package org.hisp.dhis.node.transformers;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.hisp.dhis.node.Node;
-import org.hisp.dhis.node.NodeTransformer;
-import org.hisp.dhis.node.types.SimpleNode;
-import org.hisp.dhis.schema.Property;
-import org.hisp.dhis.schema.PropertyType;
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * @author Morten Olav Hansen <mortenoh@gmail.com>
+ * Represents minimal user information.
+ * 
+ * @author Lars Helge Overland
  */
-@Component
-public class SizeNodeTransformer implements NodeTransformer
+public class UserInfo
 {
-    @Override
-    public String name()
+    private int id;
+    
+    private String username;
+    
+    private Set<String> authorities = new HashSet<>();
+    
+    protected UserInfo()
     {
-        return "size";
+    }
+    
+    public UserInfo( int id, String username, Set<String> authorities )
+    {
+        this.id = id;
+        this.username = username;
+        this.authorities = authorities;
     }
 
-    @Override
-    public Node transform( Node node, List<String> args )
+    // -------------------------------------------------------------------------
+    // Logic
+    // -------------------------------------------------------------------------
+    
+    public boolean isSuper()
     {
-        checkNotNull( node );
-        checkNotNull( node.getProperty() );
-
-        Property property = node.getProperty();
-
-        if ( property.isCollection() )
+        return authorities.contains( UserAuthorityGroup.AUTHORITY_ALL );
+    }
+    
+    public static UserInfo fromUser( User user )
+    {
+        if ( user == null )
         {
-            return new SimpleNode( property.getCollectionName(), node.getChildren().size(), property.isAttribute() );
+            return null;
         }
-        else if ( property.is( PropertyType.TEXT ) )
-        {
-            return new SimpleNode( property.getName(), ((String) ((SimpleNode) node).getValue()).length(), property.isAttribute() );
-        }
-        else if ( property.is( PropertyType.INTEGER ) || property.is( PropertyType.NUMBER ) )
-        {
-            return new SimpleNode( property.getName(), ((SimpleNode) node).getValue(), property.isAttribute() );
-        }
+        
+        UserCredentials credentials = user.getUserCredentials();
+        
+        return new UserInfo( credentials.getId(), credentials.getUsername(), credentials.getAllAuthorities() );
+    }
+    
+    // -------------------------------------------------------------------------
+    // Get methods
+    // -------------------------------------------------------------------------
 
-        return node;
+    public int getId()
+    {
+        return id;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public Set<String> getAuthorities()
+    {
+        return authorities;
     }
 }

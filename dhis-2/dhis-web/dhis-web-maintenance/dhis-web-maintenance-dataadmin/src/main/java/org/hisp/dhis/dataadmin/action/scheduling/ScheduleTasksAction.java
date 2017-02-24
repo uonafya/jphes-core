@@ -243,6 +243,18 @@ public class ScheduleTasksAction
         this.metadataSyncCron = metadataSyncCron;
     }
 
+    private String dataSyncCron;
+
+    public String getDataSyncCron()
+    {
+        return dataSyncCron;
+    }
+
+    public void setDataSyncCron( String dataSyncCron )
+    {
+        this.dataSyncCron = dataSyncCron;
+    }
+
     // -------------------------------------------------------------------------
     // Output
     // -------------------------------------------------------------------------
@@ -411,7 +423,8 @@ public class ScheduleTasksAction
 
                 if ( STRATEGY_ENABLED.equals( dataSynchStrategy ) )
                 {
-                    cronKeyMap.putValue( CRON_EVERY_MIN, TASK_DATA_SYNCH );
+                    cronKeyMap.putValue( dataSyncCron, TASK_DATA_SYNCH );
+                    systemSettingManager.saveSystemSetting( SettingKey.DATA_SYNC_CRON, dataSyncCron );
                 }
 
                 if ( STRATEGY_ENABLED.equals( metadataSyncStrategy ) )
@@ -444,7 +457,6 @@ public class ScheduleTasksAction
                 // -------------------------------------------------------------
 
                 schedulingManager.scheduleTasks( cronKeyMap );
-
             }
         }
         else
@@ -497,6 +509,7 @@ public class ScheduleTasksAction
             if ( keys.contains( TASK_DATA_SYNCH ) )
             {
                 dataSynchStrategy = STRATEGY_ENABLED;
+                dataSyncCron = (String) systemSettingManager.getSystemSetting( SettingKey.DATA_SYNC_CRON );
             }
 
             // -------------------------------------------------------------
