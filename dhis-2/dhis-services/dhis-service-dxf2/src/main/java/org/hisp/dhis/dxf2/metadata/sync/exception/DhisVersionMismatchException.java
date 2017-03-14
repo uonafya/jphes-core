@@ -1,7 +1,7 @@
-package org.hisp.dhis.system.notification;
+package org.hisp.dhis.dxf2.metadata.sync.exception;
 
 /*
- * Copyright (c) 2004-2016, University of Oslo
+ * Copyright (c) 2004-2017, University of Oslo
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,18 +29,22 @@ package org.hisp.dhis.system.notification;
  */
 
 /**
- * @author Lars Helge Overland
+ * @author aamerm
  */
-public enum NotificationLevel
+public class DhisVersionMismatchException extends Exception
 {
-    OFF,
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR;
-    
-    public boolean isOff()
+    public DhisVersionMismatchException( String message )
     {
-        return this == OFF;
+        super( message );
+    }
+
+    public DhisVersionMismatchException( Throwable cause )
+    {
+        super( cause );
+    }
+
+    public DhisVersionMismatchException( String message, Throwable cause )
+    {
+        super( message, cause );
     }
 }

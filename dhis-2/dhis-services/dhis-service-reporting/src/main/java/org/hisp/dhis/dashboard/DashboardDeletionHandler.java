@@ -1,7 +1,7 @@
-package org.hisp.dhis.system.notification;
+package org.hisp.dhis.dashboard;
 
 /*
- * Copyright (c) 2004-2016, University of Oslo
+ * Copyright (c) 2004-2017, University of Oslo
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,19 +28,32 @@ package org.hisp.dhis.system.notification;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import org.hisp.dhis.system.deletion.DeletionHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
- * @author Lars Helge Overland
+ * @author Morten Olav Hansen <mortenoh@gmail.com>
  */
-public enum NotificationLevel
+public class DashboardDeletionHandler extends DeletionHandler
 {
-    OFF,
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR;
-    
-    public boolean isOff()
+    @Autowired
+    private DashboardService dashboardService;
+
+    @Override
+    protected String getClassName()
     {
-        return this == OFF;
+        return Dashboard.class.getSimpleName();
+    }
+
+    @Override
+    public void deleteDashboardItem( DashboardItem dashboardItem )
+    {
+        Dashboard dashboard = dashboardService.getDashboardFromDashboardItem( dashboardItem );
+
+        if ( dashboard != null )
+        {
+            dashboard.getItems().remove( dashboardItem );
+            dashboardService.updateDashboard( dashboard );
+        }
     }
 }
