@@ -129,6 +129,7 @@ public class TableAlteror
         executeSql( "DROP TABLE datadictionaryindicators" );
         executeSql( "DROP TABLE datadictionarydataelements" );
         executeSql( "DROP TABLE datadictionary" );
+        executeSql( "DROP TABLE caseaggregationcondition" );
         executeSql( "ALTER TABLE categoryoptioncombo drop column userid" );
         executeSql( "ALTER TABLE categoryoptioncombo drop column publicaccess" );
         executeSql( "ALTER TABLE categoryoptioncombo alter column name type text" );
@@ -1505,7 +1506,7 @@ public class TableAlteror
         List<Map<String, String>> listTables = new ArrayList<>();
 
         addTranslationTable( listTables, "DataElement", "dataelementtranslations", "dataelement", "dataelementid" );
-        addTranslationTable( listTables, "DataElementCategory", "dataelementcategorytranslations", "dataelementcategory", "dataelementcategoryid" );
+        addTranslationTable( listTables, "DataElementCategory", "dataelementcategorytranslations", "dataelementcategory", "categoryid" );
         addTranslationTable( listTables, "Attribute", "attributetranslations", "attribute", "attributeid" );
         addTranslationTable( listTables, "Indicator", "indicatortranslations", "indicator", "indicatorid" );
         addTranslationTable( listTables, "OrganisationUnit", "organisationUnittranslations", "organisationunit", "organisationunitid" );
