@@ -7,7 +7,7 @@
 
 html,body
 {
-  background-color: #1d5288;  
+  background-color: #006400;  
   color: white;
   font-size: 15px;
 }
@@ -29,6 +29,17 @@ a:hover
   position: absolute;
   top: 22px;
   left: 52px;
+  border: 1px solid #d5d5d5;
+  border-radius: 2px;
+  max-width: 105px;
+  margin-bottom: 5%;
+}
+
+#brandArea
+{
+  position: absolute;
+  top: 22px;
+  right: 52px;
   border: 1px solid #d5d5d5;
   border-radius: 2px;
   max-width: 105px;
