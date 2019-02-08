@@ -18,6 +18,11 @@
         #if ( $keyFlag )
             <img id="flagArea" src="../flags/$!{keyFlagImage}">
         #end
+        
+        #if ( $keyFlag )
+            <img id="brandArea" src="../flags/healthit.png">
+        #end
+
         #if ( $applicationTitle )
             <span id="titleArea">$!encoder.htmlEncode( ${applicationTitle} )</span>
         #end        
